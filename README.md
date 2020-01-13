@@ -1,7 +1,5 @@
 Bienvenue sur ARHM-Outil-de-communication
 
-Le projet ARHM à pour vocation d'assiter les perssone en condition de handicape touchant a la comunication,
-notre équipe de devlopeur en herbe, 
-hattelle a la consception d'un outile de communication simplifier visant a aider les personne de leur antourage a mieux les comprendre mais également a ce faire coprendre.
+Le projet ARHM-Outil-de-communication a pour vocation d'assister les personnes en condition de handicap nécessitant une aide personnalisée pour communiquer. Notre équipe de developpeurs en herbe est attelée à la conception d'un outil de communication simplifiée visant à simplifier le dialogue entre l'intéréssé et son entourage.
 
-Froznight
+Froznight, Zapoux
