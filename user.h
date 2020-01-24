@@ -3,19 +3,23 @@
 
 #include <QDate>
 
+#include "interface.h"
+
 // Classe représentant un utlisateur de l'application
-class user
+class User
 {
 private:
     QString firstname;
     QString lastname;
     QDate birthDate;
     QString handicap;
+    Interface interface;
+
 
 public:
-    user();
-    user(QString firstname, QString lastname, QDate birthDate, QString handicap);
-    ~user();
+    User();
+    User(QString firstname, QString lastname, QDate birthDate, QString handicap);
+    ~User();
 
     // Affiche l'interface personnalisée de l'utlisateur
     void DisplayInterface();
@@ -24,8 +28,6 @@ public:
     void EditLastname(QString lastname);
     void EditBirthDate(QDate birthDate);
     void EditHandicap(QString handicap);
-    // Supprime l'utlisateur
-    void Delete();
 };
 
 #endif // USER_H
