@@ -5,8 +5,12 @@ Pictogram::Pictogram()
 
 }
 
-Pictogram::Pictogram(QString definition, QPixmap image)
+QString Pictogram::getDefinition()
 {
-    this->definition = definition;
-    this->image = image;
+    return this->definition;
+}
+
+QTextToSpeech * Pictogram::getSpeech()
+{
+    return this->speech;
 }

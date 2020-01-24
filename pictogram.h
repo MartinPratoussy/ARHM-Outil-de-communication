@@ -1,6 +1,7 @@
 #ifndef PICTOGRAM_H
 #define PICTOGRAM_H
 
+#include <iostream>
 #include <QtTextToSpeech/QTextToSpeech>
 #include <QPixmap>
 
@@ -16,6 +17,10 @@ public:
     Pictogram();
     Pictogram(QString definition, QPixmap image);
     ~Pictogram();
+
+    // Récupère les attributs privés
+    QString getDefinition();
+    QTextToSpeech * getSpeech();
 };
 
 #endif // PICTOGRAM_H
