@@ -3,6 +3,7 @@
 
 #include "pictogram.h"
 
+// Interface personnalisée en fonction des besoins de l'utlisateur
 class interface
 {
 private:
