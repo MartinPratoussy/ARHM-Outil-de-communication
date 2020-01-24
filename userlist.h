@@ -21,11 +21,11 @@ public:
 
 private slots:
     // Ajoute un utlisateur à l'application
-    void addUser(User user);
+    void AddUser(User user);
     // Edite l'utilisateur choisi
     void EditUser(User user);
     // Supprime un utlisateur de l'application
-    void deleteUser(User user);
+    void DeleteUser(User user);
 
 private:
     Ui::UserList *ui;
