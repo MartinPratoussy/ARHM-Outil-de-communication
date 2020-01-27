@@ -12,9 +12,14 @@ private:
     // Tableau contenant les pictogrammes que l'interface affiche
     Pictogram pictos[NB_MAX_PICTO];
     // Phrase créée par l'utilisateur
-    QString sentence;
+    QString sentence[3];
+    // Nombre d'étapes de la phrase effectuées
+    int numLevel;
 public:
     Interface();
+
+    // Annule l'action précédente
+    void Cancel();
 
 signals:
     // Le signal est envoyé quand l'utlisateur clique sur l'image

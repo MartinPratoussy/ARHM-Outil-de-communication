@@ -26,10 +26,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        interface.cpp \
         main.cpp \
+        pictogram.cpp \
+        user.cpp \
         userlist.cpp
 
 HEADERS += \
+        interface.h \
+        pictogram.h \
+        user.h \
         userlist.h
 
 FORMS += \

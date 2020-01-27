@@ -13,7 +13,7 @@ UserList::~UserList()
     delete ui;
 }
 
-void UserList::addUser(User user)
+void UserList::AddUser(User user)
 {
     try
     {
@@ -30,7 +30,7 @@ void UserList::addUser(User user)
 
 }
 
-void UserList::deleteUser(User user)
+void UserList::DeleteUser(User user)
 {
     try
     {

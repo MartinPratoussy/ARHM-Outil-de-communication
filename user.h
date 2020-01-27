@@ -9,10 +9,12 @@
 class User
 {
 private:
+    // Attributs de l'utlisateur
     QString firstname;
     QString lastname;
     QDate birthDate;
     QString handicap;
+    // Interface personnalisée de l'utilisateur
     Interface interface;
 
 

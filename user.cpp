@@ -1,11 +1,11 @@
 #include "user.h"
 
-user::user()
+User::User()
 {
 
 }
 
-user::user(QString firstname, QString lastname, QDate birthDate, QString handicap)
+User::User(QString firstname, QString lastname, QDate birthDate, QString handicap)
 {
     this->firstname = firstname;
     this->lastname = lastname;
@@ -14,7 +14,7 @@ user::user(QString firstname, QString lastname, QDate birthDate, QString handica
 }
 
 
-user::~user()
+User::~User()
 {
 
 }
