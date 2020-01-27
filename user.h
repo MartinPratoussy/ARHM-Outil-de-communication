@@ -30,6 +30,8 @@ public:
     void EditLastname(QString lastname);
     void EditBirthDate(QDate birthDate);
     void EditHandicap(QString handicap);
+    // Supprime l'utilisateur
+    void DeleteUser();
 };
 
 #endif // USER_H

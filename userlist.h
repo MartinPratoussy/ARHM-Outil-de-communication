@@ -19,13 +19,11 @@ public:
     explicit UserList(QWidget *parent = nullptr);
     ~UserList();
 
-private slots:
+signals:
     // Ajoute un utlisateur à l'application
     void AddUser(User user);
     // Edite l'utilisateur choisi
     void EditUser(User user);
-    // Supprime un utlisateur de l'application
-    void DeleteUser(User user);
 
 private:
     Ui::UserList *ui;
