@@ -39,6 +39,8 @@ HEADERS += \
         userlist.h
 
 FORMS += \
+        interface.ui \
+        user.ui \
         userlist.ui
 
 CONFIG += mobility

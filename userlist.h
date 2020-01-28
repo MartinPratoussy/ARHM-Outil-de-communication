@@ -1,8 +1,6 @@
 #ifndef USERLIST_H
 #define USERLIST_H
 
-#define NB_MAX_USER 100
-
 #include <QMainWindow>
 
 #include "user.h"
@@ -25,11 +23,12 @@ signals:
     // Edite l'utilisateur choisi
     void EditUser(User user);
 
+private slots:
+    void on_edits_clicked();
+
 private:
     Ui::UserList *ui;
 
-    // Nombre d'utilisateur enregistrés dans l'application
-    int nbUser;
     // Tableau contenant tous les utilisateurs de l'application
     User user[NB_MAX_USER];
 

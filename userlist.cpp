@@ -17,31 +17,24 @@ void UserList::AddUser(User user)
 {
     try
     {
-        if (nbUser >= NB_MAX_USER - 1)
+        if (User::nbUser >= NB_MAX_USER - 1)
         {
             throw "Trop d'utlisateurs enregistrés";
         }
-        this->user[nbUser] = user;
-        nbUser++;
+        this->user[User::nbUser] = user;
+        User::nbUser++;
     } catch (std::exception e)
     {
         std::cerr << e.what();
     }
-
 }
 
-void UserList::DeleteUser(User user)
+void UserList::EditUser(User user)
 {
-    try
-    {
-        if (nbUser < 1)
-        {
-            throw "Aucun utlisateur à supprimer";
-        }
-    } catch (std::exception e)
-    {
-        std::cerr << e.what();
-    }
-    user.~User();
-    nbUser--;
+    // Envoie de l'utlisateur à éditer à la page d'édition
+}
+
+void UserList::on_edits_clicked()
+{
+
 }

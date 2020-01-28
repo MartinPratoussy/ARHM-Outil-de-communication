@@ -14,7 +14,7 @@
    <string>UserList</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="interface_2">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -27,30 +27,17 @@
      <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="edit">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>520</y>
+      <x>360</x>
+      <y>510</y>
       <width>121</width>
       <height>81</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>520</y>
-      <width>121</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
+     <string>Editer</string>
     </property>
    </widget>
   </widget>

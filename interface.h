@@ -6,9 +6,16 @@
 #include "pictogram.h"
 
 // Interface personnalisée en fonction des besoins de l'utlisateur
-class Interface
+namespace Ui {
+class Interface;
+}
+
+class Interface : public QWidget
 {
+    Q_OBJECT
 private:
+    Ui::Interface *ui;
+
     // Tableau contenant les pictogrammes que l'interface affiche
     Pictogram pictos[NB_MAX_PICTO];
     // Phrase créée par l'utilisateur

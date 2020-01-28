@@ -35,5 +35,16 @@ void User::EditHandicap(QString handicap)
 
 void User::DeleteUser()
 {
+    try
+    {
+        if (nbUser < 1)
+        {
+            throw "Aucun utlisateur à supprimer";
+        }
+    } catch (std::exception e)
+    {
+        std::cerr << e.what();
+    }
+    nbUser--;
     this->~User();
 }
