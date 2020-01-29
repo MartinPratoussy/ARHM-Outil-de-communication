@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>User</class>
- <widget class="QWidget" name="User">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>UserEdits</class>
+ <widget class="QWidget" name="UserEdits">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,6 +16,6 @@
    <string>Form</string>
   </property>
  </widget>
- <resources/>
+ <pixmapfunction/>
  <connections/>
 </ui>

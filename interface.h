@@ -17,16 +17,23 @@ private:
     Ui::Interface *ui;
 
     // Tableau contenant les pictogrammes que l'interface affiche
-    Pictogram pictos[NB_MAX_PICTO];
+    Pictogram * pictos[NB_MAX_PICTO];
     // Phrase créée par l'utilisateur
-    QString sentence[3];
+    QString * sentence[3];
     // Nombre d'étapes de la phrase effectuées
-    int numLevel;
+    int numLevel = 0;
+    // Nombre de pictogrammes sur l'interface
+    int nbPicto = 0;
+
 public:
-    Interface();
+    explicit Interface(QWidget * parent = nullptr);
+    ~Interface();
 
     // Annule l'action précédente
     void Cancel();
+
+    // Surcharge de l'opérateur d'affection
+    Interface & operator=(const Interface & interface);
 
 signals:
     // Le signal est envoyé quand l'utlisateur clique sur l'image

@@ -29,18 +29,21 @@ SOURCES += \
         interface.cpp \
         main.cpp \
         pictogram.cpp \
+        main.cpp \
         user.cpp \
+        useredits.cpp \
         userlist.cpp
 
 HEADERS += \
         interface.h \
         pictogram.h \
         user.h \
+        useredits.h \
         userlist.h
 
 FORMS += \
         interface.ui \
-        user.ui \
+        useredits.ui \
         userlist.ui
 
 CONFIG += mobility

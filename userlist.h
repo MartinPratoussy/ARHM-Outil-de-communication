@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "user.h"
+#include "useredits.h"
 
 namespace Ui {
 class UserList;

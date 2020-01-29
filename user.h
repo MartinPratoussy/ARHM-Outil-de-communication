@@ -30,20 +30,20 @@ private:
 public:
     User();
     User(QString firstname, QString lastname, QDate birthDate, QString handicap);
-    ~User();
 
     // Nombre d'utilisateurs enregistrés dans l'application
     static int nbUser;
 
-    // Affiche l'interface personnalisée de l'utlisateur
-    void DisplayInterface();
-    // Edite les différents attributs de l'utlisateur
-    void EditFirstname(QString firstname);
-    void EditLastname(QString lastname);
-    void EditBirthDate(QDate birthDate);
-    void EditHandicap(QString handicap);
-    // Supprime l'utilisateur
-    void DeleteUser();
+    // Getters des attributs privés
+    QString getFirstname();
+    QString getLastname();
+    QDate getBirthDate();
+    QString getHandicap();
+    Interface getInterface();
+
+    // Surcharge de l'opérateur d'affection
+    User & operator=(const User & user);
+
 };
 
 #endif // USER_H

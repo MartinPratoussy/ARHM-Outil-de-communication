@@ -11,40 +11,41 @@ User::User(QString firstname, QString lastname, QDate birthDate, QString handica
     this->lastname = lastname;
     this->birthDate = birthDate;
     this->handicap = handicap;
+    nbUser++;
 }
 
-void User::EditFirstname(QString firstname)
+QString User::getFirstname()
 {
-    this->firstname = firstname;
+    return this->firstname;
 }
 
-void User::EditLastname(QString lastname)
+QString User::getLastname()
 {
-    this->lastname = lastname;
+    return this->lastname;
 }
 
-void User::EditBirthDate(QDate birthDate)
+QDate User::getBirthDate()
 {
-    this->birthDate = birthDate;
+    return this->birthDate;
 }
 
-void User::EditHandicap(QString handicap)
+QString User::getHandicap()
 {
-    this->handicap = handicap;
+    return this->handicap;
 }
 
-void User::DeleteUser()
+Interface User::getInterface()
 {
-    try
-    {
-        if (nbUser < 1)
-        {
-            throw "Aucun utlisateur à supprimer";
-        }
-    } catch (std::exception e)
-    {
-        std::cerr << e.what();
-    }
-    nbUser--;
-    this->~User();
+    return this->interface;
+}
+
+User & User::operator=(const User &user)
+{
+    this->firstname = user.firstname;
+    this->lastname = user.lastname;
+    this->birthDate = user.birthDate;
+    this->handicap = user.handicap;
+    this->interface = user.interface;
+
+    return * this;
 }
