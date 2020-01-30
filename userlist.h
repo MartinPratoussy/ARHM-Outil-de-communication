@@ -30,7 +30,7 @@ private:
     Ui::UserList *ui;
 
     // Tableau contenant tous les utilisateurs de l'application
-    User user[NB_MAX_USER];
+    User *user[NB_MAX_USER];
 
 };
 

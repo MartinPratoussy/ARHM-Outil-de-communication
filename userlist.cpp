@@ -6,6 +6,23 @@ UserList::UserList(QWidget *parent) :
     ui(new Ui::UserList)
 {
     ui->setupUi(this);
+
+    // Récupère les utilisateurs enregistrés dans la base de données
+    for (int i = 0; i < NB_MAX_USER; i++) {
+        QSqlQuery query;
+        query.exec("SELECT firstname FROM user WHERE id = " + QString(i) + ")");
+        QString firstname = query.value(0).toString();
+        query.exec("SELECT lastname FROM user WHERE id = " + QString(i) + ")");
+        QString lastname = query.value(0).toString();
+        query.exec("SELECT birthdate FROM user WHERE id = " + QString(i) + ")");
+        QDate birthDate = query.value(0).toDate();
+        query.exec("SELECT handicap FROM user WHERE id = " + QString(i) + ")");
+        QString handicap = query.value(0).toString();
+        query.exec("SELECT interface FROM user WHERE id = " + QString(i) + ")");
+        QString interface = query.value(0).toString();
+        // Crée un nouvel utilisateur avec les données de la base de données
+        this->user[i] = new User(firstname, lastname, birthDate, handicap, interface);
+    }
 }
 
 UserList::~UserList()
@@ -21,7 +38,7 @@ void UserList::AddUser(User user)
         {
             throw "Trop d'utlisateurs enregistrés";
         }
-        this->user[User::nbUser] = user;
+        *this->user[User::nbUser] = user;
         User::nbUser++;
     } catch (std::exception e)
     {
