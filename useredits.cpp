@@ -15,22 +15,22 @@ UserEdits::~UserEdits()
 
 void UserEdits::EditFirstname(QString firstname)
 {
-    user->getFirstname() = firstname;
+    user->setFirstname(firstname);
 }
 
 void UserEdits::EditLastname(QString lastname)
 {
-    user->getLastname() = lastname;
+    user->setLastname(lastname);
 }
 
 void UserEdits::EditBirthDate(QDate birthDate)
 {
-    user->getBirthDate() = birthDate;
+    user->setBirthDate(birthDate);
 }
 
 void UserEdits::EditHandicap(QString handicap)
 {
-    user->getHandicap() = handicap;
+    user->setHandicap(handicap);
 }
 
 void UserEdits::AddPicto(Pictogram picto)

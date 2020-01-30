@@ -5,7 +5,7 @@
 
 #include "pictogram.h"
 
-// Interface personnalisée en fonction des besoins de l'utlisateur
+
 namespace Ui {
 class Interface;
 }
@@ -13,6 +13,17 @@ class Interface;
 class Interface : public QWidget
 {
     Q_OBJECT
+
+public:
+    explicit Interface(QWidget *parent = nullptr);
+    ~Interface();
+
+    // Annule l'action précédente
+    void Cancel();
+
+    // Surcharge de l'opérateur d'affection
+    Interface & operator=(const Interface & interface);
+
 private:
     Ui::Interface *ui;
 
@@ -25,20 +36,9 @@ private:
     // Nombre de pictogrammes sur l'interface
     int nbPicto = 0;
 
-public:
-    explicit Interface(QWidget * parent = nullptr);
-    ~Interface();
-
-    // Annule l'action précédente
-    void Cancel();
-
-    // Surcharge de l'opérateur d'affection
-    Interface & operator=(const Interface & interface);
-
 signals:
     // Le signal est envoyé quand l'utlisateur clique sur l'image
     void pictoOnClicked(Pictogram pictogram);
-
 };
 
 #endif // INTERFACE_H

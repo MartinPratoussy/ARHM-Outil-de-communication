@@ -6,6 +6,9 @@
 
 QT       += core gui
 QT	 += texttospeech
+QT       += multimedia
+QT       += gui
+QT       += core
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,15 +29,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        database.cpp \
         interface.cpp \
         main.cpp \
-        pictogram.cpp \
         main.cpp \
+        pictogram.cpp \
         user.cpp \
         useredits.cpp \
         userlist.cpp
 
 HEADERS += \
+        database.h \
+        includes.h \
         interface.h \
         pictogram.h \
         user.h \

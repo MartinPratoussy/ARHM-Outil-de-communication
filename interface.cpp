@@ -1,7 +1,7 @@
 #include "interface.h"
 #include "ui_interface.h"
 
-Interface::Interface(QWidget * parent) :
+Interface::Interface(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Interface)
 {
@@ -10,7 +10,7 @@ Interface::Interface(QWidget * parent) :
 
 Interface::~Interface()
 {
-
+    delete ui;
 }
 
 void Interface::Cancel()

@@ -1,7 +1,6 @@
 #ifndef USEREDITS_H
 #define USEREDITS_H
 
-#include <QWidget>
 #include "user.h"
 
 namespace Ui {
