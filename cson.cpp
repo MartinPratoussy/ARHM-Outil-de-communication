@@ -6,16 +6,21 @@ CSon::CSon()
 
 }
 
+void CSon::setFichierSon(QString nomFicherEtExtension)
+{
+    m_fichierSon = "/Stockage interne/Music/" + nomFicherEtExtension;
+}
+
 void CSon::lecture()
 {
-   Rat -> setMedia(QUrl::fromLocalFile(m_fichierSon));
-   Rat->setVolume(200);
-   Rat -> play();
+    Rat -> setMedia(QUrl::fromLocalFile(m_fichierSon));
+    Rat->setVolume(100);
+    Rat -> play();
 }
 
 void CSon::stop()
 {
-   Rat-> stop();
+    Rat-> stop();
 }
 
 void CSon::parle(QString tex)
