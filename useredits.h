@@ -1,7 +1,10 @@
 #ifndef USEREDITS_H
 #define USEREDITS_H
 
-#include "user.h"
+#include <QWidget>
+#include <iostream>
+
+#include "interface.h"
 
 namespace Ui {
 class UserEdits;

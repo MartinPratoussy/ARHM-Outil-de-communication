@@ -1,9 +1,11 @@
 #ifndef USERLIST_H
 #define USERLIST_H
 
+#define NB_MAX_USER 100
+
 #include <QMainWindow>
 
-#include "useredits.h"
+#include "interface.h"
 
 namespace Ui {
 class UserList;
@@ -17,21 +19,13 @@ public:
     explicit UserList(QWidget *parent = nullptr);
     ~UserList();
 
-signals:
-    // Ajoute un utlisateur à l'application
-    void AddUser(User user);
-    // Edite l'utilisateur choisi
-    void EditUser(User user);
-
-private slots:
-    void on_edits_clicked();
-
 private:
     Ui::UserList *ui;
 
     // Tableau contenant tous les utilisateurs de l'application
     User *user[NB_MAX_USER];
 
+    int nbUser = 0;
 };
 
 #endif // USERLIST_H

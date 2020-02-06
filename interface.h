@@ -3,8 +3,10 @@
 
 #define NB_MAX_PICTO 100
 
-#include "pictogram.h"
+#include <QWidget>
 
+#include "pictogram.h"
+#include "user.h"
 
 namespace Ui {
 class Interface;
@@ -35,10 +37,6 @@ private:
     int numLevel = 0;
     // Nombre de pictogrammes sur l'interface
     int nbPicto = 0;
-
-signals:
-    // Le signal est envoyé quand l'utlisateur clique sur l'image
-    void pictoOnClicked(Pictogram pictogram);
 };
 
 #endif // INTERFACE_H

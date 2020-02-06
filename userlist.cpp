@@ -21,37 +21,14 @@ UserList::UserList(QWidget *parent) :
         query.exec("SELECT interface FROM user WHERE id = " + QString(i) + ")");
         QString interface = query.value(0).toString();
         // Crée un nouvel utilisateur avec les données de la base de données
-        this->user[i] = new User(firstname, lastname, birthDate, handicap, interface);
+        this->user[i] = new User(firstname, lastname, birthDate, handicap);
+        nbUser++;
+        // Vérifie dans la console le nom de l'utilisateur retourné
+        qInfo() << this->user[i]->getFirstname();
     }
 }
 
 UserList::~UserList()
 {
     delete ui;
-}
-
-void UserList::AddUser(User user)
-{
-    try
-    {
-        if (User::nbUser >= NB_MAX_USER - 1)
-        {
-            throw "Trop d'utlisateurs enregistrés";
-        }
-        *this->user[User::nbUser] = user;
-        User::nbUser++;
-    } catch (std::exception e)
-    {
-        std::cerr << e.what();
-    }
-}
-
-void UserList::EditUser(User user)
-{
-    // Envoie de l'utlisateur à éditer à la page d'édition
-}
-
-void UserList::on_edits_clicked()
-{
-
 }

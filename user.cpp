@@ -1,18 +1,11 @@
 #include "user.h"
 
-User::User()
-{
-
-}
-
-User::User(QString firstname, QString lastname, QDate birthDate, QString handicap, Interface interface)
+User::User(QString firstname, QString lastname, QDate birthDate, QString handicap)
 {
     this->firstname = firstname;
     this->lastname = lastname;
     this->birthDate = birthDate;
     this->handicap = handicap;
-    this->interface = interface;
-    nbUser++;
 
     // Ajout des attributs dans la table User de a base de données
     QSqlQuery query;
@@ -42,12 +35,6 @@ QDate User::getBirthDate()
 QString User::getHandicap()
 {
     return this->handicap;
-}
-
-Interface User::getInterface()
-{
-    Interface test;
-    return test;
 }
 
 void User::setFirstname(QString firstname)
@@ -86,7 +73,6 @@ User & User::operator=(const User &user)
     this->lastname = user.lastname;
     this->birthDate = user.birthDate;
     this->handicap = user.handicap;
-    this->interface = user.interface;
 
     return * this;
 }

@@ -1,14 +1,13 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-01-27T13:11:54
+# Project created by QtCreator 2020-02-06T14:30:00
 #
 #-------------------------------------------------
 
 QT       += core gui
-QT	 += texttospeech
+QT       += texttospeech
 QT       += multimedia
-QT       += gui
-QT       += core
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +31,6 @@ SOURCES += \
         database.cpp \
         interface.cpp \
         main.cpp \
-        main.cpp \
         pictogram.cpp \
         user.cpp \
         useredits.cpp \
@@ -40,7 +38,6 @@ SOURCES += \
 
 HEADERS += \
         database.h \
-        includes.h \
         interface.h \
         pictogram.h \
         user.h \

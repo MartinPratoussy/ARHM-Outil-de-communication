@@ -27,10 +27,3 @@ Interface & Interface::operator=(const Interface & interface)
 
     return * this;
 }
-
-void Interface::pictoOnClicked(Pictogram pictogram)
-{
-    pictogram.getSpeech()->say(pictogram.getDefinition());
-    *this->sentence[numLevel] = pictogram.getDefinition();
-    numLevel++;
-}

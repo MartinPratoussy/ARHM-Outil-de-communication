@@ -15,34 +15,29 @@ UserEdits::~UserEdits()
 
 void UserEdits::EditFirstname(QString firstname)
 {
-    user->setFirstname(firstname);
+    this->user->setFirstname(firstname);
 }
 
 void UserEdits::EditLastname(QString lastname)
 {
-    user->setLastname(lastname);
+    this->user->setLastname(lastname);
 }
 
 void UserEdits::EditBirthDate(QDate birthDate)
 {
-    user->setBirthDate(birthDate);
+    this->user->setBirthDate(birthDate);
 }
 
 void UserEdits::EditHandicap(QString handicap)
 {
-    user->setHandicap(handicap);
-}
-
-void UserEdits::AddPicto(Pictogram picto)
-{
-
+    this->user->setHandicap(handicap);
 }
 
 void UserEdits::DeleteUser()
 {
     try
     {
-        if (User::nbUser < 1)
+        if (/*nbUser < */1)
         {
             throw "Aucun utlisateur à supprimer";
         }
@@ -50,7 +45,6 @@ void UserEdits::DeleteUser()
     {
         std::cerr << e.what();
     }
-    User::nbUser--;
+    //nbUser--;
     user->~User();
 }
-
