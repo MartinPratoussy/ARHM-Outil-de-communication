@@ -4,6 +4,8 @@
 #include <QtTextToSpeech/QTextToSpeech>
 #include <QPixmap>
 
+#include "sound.h"
+
 
 class Pictogram
 {
@@ -12,8 +14,8 @@ private:
     QString definition;
     // Image Makaton du pictogramme
     QPixmap image;
-    // Pointeur permettant de synthétiser vocalement la définition
-    QTextToSpeech * speech = new QTextToSpeech();
+    // Son à jouer lors de l'appui sur le bouton
+    Sound sound;
 
 public:
     Pictogram();
@@ -22,7 +24,6 @@ public:
 
     // Récupère les attributs privés
     QString getDefinition();
-    QTextToSpeech * getSpeech();
 };
 
 #endif // PICTOGRAM_H

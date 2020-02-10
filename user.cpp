@@ -73,6 +73,7 @@ User & User::operator=(const User &user)
     this->lastname = user.lastname;
     this->birthDate = user.birthDate;
     this->handicap = user.handicap;
+    //**this->pictos = **user.pictos;
 
     return * this;
 }

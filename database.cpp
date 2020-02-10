@@ -7,7 +7,7 @@ Database::Database()
     if(QSqlDatabase::isDriverAvailable(DRIVER))
     {
         this->db = QSqlDatabase::addDatabase(DRIVER);
-        this->db.setDatabaseName(":memory");
+        this->db.setDatabaseName("/database.db");
         if(!this->db.open()) qWarning() << "ERROR: " << this->db.lastError();
     }
 }

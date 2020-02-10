@@ -1,21 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>Interface</class>
  <widget class="QWidget" name="Interface">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1920</width>
+    <height>1080</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QPushButton" name="objetsButton">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>840</y>
+     <width>251</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>objets</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="personnesButton">
+   <property name="geometry">
+    <rect>
+     <x>979</x>
+     <y>860</y>
+     <width>241</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>personnes</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="jeVeuxButton">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>540</y>
+     <width>251</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>je veux</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="jeSuisButton">
+   <property name="geometry">
+    <rect>
+     <x>989</x>
+     <y>530</y>
+     <width>231</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>je suis</string>
+   </property>
+  </widget>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

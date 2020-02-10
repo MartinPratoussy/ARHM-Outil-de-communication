@@ -1,10 +1,13 @@
 #ifndef USER_H
 #define USER_H
 
+#define NB_MAX_PICTO 100
+
 #include <QString>
 #include <QDate>
 
 #include "database.h"
+#include "pictogram.h"
 
 class User
 {
@@ -14,6 +17,10 @@ private:
     QString lastname;
     QDate birthDate;
     QString handicap;
+
+    // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
+    Pictogram pictos[4][NB_MAX_PICTO];
+
 public:
     User();
     User(QString firstname, QString lastname, QDate birthDate, QString handicap);

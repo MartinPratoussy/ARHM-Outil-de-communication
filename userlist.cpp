@@ -7,9 +7,11 @@ UserList::UserList(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    Database db;
+
     // Récupère les utilisateurs enregistrés dans la base de données
     for (int i = 0; i < NB_MAX_USER; i++) {
-        QSqlQuery query;
+        QSqlQuery query(db.db);
         query.exec("SELECT firstname FROM user WHERE id = " + QString(i) + ")");
         QString firstname = query.value(0).toString();
         query.exec("SELECT lastname FROM user WHERE id = " + QString(i) + ")");
@@ -31,4 +33,11 @@ UserList::UserList(QWidget *parent) :
 UserList::~UserList()
 {
     delete ui;
+}
+
+void UserList::on_pushButton_clicked()
+{
+    Interface * interface = new Interface();
+    interface->InitInterface(user[0]);
+    interface->show();
 }
