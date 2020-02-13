@@ -9,10 +9,13 @@
 
 class Database
 {
+private:
+    QSqlDatabase db;
 public:
     Database();
 
-    QSqlDatabase db;
+    // Getter de la base de données
+    QSqlDatabase getDB();
 
 };
 

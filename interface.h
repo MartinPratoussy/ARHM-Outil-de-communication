@@ -24,6 +24,8 @@ public:
     // Surcharge de l'opérateur d'affection
     Interface & operator=(const Interface & interface);
 
+    User * getUser();
+
 private slots:
     void on_jeVeuxButton_clicked();
 
@@ -38,8 +40,10 @@ private:
 
     // Phrase créée par l'utilisateur
     QString * sentence[3];
+
     // Nombre d'étapes de la phrase effectuées
     int numLevel = 0;
+
     // Utilisateur de l'interface
     User * user;
 };

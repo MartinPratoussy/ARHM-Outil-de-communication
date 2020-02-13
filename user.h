@@ -19,7 +19,7 @@ private:
     QString handicap;
 
     // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
-    Pictogram pictos[4][NB_MAX_PICTO];
+    //Pictogram pictos[4][NB_MAX_PICTO];
 
 public:
     User();

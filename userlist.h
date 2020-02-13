@@ -4,6 +4,7 @@
 #define NB_MAX_USER 100
 
 #include <QMainWindow>
+#include <qpushbutton.h>
 
 #include "interface.h"
 
@@ -26,7 +27,10 @@ private:
     Ui::UserList *ui;
 
     // Tableau contenant tous les utilisateurs de l'application
-    User *user[NB_MAX_USER];
+    Interface * interface[NB_MAX_USER];
+
+    // Boutons d'accès aux interfaces
+    QPushButton * button[NB_MAX_USER];
 
     // Nombre d'utilisateur dans la liste
     int nbUser = 0;

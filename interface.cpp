@@ -27,6 +27,11 @@ void Interface::Cancel()
     numLevel--;
 }
 
+User * Interface::getUser()
+{
+    return this->user;
+}
+
 Interface & Interface::operator=(const Interface & interface)
 {
     *this->sentence = *interface.sentence;

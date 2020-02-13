@@ -8,6 +8,12 @@ Database::Database()
     {
         this->db = QSqlDatabase::addDatabase(DRIVER);
         this->db.setDatabaseName("/database.db");
-        if(!this->db.open()) qWarning() << "ERROR: " << this->db.lastError();
+        if(!this->db.open()) qWarning() << "ERROR: " << db.lastError();
+
     }
+}
+
+QSqlDatabase Database::getDB()
+{
+    return this->db;
 }
