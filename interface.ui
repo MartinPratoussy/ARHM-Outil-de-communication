@@ -13,58 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="objetsButton">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>840</y>
-     <width>251</width>
-     <height>171</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>objets</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="personnesButton">
-   <property name="geometry">
-    <rect>
-     <x>979</x>
-     <y>860</y>
-     <width>241</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>personnes</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="jeVeuxButton">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>540</y>
-     <width>251</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>je veux</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="jeSuisButton">
-   <property name="geometry">
-    <rect>
-     <x>989</x>
-     <y>530</y>
-     <width>231</width>
-     <height>161</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>je suis</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

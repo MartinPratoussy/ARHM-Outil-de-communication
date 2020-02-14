@@ -5,8 +5,13 @@
 
 #include <QString>
 #include <QDate>
+#include <iostream>
 
-#include "database.h"
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QSqlError>
+#include <QSqlQuery>
+
 #include "pictogram.h"
 
 class User
@@ -38,7 +43,7 @@ public:
     void setHandicap(QString handicap);
 
     // Edition de la base de données
-    void query(QString value);
+    void query(QString value, QString row);
 
     // Surcharge de l'opérateur d'affection
     User & operator=(const User & user);

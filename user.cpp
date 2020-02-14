@@ -40,31 +40,32 @@ QString User::getHandicap()
 void User::setFirstname(QString firstname)
 {
     this->firstname = firstname;
-    query(this->firstname);
+    query(this->firstname, "firstname");
 }
 
 void User::setLastname(QString lastname)
 {
     this->lastname = lastname;
-    query(this->lastname);
+    query(this->lastname, "lastname");
 }
 
 void User::setBirthDate(QDate birthDate)
 {
     this->birthDate = birthDate;
-    query(this->birthDate.toString());
+    query(this->birthDate.toString(), "birthDate");
 }
 
 void User::setHandicap(QString handicap)
 {
     this->handicap = handicap;
-    query(this->handicap);
+    query(this->handicap, "handicap");
 }
 
-void User::query(QString value)
+void User::query(QString value, QString row)
 {
     QSqlQuery query;
-    if (!query.exec("UPDATE user SET firstname = '" + value + "'")) qWarning() << "ERROR : " << query.lastError().text();
+    if (!query.exec("UPDATE user SET " + row + " = '" + value + "'")) qWarning() << "ERROR : " << query.lastError().text();
+
 }
 
 User & User::operator=(const User &user)

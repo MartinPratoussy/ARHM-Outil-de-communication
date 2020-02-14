@@ -2,6 +2,10 @@
 #define INTERFACE_H
 
 #include <QWidget>
+#include <QLoggingCategory>
+#include <QPushButton>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include "user.h"
 
@@ -21,10 +25,14 @@ public:
     // Annule l'action précédente
     void Cancel();
 
+    // Getter de l'utlisateur de l'interface
+    User * GetUser();
+
+    // Affiche le menu principal
+    void ShowMainMenu();
+
     // Surcharge de l'opérateur d'affection
     Interface & operator=(const Interface & interface);
-
-    User * getUser();
 
 private slots:
     void on_jeVeuxButton_clicked();
@@ -46,6 +54,9 @@ private:
 
     // Utilisateur de l'interface
     User * user;
+
+    // Boutons de l'interface principale
+    QPushButton * button[4];
 };
 
 #endif // INTERFACE_H
