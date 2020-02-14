@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.9.1, 2020-02-13T17:58:42. -->
+<!-- Written by QtCreator 4.9.1, 2020-02-14T12:38:21. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -569,8 +569,8 @@
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.PluginSettings">
-    <value type="QString" key="AndroidDeviceSerialNumber">V4QBB19822201892</value>
-    <value type="int" key="AndroidVersion.ApiLevel">26</value>
+    <value type="QString" key="AndroidDeviceSerialNumber">R52MA1DVXHA</value>
+    <value type="int" key="AndroidVersion.ApiLevel">28</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
     <value type="QString" key="Analyzer.Perf.CallgraphMode">dwarf</value>

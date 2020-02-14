@@ -28,7 +28,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        database.cpp \
         interface.cpp \
         main.cpp \
         pictogram.cpp \
@@ -38,7 +37,6 @@ SOURCES += \
         userlist.cpp
 
 HEADERS += \
-        database.h \
         interface.h \
         pictogram.h \
         sound.h \

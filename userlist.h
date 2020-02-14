@@ -20,6 +20,9 @@ public:
     explicit UserList(QWidget *parent = nullptr);
     ~UserList();
 
+    // Affiche la liste des utilisateurs sous forme boutons vers leur interface
+    void ShowUserList();
+
 private slots:
     void on_pushButton_clicked();
 
@@ -31,6 +34,8 @@ private:
 
     // Boutons d'accès aux interfaces
     QPushButton * button[NB_MAX_USER];
+
+    QPushButton * addUserButton;
 
     // Nombre d'utilisateur dans la liste
     int nbUser = 0;
