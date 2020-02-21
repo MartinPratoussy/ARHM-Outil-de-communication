@@ -30,6 +30,8 @@ private slots:
 private:
     Ui::UserList *ui;
 
+
+
     // Tableau contenant tous les utilisateurs de l'application
     Interface * interface[NB_MAX_USER];
 
