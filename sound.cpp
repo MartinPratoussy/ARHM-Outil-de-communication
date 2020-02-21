@@ -2,7 +2,6 @@
 
 Sound::Sound()
 {
-
 }
 
 void Sound::say(QString text)

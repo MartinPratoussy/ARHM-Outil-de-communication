@@ -4,7 +4,8 @@
 #define NB_MAX_USER 100
 
 #include <QMainWindow>
-#include <qpushbutton.h>
+
+#include <QScrollArea>
 
 #include "interface.h"
 
@@ -35,10 +36,18 @@ private:
     // Boutons d'accès aux interfaces
     QPushButton * button[NB_MAX_USER];
 
+    // Bouton d'ajout d'utilisateur
     QPushButton * addUserButton;
 
     // Nombre d'utilisateur dans la liste
     int nbUser = 0;
+
+    // Taille de la fenêtre
+    int width;
+    int height;
+
+    // Zone de scrolling
+    QScrollArea * area;
 };
 
 #endif // USERLIST_H

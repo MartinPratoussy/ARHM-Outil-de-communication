@@ -2,9 +2,11 @@
 #define INTERFACE_H
 
 #include <QWidget>
-#include <QLoggingCategory>
+
+// Boutons dynamiques non créés depuis le designer
 #include <QPushButton>
-#include <QApplication>
+
+// Fournit les informations de l'écran
 #include <QDesktopWidget>
 
 #include "user.h"
@@ -19,8 +21,10 @@ class Interface : public QWidget
 
 public:
     explicit Interface(QWidget *parent = nullptr);
-    void InitInterface(User * user);
     ~Interface();
+
+    // Initialise l'interface en fonction de l'utilisateur concerné
+    void InitInterface(User * user);
 
     // Annule l'action précédente
     void Cancel();
