@@ -64,8 +64,7 @@ void User::setHandicap(QString handicap)
 void User::query(QString value, QString row)
 {
     QSqlQuery query;
-    if (!query.exec("UPDATE user SET " + row + " = '" + value + "'")) qWarning() << "ERROR : " << query.lastError().text();
-
+    if (!query.exec("UPDATE user SET " + row + " = '" + value + "WHERE firstname = " + this->firstname +"'")) qWarning() << "ERROR : " << query.lastError().text();
 }
 
 User & User::operator=(const User &user)

@@ -7,49 +7,46 @@ UserList::UserList(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->addUserButton = new QPushButton(this);
-
+#pragma region ConnexionBDD
     // Initialise la base de données à utiliser
     QSqlDatabase * database = new QSqlDatabase();
     const QString DRIVER("QSQLITE");
     if(QSqlDatabase::isDriverAvailable(DRIVER))
     {
-        // Défini la SGBD utilisée
+        // Défini le SGBD utilisée
         *database = QSqlDatabase::addDatabase(DRIVER);
         // Se connecte à la base de données à utiliser
         database->setDatabaseName("database.db");
         // Ouvre la base de données
         if(!database->open()) qWarning() << "ERROR: " << database->lastError().text();
     } else qWarning() << "ERROR: " << database->lastError().text();
+#pragma endregion
 
+#pragma region getUser
     // Génère un objet query qui contiendra les prochaines requêtes
     QSqlQuery query(*database);
-    // Récupère le nombre d'utilisateurs dans la base de données
-    if(!query.exec("SELECT COUNT(*) FROM \"User\"")) qWarning() << "ERROR: " << database->lastError().text();
-    while(!query.next()) { qWarning() << "oui" ; this->nbUser = query.value(0).toInt();}
+    // Récupère les utilisateurs dans la base de données
+    if(!query.exec("SELECT * FROM \"User\"")) qWarning() << "ERROR: " << database->lastError().text();
+	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
+	while (query.next()) nbUser++;
+
     // nbUser prend la valeur du nombre de lignes dans la base de données
     qDebug() << "Nombre d'utilisateurs : " << this->nbUser;
 
-    // Récupère les valeurs des utilisateurs enregistrés dans la base de données
+    // Récupère les valeurs des utilisateurs enregistrés dans la base de données et les ajoute aux utilisateurs dans le programme
     for (int i = 0; i < this->nbUser; i++) {
         if(!query.exec("SELECT firstname FROM user WHERE id = " + QString(i) + ")")) qWarning() << "ERROR: " << database->lastError();
-        QString firstname = query.value(0).toString();
+        while (query.next()) this->interface[i]->GetUser()->setFirstname(query.value(0).toString());
         if(!query.exec("SELECT lastname FROM user WHERE id = " + QString(i) + ")")) qWarning() << "ERROR: " << database->lastError();
-        QString lastname = query.value(0).toString();
+		while (query.next()) this->interface[i]->GetUser()->setLastname(query.value(0).toString());
         if(!query.exec("SELECT birthdate FROM user WHERE id = " + QString(i) + ")")) qWarning() << "ERROR: " << database->lastError();
-        QDate birthDate = query.value(0).toDate();
+		while (query.next()) this->interface[i]->GetUser()->setBirthDate(query.value(0).toDate());
         if(!query.exec("SELECT handicap FROM user WHERE id = " + QString(i) + ")")) qWarning() << "ERROR: " << database->lastError();
-        QString handicap = query.value(0).toString();
-        if(!query.exec("SELECT interface FROM user WHERE id = " + QString(i) + ")")) qWarning() << "ERROR: " << database->lastError();
-        QString interface = query.value(0).toString();
-
-        // Ajoute les valeurs retournées à l'utlisateur de l'interface
-        this->interface[i]->GetUser()->setFirstname(firstname);
-        this->interface[i]->GetUser()->setLastname(lastname);
-        this->interface[i]->GetUser()->setBirthDate(birthDate);
-        this->interface[i]->GetUser()->setHandicap(handicap);
+		while (query.next()) this->interface[i]->GetUser()->setHandicap(query.value(0).toString());
     }
+#pragma endregion
 
+#pragma region setDisplay
     // Initialisation de la taille de la fenêtre
     this->width = QApplication::desktop()->width();
     this->height = QApplication::desktop()->height();
@@ -62,6 +59,7 @@ UserList::UserList(QWidget *parent) :
     ShowUserList();
 
     area->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+#pragma endregion
 }
 
 UserList::~UserList()
@@ -82,6 +80,7 @@ void UserList::ShowUserList()
         this->button[numUser]->show();
     }
     // Ajoute le bouton d'ajout d'utilisateur après le dernier utilisateur ajouté
+	this->addUserButton = new QPushButton(this);
     this->addUserButton->setGeometry(
                 this->width/10,
                 (nbUser + 1) * this->height/10,
