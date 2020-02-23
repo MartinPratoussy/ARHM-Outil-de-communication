@@ -37,35 +37,30 @@ QString User::getHandicap()
     return this->handicap;
 }
 
-void User::setFirstname(QString firstname)
+void User::setFirstname(QString firstname, QSqlQuery* query)
 {
     this->firstname = firstname;
-    query(this->firstname, "firstname");
+    if (!query->exec("UPDATE user SET firstname = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
-void User::setLastname(QString lastname)
+void User::setLastname(QString lastname, QSqlQuery* query)
 {
     this->lastname = lastname;
-    query(this->lastname, "lastname");
+    if (!query->exec("UPDATE user SET lastname = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
-void User::setBirthDate(QDate birthDate)
+void User::setBirthDate(QDate birthDate, QSqlQuery* query)
 {
     this->birthDate = birthDate;
-    query(this->birthDate.toString(), "birthDate");
+    if (!query->exec("UPDATE user SET birthDate = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
-void User::setHandicap(QString handicap)
+void User::setHandicap(QString handicap, QSqlQuery* query)
 {
     this->handicap = handicap;
-    query(this->handicap, "handicap");
+    if (!query->exec("UPDATE user SET handicap = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
-void User::query(QString value, QString row)
-{
-    QSqlQuery query;
-    if (!query.exec("UPDATE user SET " + row + " = '" + value + "WHERE firstname = " + this->firstname +"'")) qWarning() << "ERROR : " << query.lastError().text();
-}
 
 User & User::operator=(const User &user)
 {
