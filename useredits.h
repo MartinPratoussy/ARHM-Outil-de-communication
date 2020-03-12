@@ -2,6 +2,8 @@
 #define USEREDITS_H
 
 #include <QWidget>
+#include <QTextEdit>
+#include <QDateEdit>
 
 #include "interface.h"
 
@@ -32,10 +34,22 @@ public:
     // Supprime l'utilisateur
     void DeleteUser();
 
+private slots:
+    void on_validationButton_clicked();
+
 private:
     Ui::UserEdits *ui;
 
     User * user;
+
+    // Bouton de validation
+    QPushButton * validation;
+
+    // Zone d'édition des attributs de l'utilisateur
+    QTextEdit * lastnameEdit;
+    QTextEdit * firstnameEdit;
+    QDateEdit * birtDateEdit;
+    QTextEdit * handicapEdit;
 };
 
 #endif // USEREDITS_H
