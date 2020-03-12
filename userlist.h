@@ -30,7 +30,9 @@ private slots:
 private:
     Ui::UserList *ui;
 
-
+    // Pointeur de la base de données
+    QSqlDatabase* database;
+    QSqlQuery* query;
 
     // Tableau contenant tous les utilisateurs de l'application
     Interface * interface[NB_MAX_USER];

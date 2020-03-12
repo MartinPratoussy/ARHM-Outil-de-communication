@@ -44,10 +44,10 @@ public:
     QString getHandicap();
 
     // Setters des attributs privés
-    void setFirstname(QString firstname);
-    void setLastname(QString lastname);
-    void setBirthDate(QDate birthDate);
-    void setHandicap(QString handicap);
+    void setFirstname(QString firstname, QSqlQuery * query);
+    void setLastname(QString lastname, QSqlQuery* query);
+    void setBirthDate(QDate birthDate, QSqlQuery* query);
+    void setHandicap(QString handicap, QSqlQuery* query);
 
     // Edition de la base de données
     void query(QString value, QString row);
