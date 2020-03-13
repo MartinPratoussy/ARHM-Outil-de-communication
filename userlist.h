@@ -7,7 +7,7 @@
 
 #include <QScrollArea>
 
-#include "interface.h"
+#include "useredits.h"
 
 namespace Ui {
 class UserList;
@@ -35,13 +35,16 @@ private:
     QSqlQuery* query;
 
     // Tableau contenant tous les utilisateurs de l'application
-    Interface * interface[NB_MAX_USER];
+    Interface* interface[NB_MAX_USER];
 
     // Boutons d'accès aux interfaces
-    QPushButton * button[NB_MAX_USER];
+    QPushButton* button[NB_MAX_USER];
+
+    // Boutons d'édition des utilisateurs
+    QPushButton* editButton[NB_MAX_USER];
 
     // Bouton d'ajout d'utilisateur
-    QPushButton * addUserButton;
+    QPushButton* addUserButton;
 
     // Nombre d'utilisateur dans la liste
     int nbUser = 0;
@@ -51,7 +54,7 @@ private:
     int height;
 
     // Zone de scrolling
-    QScrollArea * area;
+    QScrollArea* area;
 };
 
 #endif // USERLIST_H
