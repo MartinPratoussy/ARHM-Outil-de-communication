@@ -7,7 +7,10 @@
 
 #include <QScrollArea>
 
-#include "useredits.h"
+#include "interface.h"
+
+#include "adduser.h"
+#include "edituser.h
 
 namespace Ui {
 class UserList;
@@ -25,7 +28,11 @@ public:
     void ShowUserList();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_interfaceButton_clicked(int numUser);
+
+    void on_editButton_clicked(int numUser);
+
+    void on_addButton_clicked();
 
 private:
     Ui::UserList *ui;
@@ -34,11 +41,14 @@ private:
     QSqlDatabase* database;
     QSqlQuery* query;
 
-    // Tableau contenant tous les utilisateurs de l'application
+    // Tableau contenant tous les interfaces utilisateurs de l'application
     Interface* interface[NB_MAX_USER];
 
+    // Tableau contenant tous les interfaces d'édition de l'application
+    EditUser* userEdits[NB_MAX_USER];
+
     // Boutons d'accès aux interfaces
-    QPushButton* button[NB_MAX_USER];
+    QPushButton* interfaceButton[NB_MAX_USER];
 
     // Boutons d'édition des utilisateurs
     QPushButton* editButton[NB_MAX_USER];

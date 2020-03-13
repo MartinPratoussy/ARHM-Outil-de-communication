@@ -21,7 +21,7 @@ UserList::UserList(QWidget* parent) :
 		if (!database->open()) qWarning() << "ERROR: " << database->lastError().text();
 	}
 	else qWarning() << "ERROR: " << database->lastError().text();
-#pragma endregion Connecte l'application à la base de données
+#pragma endregion /*Connecte l'application à la base de données*/
 
 #pragma region getUser
 	// Génère un objet query qui contiendra les prochaines requêtes
@@ -45,6 +45,8 @@ UserList::UserList(QWidget* parent) :
         if (!query->exec("SELECT handicap FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
         while (query->next()) this->interface[i]->GetUser()->setHandicap(query->value(0).toString(), query);
 	}
+
+    nbUser = 6;
 #pragma endregion
 
 #pragma region setDisplay
@@ -60,7 +62,7 @@ UserList::UserList(QWidget* parent) :
 	ShowUserList();
 
 	area->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-#pragma endregion Affiche l'interface du menu principal
+#pragma endregion /*Affiche l'interface du menu principal*/
 }
 
 UserList::~UserList()
@@ -71,37 +73,57 @@ UserList::~UserList()
 void UserList::ShowUserList()
 {
 #pragma region DisplayButtons
-	// Place chacun des boutons d'accès aux interfaces utilisateurs
+    // Place chacun des boutons de l'interface
 	for (int numUser = 0; numUser < nbUser; numUser++) {
-		button[numUser] = new QPushButton(this->area);
-        editButton[numUser] = new QPushButton(this->area);
-		this->button[numUser]->setGeometry(
+        // Crée les boutons d'accès aux interfaces utilisateurs
+        interfaceButton[numUser] = new QPushButton(this);
+        // Crée les boutons d'accès aux interfaces d'édition
+        editButton[numUser] = new QPushButton(this);
+        // Place les boutons d'accès aux interfaces utilisateurs
+        this->interfaceButton[numUser]->setGeometry(
 			this->width / 10,
 			numUser * this->height / 10,
 			this->width * 4 / 5,
 			this->height / 10);
+        // Place les boutons d'accès aux interfaces utilisateurs
         this->editButton[numUser]->setGeometry(
-                    this->width / 10,
+                    8 * this->width / 10,
                     numUser * this->height / 10,
-                    this->width * 4 / 5,
+                    this->width / 10,
                     this->height / 10);
-		this->button[numUser]->show();
+        // Affiche les boutons
+        this->interfaceButton[numUser]->show();
         this->editButton[numUser]->show();
+        connect(interfaceButton[numUser], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(numUser)));
+        connect(editButton[numUser], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(numUser)));
 	}
 	// Ajoute le bouton d'ajout d'utilisateur après le dernier utilisateur ajouté
-	this->addUserButton = new QPushButton(this);
+    this->addUserButton = new QPushButton(this);
 	this->addUserButton->setGeometry(
 		this->width / 10,
 		(nbUser + 1) * this->height / 10,
 		this->width * 0.8,
 		this->height / 10);
 	this->addUserButton->show();
+
 #pragma endregion
 }
 
-void UserList::on_pushButton_clicked()
+void UserList::on_interfaceButton_clicked(int numUser)
 {
-	Interface* interface = new Interface();
-	interface->InitInterface(interface->GetUser());
-	interface->show();
+    interface[numUser] = new Interface();
+    interface[numUser]->InitInterface(interface[numUser]->GetUser());
+    interface[numUser]->show();
+}
+
+void UserList::on_editButton_clicked(int numUser)
+{
+    userEdits[numUser] = new UserEdits();
+    userEdits[numUser]->InitUserEditsInterface(userEdits[numUser]->GetUser(), this->query);
+    userEdits[numUser]->show();
+}
+
+void UserList::on_addButton_clicked()
+{
+
 }

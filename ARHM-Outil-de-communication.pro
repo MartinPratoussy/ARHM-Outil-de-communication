@@ -28,25 +28,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        addedituser.cpp \
+        adduser.cpp \
+        edituser.cpp \
         interface.cpp \
         main.cpp \
         pictogram.cpp \
         sound.cpp \
         user.cpp \
-        useredits.cpp \
         userlist.cpp
 
 HEADERS += \
+        addedituser.h \
+        adduser.h \
+        edituser.h \
         interface.h \
         pictogram.h \
         sound.h \
         user.h \
-        useredits.h \
         userlist.h
 
 FORMS += \
+        addedituser.ui \
         interface.ui \
-        useredits.ui \
         userlist.ui
 
 CONFIG += mobility

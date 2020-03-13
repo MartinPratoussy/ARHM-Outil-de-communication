@@ -186,6 +186,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="adduser.cpp" />
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pictogram.cpp" />
@@ -195,6 +196,8 @@
     <ClCompile Include="userlist.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="adduser.h">
+    </QtMoc>
     <QtMoc Include="interface.h">
     </QtMoc>
     <ClInclude Include="pictogram.h" />
@@ -224,6 +227,8 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="adduser.ui">
+    </QtUic>
     <QtUic Include="interface.ui">
     </QtUic>
     <QtUic Include="useredits.ui">
