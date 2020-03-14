@@ -22,10 +22,10 @@ void AddUser::InitAddEditsInterface(QSqlDatabase* database, QSqlQuery* query)
 void AddUser::Validate(QString lastname, QString firstname, QDate birthDate, QString handicap)
 {
     if (!this->query->exec("INSERT INTO User(firstname, lastname, birthDate, handicap) VALUES ("
-        + this->lastnameEdit->toPlainText()
-        + this->firstnameEdit->toPlainText()
-        + this->birtDateEdit->date
-        + this->handicapEdit->toPlainText()
+        + lastname
+        + firstname
+        + birthDate.toString()
+        + handicap
         + ")")
         ) qWarning() << "ERROR: " << this->database->lastError().text();
     this->close();
