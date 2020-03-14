@@ -5,6 +5,7 @@
 
 #include <QTextEdit>
 #include <QDateEdit>
+
 #include "userlist.h"
 
 namespace Ui {
@@ -19,32 +20,22 @@ public:
     explicit AddEditUser(QWidget *parent = nullptr);
     ~AddEditUser();
 
-    // Initialise l'interface en fonction de l'utilisateur concerné
-    void InitUserEditsInterface(User * user, QSqlQuery * query);
-
-    // Getter de l'utilisateur concerné par l'édition
-    User * GetUser();
-
-    // Edite les différents attributs de l'utlisateur
-    void EditFirstname(QString firstname);
-    void EditLastname(QString lastname);
-    void EditBirthDate(QDate birthDate);
-    void EditHandicap(QString handicap);
-
     // Ajoute un pictogramme à l'interface de l'utilisateur sélectionné
     void AddPicto(Pictogram picto);
 
-    // Supprime l'utilisateur
-    void DeleteUser();
+    virtual void Validate(QString lastname, QString firstname, QDate birthDate, QString handicap) const;
 
 private slots:
+
     void on_validationButton_clicked();
 
-private:
+protected:
     Ui::AddEditUser *ui;
 
-    User * user;
+    // Pointeur de la base de données
+    QSqlDatabase* database;
 
+    // Pointeur de la requête SQL
     QSqlQuery * query;
 
     // Bouton de validation

@@ -21,7 +21,7 @@ UserList::UserList(QWidget* parent) :
 		if (!database->open()) qWarning() << "ERROR: " << database->lastError().text();
 	}
 	else qWarning() << "ERROR: " << database->lastError().text();
-#pragma endregion /*Connecte l'application à la base de données*/
+#pragma endregion Connecte l'application à la base de données
 
 #pragma region getUser
 	// Génère un objet query qui contiendra les prochaines requêtes
@@ -47,7 +47,7 @@ UserList::UserList(QWidget* parent) :
 	}
 
     nbUser = 6;
-#pragma endregion
+#pragma endregion Récupère chaque utilisateur dans la base de doonnées
 
 #pragma region setDisplay
 	// Initialisation de la taille de la fenêtre
@@ -62,7 +62,7 @@ UserList::UserList(QWidget* parent) :
 	ShowUserList();
 
 	area->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-#pragma endregion /*Affiche l'interface du menu principal*/
+#pragma endregion Affiche l'interface du menu principal
 }
 
 UserList::~UserList()
@@ -118,12 +118,13 @@ void UserList::on_interfaceButton_clicked(int numUser)
 
 void UserList::on_editButton_clicked(int numUser)
 {
-    userEdits[numUser] = new UserEdits();
+    userEdits[numUser] = new EditUser();
     userEdits[numUser]->InitUserEditsInterface(userEdits[numUser]->GetUser(), this->query);
     userEdits[numUser]->show();
 }
 
 void UserList::on_addButton_clicked()
 {
-
+	addUser = new AddUser();
+	addUser->show();
 }
