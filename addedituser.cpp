@@ -12,8 +12,3 @@ AddEditUser::~AddEditUser()
 {
     delete ui;
 }
-
-void AddEditUser::on_validationButton_clicked()
-{
-    Validate(this->firstnameEdit->toPlainText(), this->lastnameEdit->toPlainText(), this->birtDateEdit->date, this->handicapEdit->toPlainText());
-}

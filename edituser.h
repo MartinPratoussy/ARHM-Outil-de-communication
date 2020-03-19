@@ -3,7 +3,6 @@
 
 #include "addedituser.h"
 
-
 class EditUser : public AddEditUser
 {
 public:
@@ -16,10 +15,13 @@ public:
     void DeleteUser();
 
     // Initialise l'interface d'édition d'utilisateur
-    void InitUserEditsInterface(User* user, QSqlQuery* query);
+    void InitInterface(User* user, QSqlQuery* query);
 
     // Enregistrement de informations dans la base de données 
-    void Validate(QString lastname, QString firstname, QDate birthDate, QString handicap);
+    void Validate(QString lastname, QString firstname, QString birthDate, QString handicap);
+
+private slots:
+    void on_validationButton_clicked();
 
 private:
 
@@ -28,4 +30,4 @@ private:
 
 };
 
-#endif // EDITUSER_H
+#endif EDITUSER_H

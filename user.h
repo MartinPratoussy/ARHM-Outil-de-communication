@@ -27,7 +27,7 @@ private:
     // Attributs de l'utlisateur
     QString firstname;
     QString lastname;
-    QDate birthDate;
+    QString birthDate;
     QString handicap;
 
     // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
@@ -35,18 +35,18 @@ private:
 
 public:
     User();
-    User(QString firstname, QString lastname, QDate birthDate, QString handicap);
+    User(QString firstname, QString lastname, QString birthDate, QString handicap);
 
     // Getters des attributs privés
     QString getFirstname();
     QString getLastname();
-    QDate getBirthDate();
+    QString getBirthDate();
     QString getHandicap();
 
     // Setters des attributs privés
     void setFirstname(QString firstname, QSqlQuery * query);
     void setLastname(QString lastname, QSqlQuery * query);
-    void setBirthDate(QDate birthDate, QSqlQuery * query);
+    void setBirthDate(QString birthDate, QSqlQuery * query);
     void setHandicap(QString handicap, QSqlQuery * query);
 
     // Edition de la base de données

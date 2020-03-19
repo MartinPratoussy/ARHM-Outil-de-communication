@@ -6,7 +6,7 @@
 #include <QTextEdit>
 #include <QDateEdit>
 
-#include "userlist.h"
+#include "interface.h"
 
 namespace Ui {
 class AddEditUser;
@@ -18,16 +18,7 @@ class AddEditUser : public QWidget
 
 public:
     explicit AddEditUser(QWidget *parent = nullptr);
-    ~AddEditUser();
-
-    // Ajoute un pictogramme à l'interface de l'utilisateur sélectionné
-    void AddPicto(Pictogram picto);
-
-    virtual void Validate(QString lastname, QString firstname, QDate birthDate, QString handicap) const;
-
-private slots:
-
-    void on_validationButton_clicked();
+    virtual ~AddEditUser() = 0;
 
 protected:
     Ui::AddEditUser *ui;

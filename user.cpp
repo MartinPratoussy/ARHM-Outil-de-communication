@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User(QString firstname, QString lastname, QDate birthDate, QString handicap)
+User::User(QString firstname, QString lastname, QString birthDate, QString handicap)
 {
     this->firstname = firstname;
     this->lastname = lastname;
@@ -12,7 +12,7 @@ User::User(QString firstname, QString lastname, QDate birthDate, QString handica
     if(!query.exec("INSERT INTO user VALUES ('"
                   + this->firstname + "', '"
                   + this->lastname + "', '"
-                  + this->birthDate.toString("dd.MM.yyyy") + "', '"
+                  + this->birthDate + "', '"
                   + this->handicap + ")"))
             qWarning() << "ERROR: " << query.lastError().text();
 }
@@ -27,7 +27,7 @@ QString User::getLastname()
     return this->lastname;
 }
 
-QDate User::getBirthDate()
+QString User::getBirthDate()
 {
     return this->birthDate;
 }
@@ -49,7 +49,7 @@ void User::setLastname(QString lastname, QSqlQuery* query)
     if (!query->exec("UPDATE user SET lastname = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
-void User::setBirthDate(QDate birthDate, QSqlQuery* query)
+void User::setBirthDate(QString birthDate, QSqlQuery* query)
 {
     this->birthDate = birthDate;
     if (!query->exec("UPDATE user SET birthDate = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();

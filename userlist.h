@@ -7,7 +7,6 @@
 
 #include <QScrollArea>
 
-#include "interface.h"
 #include "edituser.h"
 #include "adduser.h"
 
@@ -43,11 +42,13 @@ private:
     QSqlDatabase* database;
     QSqlQuery* query;
 
-    // Tableau contenant tous les interfaces utilisateurs de l'application
-    Interface* interface[NB_MAX_USER];
+    User* user[NB_MAX_USER];
 
-    // Tableau contenant tous les interfaces d'édition de l'application
-    EditUser* userEdits[NB_MAX_USER];
+    // Interface utilisateur
+    Interface* interface;
+
+    // Interfaces d'édition utilisateur
+    EditUser* userEdits;
 
     // Interface d'ajout d'utilisateur
     AddUser* addUser;
