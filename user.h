@@ -33,7 +33,7 @@ private:
     // Nombre de pictogrammes que l'utilisateur possède
     int nbPicto;
     // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
-    Pictogram * pictos[NB_MAX_PICTO];
+    QList<Pictogram*> pictos[NB_MAX_PICTO];
 
 public:
     User();

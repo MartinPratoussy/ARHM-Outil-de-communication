@@ -50,10 +50,6 @@ UserList::UserList(QWidget* parent) :
 		while (query->next()) handicap = query->value(0).toString();
 		this->user[i] = new User(firstname, lastname, birthDate, handicap, database, query, i);
 	}
-
-	nbUser = 10;
-	user[0] = new User("test", "test", "test", "test", query);
-
 #pragma endregion /*Récupère chaque utilisateur dans la base de données*/
 
 #pragma region setDisplay
