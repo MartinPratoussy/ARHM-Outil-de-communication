@@ -6,7 +6,6 @@
 
 #include "sound.h"
 
-
 class Pictogram
 {
 private:

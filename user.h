@@ -30,12 +30,14 @@ private:
     QString birthDate;
     QString handicap;
 
+    // Nombre de pictogrammes que l'utilisateur possède
+    int nbPicto;
     // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
-    //Pictogram pictos[4][NB_MAX_PICTO];
+    Pictogram * pictos[NB_MAX_PICTO];
 
 public:
     User();
-    User(QString firstname, QString lastname, QString birthDate, QString handicap);
+    User(QString firstname, QString lastname, QString birthDate, QString handicap, QSqlDatabase* database, QSqlQuery* query, int numUser);
 
     // Getters des attributs privés
     QString getFirstname();

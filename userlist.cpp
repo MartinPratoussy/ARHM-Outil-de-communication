@@ -36,18 +36,23 @@ UserList::UserList(QWidget* parent) :
 
 	// Récupère les valeurs des utilisateurs enregistrés dans la base de données et les ajoute aux utilisateurs dans le programme
 	for (int i = 1; i <= this->nbUser; i++) {
+		QString firstname;
+		QString lastname;
+		QString birthDate;
+		QString handicap;
 		if (!query->exec("SELECT firstname FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
-		while (query->next()) this->user[i]->setFirstname(query->value(0).toString(), query);
+		while (query->next()) firstname = query->value(0).toString();
 		if (!query->exec("SELECT lastname FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
-		while (query->next()) this->user[i]->setLastname(query->value(0).toString(), query);
+		while (query->next()) lastname = query->value(0).toString();
 		if (!query->exec("SELECT birthdate FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
-		while (query->next()) this->user[i]->setBirthDate(query->value(0).toString(), query);
+		while (query->next()) birthDate = query->value(0).toString();
 		if (!query->exec("SELECT handicap FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
-		while (query->next()) this->user[i]->setHandicap(query->value(0).toString(), query);
+		while (query->next()) handicap = query->value(0).toString();
+		this->user[i] = new User(firstname, lastname, birthDate, handicap, database, query, i);
 	}
 
 	nbUser = 10;
-	user[0] = new User("test", "test", "test", "test");
+	user[0] = new User("test", "test", "test", "test", query);
 
 #pragma endregion /*Récupère chaque utilisateur dans la base de données*/
 
