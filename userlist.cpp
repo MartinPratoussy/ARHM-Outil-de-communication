@@ -50,6 +50,9 @@ UserList::UserList(QWidget* parent) :
 		while (query->next()) handicap = query->value(0).toString();
 		this->user[i] = new User(firstname, lastname, birthDate, handicap, database, query, i);
 	}
+
+	nbUser = 10;
+
 #pragma endregion /*Récupère chaque utilisateur dans la base de données*/
 
 #pragma region setDisplay
@@ -86,6 +89,7 @@ void UserList::ShowUserList()
 			// Crée les boutons d'accès aux interfaces d'édition
 			editButton[numUserX + numUserX] = new QPushButton(this);
 
+			// Position et taille des boutons d'accès aux interfaces utilisateur
 			int posX = this->width / 17 + 4 * numUserX * this->width / 17;
 			int posY = this->height / 9 + 4 * numUserY * this->height / 9;
 			int sizeX = this->width * 3 / 17;
@@ -93,17 +97,22 @@ void UserList::ShowUserList()
 
 			// Place les boutons d'accès aux interfaces utilisateurs
 			this->interfaceButton[numUserX + numUserX]->setGeometry(posX, posY, sizeX, sizeY);
+
 			// Place les boutons d'accès aux interfaces utilisateurs
-			/*this->editButton[numUser]->setGeometry(
-				8 * this->width / 10,
-				numUser * this->height / 10,
-				this->width / 10,
-				this->height / 10);*/
-				// Affiche les boutons
+			this->editButton[numUserX + numUserX]->setGeometry(
+				posX + this->width / 17,
+				posY + this->height * 3/9, 
+				this->width / 18, 
+				this->height / 18);
+
+			// Affiche les boutons
 			this->interfaceButton[numUserX + numUserX]->show();
 			this->editButton[numUserX + numUserX]->show();
 
+			/* Bouton de test */
 			connect(ui->pushButton, SIGNAL(released()), this, SLOT(on_editButton_clicked(0)));
+
+			// Attribue aux boutons des méthodes de la classse
 			connect(interfaceButton[numUserX + numUserX], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(numUserX + numUserX)));
 			connect(editButton[numUserX + numUserX], SIGNAL(released()), this, SLOT(on_addButton_clicked(numUserX + numUserX)));
 		}

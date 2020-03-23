@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User(QString firstname, QString lastname, QString birthDate, QString handicap, QSqlDatabase * database, QSqlQuery * query, int numUser)
+User::User(QString firstname, QString lastname, QString birthDate, QString handicap, QSqlDatabase* database, QSqlQuery* query, int numUser)
 {
     this->firstname = firstname;
     this->lastname = lastname;
@@ -18,8 +18,7 @@ User::User(QString firstname, QString lastname, QString birthDate, QString handi
 #pragma region Recuperation des pictogrammes
     QList<int> values;
     // Selectionne tous les pictogrammes de l'utilisateur dans la base de données
-    if (!query->exec(
-        "'SELECT Pictogram.id FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram_User.idPictogram = Pictogram.idPictogram AND Pictogram_User.idUser = User.idUser AND Pictogram_User.idUser = " + numUser)
+    if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram_User.idPictogram = Pictogram.idPictogram AND Pictogram_User.idUser = User.idUser AND Pictogram_User.idUser = " + numUser)
         ) qWarning() << "ERROR: " << database->lastError().text();
     // Tant qu'il y a des pictogrammes, le nombre de pictogramme s'incrémente
     while (query->next())
@@ -33,15 +32,15 @@ User::User(QString firstname, QString lastname, QString birthDate, QString handi
         QString definition, urlImage, urlSound;
         // Requêtes SQL récupérant les trois attributs d'un pictogramme selon l'utlisateur qui le possède
         if (!query->exec(
-            "SELECT Pictogram.definition FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram.idPictogram = " + value)
+            "SELECT definition FROM \"Pictogram\" WHERE idPictogram = " + value)
             ) qWarning() << "ERROR: " << database->lastError().text();
         while (query->next()) definition = query->value(0).toString();
         if (!query->exec(
-            "SELECT Pictogram.urlImage FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram = " + value)
+            "SELECT urlImage FROM \"Pictogram\" WHERE idPictogram = " + value)
             ) qWarning() << "ERROR: " << database->lastError().text();
         while (query->next()) urlImage = query->value(0).toString();
         if (!query->exec(
-            "SELECT Pictogram.urlSound FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram_User.idPictogram = " + value)
+            "SELECT urlSound FROM \"Pictogram\" WHERE idPictogram = " + value)
             ) qWarning() << "ERROR: " << database->lastError().text();
         while (query->next()) urlSound = query->value(0).toString();
         QPixmap image(urlImage);
@@ -50,7 +49,6 @@ User::User(QString firstname, QString lastname, QString birthDate, QString handi
         this->pictos->append(new Pictogram(definition, urlImage, urlSound));
     }
 #pragma endregion
-   
 }
 
 QString User::getFirstname()
@@ -97,14 +95,13 @@ void User::setHandicap(QString handicap, QSqlQuery* query)
     if (!query->exec("UPDATE user SET handicap = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
-
 User & User::operator=(const User &user)
 {
     this->firstname = user.firstname;
     this->lastname = user.lastname;
     this->birthDate = user.birthDate;
     this->handicap = user.handicap;
-    //this->pictos = user.pictos;
+    foreach(Pictogram * picto, user.pictos) this->pictos->append(picto);
 
     return * this;
 }

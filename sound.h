@@ -26,4 +26,4 @@ public:
     QMediaPlayer* sound;
 };
 
-#endif // SOUND_H
+#endif SOUND_H

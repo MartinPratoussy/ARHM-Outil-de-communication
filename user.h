@@ -16,7 +16,7 @@
 #include <QSqlDriver>
 // Permet de générer une erreur lors d'un problème dans la base de donnnées
 #include <QSqlError>
-// Permet de généerer des requêtes SQL en direction d'une base de données
+// Permet de générer des requêtes SQL en direction d'une base de données
 #include <QSqlQuery>
 
 #include "pictogram.h"
@@ -32,12 +32,14 @@ private:
 
     // Nombre de pictogrammes que l'utilisateur possède
     int nbPicto;
+
     // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
     QList<Pictogram*> pictos[NB_MAX_PICTO];
 
 public:
     User();
     User(QString firstname, QString lastname, QString birthDate, QString handicap, QSqlDatabase* database, QSqlQuery* query, int numUser);
+    ~User();
 
     // Getters des attributs privés
     QString getFirstname();
@@ -50,9 +52,6 @@ public:
     void setLastname(QString lastname, QSqlQuery * query);
     void setBirthDate(QString birthDate, QSqlQuery * query);
     void setHandicap(QString handicap, QSqlQuery * query);
-
-    // Edition de la base de données
-    void query(QString value, QString row);
 
     // Surcharge de l'opérateur d'affection
     User & operator=(const User & user);
