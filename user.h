@@ -36,6 +36,9 @@ private:
     // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
     QList<Pictogram*> pictos[NB_MAX_PICTO];
 
+    // Catégories de boutons
+    QString category[4];
+
 public:
     User();
     User(QString firstname, QString lastname, QString birthDate, QString handicap, QSqlDatabase* database, QSqlQuery* query, int numUser);
@@ -46,6 +49,8 @@ public:
     QString getLastname();
     QString getBirthDate();
     QString getHandicap();
+    int getNbPicto();
+    QString * getCategory();
 
     // Setters des attributs privés
     void setFirstname(QString firstname, QSqlQuery * query);

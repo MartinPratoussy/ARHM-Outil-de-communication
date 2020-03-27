@@ -39,16 +39,19 @@ public:
     Interface & operator=(const Interface & interface);
 
 private slots:
-    void on_jeVeuxButton_clicked();
+    void on_button1_clicked();
 
-    void on_jeSuisButton_clicked();
+    void on_button2_clicked();
 
-    void on_objetsButton_clicked();
+    void on_button3_clicked();
 
-    void on_personnesButton_clicked();
+    void on_button4_clicked();
 
 private:
     Ui::Interface *ui;
+
+    // Utilisateur de l'interface
+    User * user;
 
     // Phrase créée par l'utilisateur
     QString * sentence[3];
@@ -56,11 +59,11 @@ private:
     // Nombre d'étapes de la phrase effectuées
     int numLevel = 0;
 
-    // Utilisateur de l'interface
-    User * user;
-
     // Boutons de l'interface principale
     QPushButton * button[4];
+
+    // Interfaces de séléction des pictogrammes
+    SelectPicto * selection[4];
 };
 
 #endif // INTERFACE_H

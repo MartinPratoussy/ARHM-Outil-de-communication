@@ -29,7 +29,7 @@ User::User(QString firstname, QString lastname, QString birthDate, QString handi
 
     foreach(int value, values)
     {
-        QString definition, urlImage, urlSound;
+        QString definition, urlImage, urlSound, category;
         // Requêtes SQL récupérant les trois attributs d'un pictogramme selon l'utlisateur qui le possède
         if (!query->exec(
             "SELECT definition FROM \"Pictogram\" WHERE idPictogram = " + value)
@@ -43,10 +43,14 @@ User::User(QString firstname, QString lastname, QString birthDate, QString handi
             "SELECT urlSound FROM \"Pictogram\" WHERE idPictogram = " + value)
             ) qWarning() << "ERROR: " << database->lastError().text();
         while (query->next()) urlSound = query->value(0).toString();
+        if (!query->exec(
+            "SELECT category FROM \"Pictogram\" WHERE idPictogram = " + value)
+            ) qWarning() << "ERROR: " << database->lastError().text();
+        while (query->next()) category = query->value(0).toString();
         QPixmap image(urlImage);
         Sound sound(urlSound);
         // Création de l'objet Pictogram
-        this->pictos->append(new Pictogram(definition, urlImage, urlSound));
+        this->pictos->append(new Pictogram(definition, urlImage, urlSound, category));
     }
 #pragma endregion
 }
@@ -69,6 +73,16 @@ QString User::getBirthDate()
 QString User::getHandicap()
 {
     return this->handicap;
+}
+
+int User::getNbPicto()
+{
+    return nbPicto;
+}
+
+QString * User::getCategory()
+{
+    return this->category;
 }
 
 void User::setFirstname(QString firstname, QSqlQuery* query)

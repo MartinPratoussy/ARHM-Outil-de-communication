@@ -11,16 +11,16 @@ Interface::Interface(QWidget *parent) :
     for (int i = 0; i < 4; i++) button[i] = new QPushButton(this);
 
     // Initialisation du texte des boutons
-    button[0]->setText("je veux");
-    button[1]->setText("je suis");
-    button[2]->setText("objets");
-    button[3]->setText("personnes");
+    button[0]->setText(this->user->getCategory[0]);
+    button[1]->setText(this->user->getCategory[1]);
+    button[2]->setText(this->user->getCategory[2]);
+    button[3]->setText(this->user->getCategory[3]);
 
     // Connexion des boutons à leur méthode lors du clic
-    connect(button[0], SIGNAL(released()), this, SLOT(on_jeVeuxButton_clicked()));
-    connect(button[1], SIGNAL(released()), this, SLOT(on_jeSuisButton_clicked()));
-    connect(button[2], SIGNAL(released()), this, SLOT(on_objetsButton_clicked()));
-    connect(button[3], SIGNAL(released()), this, SLOT(on_personnesButton_clicked()));
+    connect(button[0], SIGNAL(released()), this, SLOT(on_button1_clicked()));
+    connect(button[1], SIGNAL(released()), this, SLOT(on_button2_clicked()));
+    connect(button[2], SIGNAL(released()), this, SLOT(on_button3_clicked()));
+    connect(button[3], SIGNAL(released()), this, SLOT(on_button4_clicked()));
 
     // Affichage de l'interface
     this->ShowMainMenu();
@@ -74,26 +74,34 @@ Interface & Interface::operator=(const Interface & interface)
     return * this;
 }
 
-void Interface::on_jeVeuxButton_clicked()
+void Interface::on_button1_clicked()
 {
     Sound m_speech;
     m_speech.say(button[0]->text());
+    this->selection[0] = new SelectPicto();
+    this->selection->DisplayPictograms(this->button[0]->text());
 }
 
-void Interface::on_jeSuisButton_clicked()
+void Interface::on_button2_clicked()
 {
     Sound m_speech;
     m_speech.say(button[1]->text());
+    this->selection[1] = new SelectPicto();
+    this->selection->DisplayPictograms(this->button[1]->text());
 }
 
-void Interface::on_objetsButton_clicked()
+void Interface::on_button3_clicked()
 {
     Sound m_speech;
     m_speech.say(button[2]->text());
+    this->selection[2] = new SelectPicto();
+    this->selection->DisplayPictograms(this->button[2]->text());
 }
 
-void Interface::on_personnesButton_clicked()
+void Interface::on_button4_clicked()
 {
     Sound m_speech;
     m_speech.say(button[3]->text());
+    this->selection[3] = new SelectPicto();
+    this->selection->DisplayPictograms(this->button[3]->text());
 }
