@@ -38,6 +38,9 @@ public:
     // Surcharge de l'opérateur d'affection
     Interface & operator=(const Interface & interface);
 
+public slots :
+    void addWordToSentence(Pictogram * word);
+
 private slots:
     void on_button1_clicked();
 
@@ -54,13 +57,13 @@ private:
     User * user;
 
     // Phrase créée par l'utilisateur
-    QString * sentence[3];
-
-    // Nombre d'étapes de la phrase effectuées
-    int numLevel = 0;
+    QList<QString> sentence[3];
 
     // Boutons de l'interface principale
     QPushButton * button[4];
+
+    // Bouton d'annulation du drenier mot de la phrase
+    QPushButton * cancelButton;
 
     // Interfaces de séléction des pictogrammes
     SelectPicto * selection[4];

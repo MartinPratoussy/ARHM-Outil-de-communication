@@ -22,6 +22,9 @@ Interface::Interface(QWidget *parent) :
     connect(button[2], SIGNAL(released()), this, SLOT(on_button3_clicked()));
     connect(button[3], SIGNAL(released()), this, SLOT(on_button4_clicked()));
 
+    // Connexion du bouton de retour arrière à la méthode correspondante
+    connect(cancelButton, SIGNAL(released()), this, SLOT(Cancel()));
+
     // Affichage de l'interface
     this->ShowMainMenu();
 }
@@ -53,12 +56,14 @@ void Interface::ShowMainMenu()
             button[numButton]->show();
             numButton++;
         }
+
+
 }
 
 void Interface::Cancel()
 {
-    *this->sentence[numLevel] = "";
-    this->numLevel--;
+    // Vérifie si la phrase est vide et si non, le dernier mot est supprimé
+    if (!this->sentence->isEmpty()) this->sentence->removeLast();
 }
 
 User * Interface::GetUser()
@@ -69,9 +74,14 @@ User * Interface::GetUser()
 Interface & Interface::operator=(const Interface & interface)
 {
     *this->sentence = *interface.sentence;
-    this->numLevel = interface.numLevel;
 
     return * this;
+}
+
+void Interface::addWordToSentence(Pictogram* word)
+{
+    // Ajoute un mot à la phrase si elle n'est pas complète
+    if(this->sentence->size() < 3 ) this->sentence->append(word->getDefinition());
 }
 
 void Interface::on_button1_clicked()
