@@ -18,12 +18,16 @@ public:
     void say(QString text);
 
     // Joue le son non synthétisé
-    void play();
+    void play(QString text);
 
+private:
     // Pointeur permettant de synthétiser vocalement la définition
     QTextToSpeech * speech = new QTextToSpeech;
 
-    QMediaPlayer* sound;
+    QMediaPlayer * sound;
+
+    // Détermine si le son est produit par la synthèse vocale ou s'il existe déjà dans la base de données
+    bool isSynthetic;
 };
 
 #endif SOUND_H

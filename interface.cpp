@@ -25,6 +25,9 @@ Interface::Interface(QWidget *parent) :
     // Connexion du bouton de retour arrière à la méthode correspondante
     connect(cancelButton, SIGNAL(released()), this, SLOT(Cancel()));
 
+    // Connexion du bouton de lecture à la méthode correspondante
+    connect(readButton, SIGNAL(released()), this, SLOT(readSentence()));
+
     // Affichage de l'interface
     this->ShowMainMenu();
 }
@@ -56,8 +59,6 @@ void Interface::ShowMainMenu()
             button[numButton]->show();
             numButton++;
         }
-
-
 }
 
 void Interface::Cancel()
@@ -74,14 +75,21 @@ User * Interface::GetUser()
 Interface & Interface::operator=(const Interface & interface)
 {
     *this->sentence = *interface.sentence;
-
     return * this;
 }
 
 void Interface::addWordToSentence(Pictogram* word)
 {
     // Ajoute un mot à la phrase si elle n'est pas complète
-    if(this->sentence->size() < 3 ) this->sentence->append(word->getDefinition());
+    if(this->sentence->size() < 3 ) this->sentence->append(word);
+}
+
+void Interface::readSentence()
+{
+    foreach (Pictogram word, this->sentence)
+    {
+        word.getSound().play(word.getDefinition());
+    }
 }
 
 void Interface::on_button1_clicked()

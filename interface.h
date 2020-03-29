@@ -39,7 +39,11 @@ public:
     Interface & operator=(const Interface & interface);
 
 public slots :
+    // Ajoute un mot à la phrase
     void addWordToSentence(Pictogram * word);
+
+    // La synthèse vocale lit la phrase
+    void readSentence();
 
 private slots:
     void on_button1_clicked();
@@ -57,13 +61,16 @@ private:
     User * user;
 
     // Phrase créée par l'utilisateur
-    QList<QString> sentence[3];
+    QList<Pictogram*> sentence[3];
 
     // Boutons de l'interface principale
     QPushButton * button[4];
 
     // Bouton d'annulation du drenier mot de la phrase
     QPushButton * cancelButton;
+
+    // Bouton de lecture de la phrase
+    QPushButton * readButton;
 
     // Interfaces de séléction des pictogrammes
     SelectPicto * selection[4];

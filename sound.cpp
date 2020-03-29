@@ -22,7 +22,11 @@ void Sound::say(QString text)
     this->speech->say(text);
 }
 
-void Sound::play()
+void Sound::play(QString text)
 {
-    this->sound->play();
+    switch (this->isSynthetic)
+    {
+    case true: this->say(text); break;
+    case false: this->sound->play(); break;
+    }
 }
