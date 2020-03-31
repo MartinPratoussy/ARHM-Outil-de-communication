@@ -1,18 +1,16 @@
 #include "user.h"
 
-User::User(QString firstname, QString lastname, QString birthDate, QString handicap, QSqlDatabase* database, QSqlQuery* query, int numUser)
+User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser)
 {
     this->firstname = firstname;
     this->lastname = lastname;
     this->birthDate = birthDate;
-    this->handicap = handicap;
 
     // Ajout des attributs dans la table User de a base de données
     if(!query->exec("INSERT INTO user VALUES ('"
                   + this->firstname + "', '"
                   + this->lastname + "', '"
-                  + this->birthDate + "', '"
-                  + this->handicap + ")"))
+                  + this->birthDate + ")"))
             qWarning() << "ERROR: " << query->lastError().text();
 
 #pragma region Recuperation des pictogrammes
@@ -55,6 +53,10 @@ User::User(QString firstname, QString lastname, QString birthDate, QString handi
 #pragma endregion
 }
 
+User::~User()
+{
+}
+
 QString User::getFirstname()
 {
     return this->firstname;
@@ -70,43 +72,32 @@ QString User::getBirthDate()
     return this->birthDate;
 }
 
-QString User::getHandicap()
-{
-    return this->handicap;
-}
-
 int User::getNbPicto()
 {
     return nbPicto;
 }
 
-QString * User::getCategory()
+QString User::getCategory(int i)
 {
-    return this->category;
+    return this->category[i];
 }
 
 void User::setFirstname(QString firstname, QSqlQuery* query)
 {
     this->firstname = firstname;
-    if (!query->exec("UPDATE user SET firstname = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
+    if (!query->exec("UPDATE user SET firstname = '" + this->firstname + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
 void User::setLastname(QString lastname, QSqlQuery* query)
 {
     this->lastname = lastname;
-    if (!query->exec("UPDATE user SET lastname = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
+    if (!query->exec("UPDATE user SET lastname = '" + this->lastname + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
 void User::setBirthDate(QString birthDate, QSqlQuery* query)
 {
     this->birthDate = birthDate;
-    if (!query->exec("UPDATE user SET birthDate = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
-}
-
-void User::setHandicap(QString handicap, QSqlQuery* query)
-{
-    this->handicap = handicap;
-    if (!query->exec("UPDATE user SET handicap = '" + this->handicap + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
+    if (!query->exec("UPDATE user SET birthDate = '" + this->birthDate + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
 User & User::operator=(const User &user)
@@ -114,8 +105,7 @@ User & User::operator=(const User &user)
     this->firstname = user.firstname;
     this->lastname = user.lastname;
     this->birthDate = user.birthDate;
-    this->handicap = user.handicap;
-    foreach(Pictogram * picto, user.pictos) this->pictos->append(picto);
+    //foreach(Pictogram * picto, user.pictos) this->pictos->append(picto);
 
     return * this;
 }

@@ -28,7 +28,6 @@ private:
     QString firstname;
     QString lastname;
     QString birthDate;
-    QString handicap;
 
     // Nombre de pictogrammes que l'utilisateur possède
     int nbPicto;
@@ -41,22 +40,20 @@ private:
 
 public:
     User();
-    User(QString firstname, QString lastname, QString birthDate, QString handicap, QSqlDatabase* database, QSqlQuery* query, int numUser);
+    User(QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser);
     ~User();
 
     // Getters des attributs privés
     QString getFirstname();
     QString getLastname();
     QString getBirthDate();
-    QString getHandicap();
     int getNbPicto();
-    QString * getCategory();
+    QString getCategory(int i);
 
     // Setters des attributs privés
     void setFirstname(QString firstname, QSqlQuery * query);
     void setLastname(QString lastname, QSqlQuery * query);
     void setBirthDate(QString birthDate, QSqlQuery * query);
-    void setHandicap(QString handicap, QSqlQuery * query);
 
     // Surcharge de l'opérateur d'affection
     User & operator=(const User & user);

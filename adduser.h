@@ -12,7 +12,7 @@ public:
     void InitInterface(QSqlDatabase * database, QSqlQuery* query);
 
     // Enregistrement de informations dans la base de données 
-    void Validate(QString lastname, QString firstname, QString birthDate, QString handicap);
+    void Validate(QString lastname, QString firstname, QString birthDate);
 
 private slots:
     void on_validationButton_clicked();

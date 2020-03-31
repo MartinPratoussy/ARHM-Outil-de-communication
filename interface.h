@@ -72,8 +72,8 @@ private:
     // Bouton de lecture de la phrase
     QPushButton * readButton;
 
-    // Interfaces de séléction des pictogrammes
-    SelectPicto * selection[4];
+    // Interfaces de séléction des pictogrammes [Pas encore implémenté]
+    //SelectPicto * selection[4];
 };
 
 #endif // INTERFACE_H

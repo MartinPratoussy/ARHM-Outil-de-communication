@@ -46,9 +46,7 @@ UserList::UserList(QWidget* parent) :
 		while (query->next()) lastname = query->value(0).toString();
 		if (!query->exec("SELECT birthdate FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
 		while (query->next()) birthDate = query->value(0).toString();
-		if (!query->exec("SELECT handicap FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
-		while (query->next()) handicap = query->value(0).toString();
-		this->user[i] = new User(firstname, lastname, birthDate, handicap, database, query, i);
+		this->user[i] = new User(firstname, lastname, birthDate, database, query, i);
 	}
 
 	nbUser = 10;

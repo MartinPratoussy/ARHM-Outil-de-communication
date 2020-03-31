@@ -36,7 +36,6 @@ protected:
     QTextEdit * lastnameEdit;
     QTextEdit * firstnameEdit;
     QDateEdit * birtDateEdit;
-    QTextEdit * handicapEdit;
 };
 
 #endif // ADDEDITUSER_H
