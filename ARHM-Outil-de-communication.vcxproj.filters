@@ -47,7 +47,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="addedituser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="adduser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="edituser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="interface.cpp">
@@ -65,17 +71,20 @@
     <ClCompile Include="user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="useredits.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="userlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="adduser.h">
+    <QtMoc Include="addedituser.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <ClInclude Include="adduser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="edituser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <QtMoc Include="interface.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -88,29 +97,32 @@
     <ClInclude Include="user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="useredits.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="userlist.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    
+    
+    
+    
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    
+    
+    
+    
+    
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="adduser.ui">
+    <QtUic Include="addedituser.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="interface.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="useredits.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="userlist.ui">

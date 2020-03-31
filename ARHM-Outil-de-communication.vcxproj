@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{68C6D55D-FA60-3E68-9DF2-45BAF579A8E2}</ProjectGuid>
+    <ProjectGuid>{D6A106EA-D029-3877-85C8-2F7F0CB354C5}</ProjectGuid>
     <RootNamespace>ARHM-Outil-de-communication</RootNamespace>
     <Keyword>QtVS_v302</Keyword>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -78,7 +78,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;release;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;release;/include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -87,7 +87,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -97,8 +97,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -115,11 +115,11 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_MULTIMEDIA_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_TEXTTOSPEECH_LIB;QT_NETWORK_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_MULTIMEDIA_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_TEXTTOSPEECH_LIB;QT_NETWORK_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <QtMoc>
       <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>./$(Configuration)/moc_predefs.h</Include>
+      <Include>D:/Documents/Dossier Martin/BTS SNIR/2e ann�e/Informatique et r�seaux/Projet/Application Qt/ARHM-Outil-de-communication/$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
       <QtMocDir>$(Configuration)</QtMocDir>
@@ -133,7 +133,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;debug;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;debug;/include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -152,8 +152,8 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -178,7 +178,7 @@
     </QtUic>
     <QtMoc>
       <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>./$(Configuration)/moc_predefs.h</Include>
+      <Include>D:/Documents/Dossier Martin/BTS SNIR/2e ann�e/Informatique et r�seaux/Projet/Application Qt/ARHM-Outil-de-communication/$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
       <QtMocDir>$(Configuration)</QtMocDir>
@@ -186,25 +186,26 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="addedituser.cpp" />
     <ClCompile Include="adduser.cpp" />
+    <ClCompile Include="edituser.cpp" />
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pictogram.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="user.cpp" />
-    <ClCompile Include="useredits.cpp" />
     <ClCompile Include="userlist.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="adduser.h">
+    <QtMoc Include="addedituser.h">
     </QtMoc>
+    <ClInclude Include="adduser.h" />
+    <ClInclude Include="edituser.h" />
     <QtMoc Include="interface.h">
     </QtMoc>
     <ClInclude Include="pictogram.h" />
     <ClInclude Include="sound.h" />
     <ClInclude Include="user.h" />
-    <QtMoc Include="useredits.h">
-    </QtMoc>
     <QtMoc Include="userlist.h">
     </QtMoc>
   </ItemGroup>
@@ -227,11 +228,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="adduser.ui">
+    <QtUic Include="addedituser.ui">
     </QtUic>
     <QtUic Include="interface.ui">
-    </QtUic>
-    <QtUic Include="useredits.ui">
     </QtUic>
     <QtUic Include="userlist.ui">
     </QtUic>
