@@ -25,9 +25,10 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
         values.append(query->value(nbPicto).toInt());
     }
 
-    foreach(int value, values)
+    // Création des pictogrammes dans le code
+    QString definition, urlImage, urlSound, category;
+    for each(int value in values)
     {
-        QString definition, urlImage, urlSound, category;
         // Requêtes SQL récupérant les trois attributs d'un pictogramme selon l'utlisateur qui le possède
         if (!query->exec(
             "SELECT definition FROM \"Pictogram\" WHERE idPictogram = " + value)
@@ -45,6 +46,7 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
             "SELECT category FROM \"Pictogram\" WHERE idPictogram = " + value)
             ) qWarning() << "ERROR: " << database->lastError().text();
         while (query->next()) category = query->value(0).toString();
+        //Conversion des QString en QPixmap et en Sound
         QPixmap image(urlImage);
         Sound sound(urlSound);
         // Création de l'objet Pictogram
@@ -105,7 +107,7 @@ User & User::operator=(const User &user)
     this->firstname = user.firstname;
     this->lastname = user.lastname;
     this->birthDate = user.birthDate;
-    //foreach(Pictogram * picto, user.pictos) this->pictos->append(picto);
+    //for each (Pictogram * picto in user.pictos) this->pictos->append(picto);
 
     return * this;
 }
