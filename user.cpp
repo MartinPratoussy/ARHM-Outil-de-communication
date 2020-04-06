@@ -13,7 +13,6 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
                   + this->birthDate + ")"))
             qWarning() << "ERROR: " << query->lastError().text();
 
-#pragma region Recuperation des pictogrammes
     QList<int> values;
     // Selectionne tous les pictogrammes de l'utilisateur dans la base de données
     if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram_User.idPictogram = Pictogram.idPictogram AND Pictogram_User.idUser = User.idUser AND Pictogram_User.idUser = " + numUser)
@@ -52,7 +51,6 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
         // Création de l'objet Pictogram
         this->pictos->append(new Pictogram(definition, urlImage, urlSound, category));
     }
-#pragma endregion
 }
 
 User::~User()
@@ -77,6 +75,11 @@ QString User::getBirthDate()
 int User::getNbPicto()
 {
     return nbPicto;
+}
+
+QList<Pictogram*> User::getPicto()
+{
+    return *this->pictos;
 }
 
 QString User::getCategory(int i)

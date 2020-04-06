@@ -48,6 +48,7 @@ public:
     QString getLastname();
     QString getBirthDate();
     int getNbPicto();
+    QList<Pictogram*> getPicto();
     QString getCategory(int i);
 
     // Setters des attributs privés

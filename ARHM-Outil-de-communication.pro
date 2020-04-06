@@ -34,6 +34,7 @@ SOURCES += \
         interface.cpp \
         main.cpp \
         pictogram.cpp \
+        selectpicto.cpp \
         sound.cpp \
         user.cpp \
         userlist.cpp
@@ -44,6 +45,7 @@ HEADERS += \
         edituser.h \
         interface.h \
         pictogram.h \
+        selectpicto.h \
         sound.h \
         user.h \
         userlist.h
@@ -51,6 +53,7 @@ HEADERS += \
 FORMS += \
         addedituser.ui \
         interface.ui \
+        selectpicto.ui \
         userlist.ui
 
 CONFIG += mobility
