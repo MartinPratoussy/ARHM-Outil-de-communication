@@ -65,6 +65,9 @@
     <ClCompile Include="pictogram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="selectpicto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,6 +94,9 @@
     <ClInclude Include="pictogram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <QtMoc Include="selectpicto.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <ClInclude Include="sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -117,12 +123,18 @@
     
     
     
+    
+    
+    
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="addedituser.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="interface.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="selectpicto.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="userlist.ui">

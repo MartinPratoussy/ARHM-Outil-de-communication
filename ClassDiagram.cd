@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AddEditUser">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEgBAAAAAAAAgAAAAAAAAAAAoAABIAAA=</HashCode>
+      <FileName>addedituser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddUser">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACACAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>adduser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EditUser">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACACAAAAEAAAAAAAAAAAAAAAAEAAAAAAAAwA=</HashCode>
+      <FileName>edituser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Interface">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABASAQAEAAAAAAAAAAQAAAAAAAAECAgAoJiAQA=</HashCode>
+      <FileName>interface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pictogram">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgACMAIAAAAAAAAAAAAAAACAEAAAAAIAIAAAAAAA=</HashCode>
+      <FileName>pictogram.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sound">
+    <Position X="11" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAEAAAACGAEAABAAAAAAAAAA=</HashCode>
+      <FileName>sound.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="User">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAACAUhCAAQBBAAAAAAAIAAABAAAAIAoAEAAAgA=</HashCode>
+      <FileName>user.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserList">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAIAAAEEEERAQAAEAAAAAAAAABAACCIIIASAAQE=</HashCode>
+      <FileName>userlist.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

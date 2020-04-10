@@ -13,7 +13,6 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
                   + this->birthDate + ")"))
             qWarning() << "ERROR: " << query->lastError().text();
 
-#pragma region Recuperation des pictogrammes
     QList<int> values;
     // Selectionne tous les pictogrammes de l'utilisateur dans la base de données
     if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram_User.idPictogram = Pictogram.idPictogram AND Pictogram_User.idUser = User.idUser AND Pictogram_User.idUser = " + numUser)
@@ -25,9 +24,10 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
         values.append(query->value(nbPicto).toInt());
     }
 
-    foreach(int value, values)
+    // Création des pictogrammes dans le code
+    QString definition, urlImage, urlSound, category;
+    for each(int value in values)
     {
-        QString definition, urlImage, urlSound, category;
         // Requêtes SQL récupérant les trois attributs d'un pictogramme selon l'utlisateur qui le possède
         if (!query->exec(
             "SELECT definition FROM \"Pictogram\" WHERE idPictogram = " + value)
@@ -45,12 +45,12 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
             "SELECT category FROM \"Pictogram\" WHERE idPictogram = " + value)
             ) qWarning() << "ERROR: " << database->lastError().text();
         while (query->next()) category = query->value(0).toString();
+        //Conversion des QString en QPixmap et en Sound
         QPixmap image(urlImage);
         Sound sound(urlSound);
         // Création de l'objet Pictogram
         this->pictos->append(new Pictogram(definition, urlImage, urlSound, category));
     }
-#pragma endregion
 }
 
 User::~User()
@@ -75,6 +75,11 @@ QString User::getBirthDate()
 int User::getNbPicto()
 {
     return nbPicto;
+}
+
+QList<Pictogram*> User::getPicto()
+{
+    return *this->pictos;
 }
 
 QString User::getCategory(int i)
@@ -105,7 +110,7 @@ User & User::operator=(const User &user)
     this->firstname = user.firstname;
     this->lastname = user.lastname;
     this->birthDate = user.birthDate;
-    //foreach(Pictogram * picto, user.pictos) this->pictos->append(picto);
+    //for each (Pictogram * picto in user.pictos) this->pictos->append(picto);
 
     return * this;
 }

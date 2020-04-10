@@ -10,14 +10,14 @@
 // Contrôle les flux d'entrée/sortie
 #include <iostream>
 
-// Permet de charger une base de données
-#include <QSqlDatabase>
 // Permet d'accéder à des bases de données spécifiques
 #include <QSqlDriver>
-// Permet de générer une erreur lors d'un problème dans la base de donnnées
-#include <QSqlError>
+// Permet de charger une base de données
+#include <QSqlDatabase>
 // Permet de générer des requêtes SQL en direction d'une base de données
 #include <QSqlQuery>
+// Permet de générer une erreur lors d'un problème dans la base de donnnées
+#include <QSqlError>
 
 #include "pictogram.h"
 
@@ -48,6 +48,7 @@ public:
     QString getLastname();
     QString getBirthDate();
     int getNbPicto();
+    QList<Pictogram*> getPicto();
     QString getCategory(int i);
 
     // Setters des attributs privés

@@ -192,6 +192,7 @@
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pictogram.cpp" />
+    <ClCompile Include="selectpicto.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="user.cpp" />
     <ClCompile Include="userlist.cpp" />
@@ -204,6 +205,8 @@
     <QtMoc Include="interface.h">
     </QtMoc>
     <ClInclude Include="pictogram.h" />
+    <QtMoc Include="selectpicto.h">
+    </QtMoc>
     <ClInclude Include="sound.h" />
     <ClInclude Include="user.h" />
     <QtMoc Include="userlist.h">
@@ -231,6 +234,8 @@
     <QtUic Include="addedituser.ui">
     </QtUic>
     <QtUic Include="interface.ui">
+    </QtUic>
+    <QtUic Include="selectpicto.ui">
     </QtUic>
     <QtUic Include="userlist.ui">
     </QtUic>

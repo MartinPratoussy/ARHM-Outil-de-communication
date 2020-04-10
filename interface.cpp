@@ -96,30 +96,30 @@ void Interface::on_button1_clicked()
 {
     Sound m_speech;
     m_speech.say(button[0]->text());
-    /*this->selection[0] = new SelectPicto();
-    this->selection->DisplayPictograms(this->button[0]->text());*/
+    this->selection[0] = new SelectPicto();
+    this->selection[0]->DisplayPictograms(this->button[0]->text());
 }
 
 void Interface::on_button2_clicked()
 {
     Sound m_speech;
     m_speech.say(button[1]->text());
-    /*this->selection[1] = new SelectPicto();
-    this->selection->DisplayPictograms(this->button[1]->text());*/
+    this->selection[1] = new SelectPicto();
+    this->selection[1]->DisplayPictograms(this->button[1]->text());
 }
 
 void Interface::on_button3_clicked()
 {
     Sound m_speech;
     m_speech.say(button[2]->text());
-    /*this->selection[2] = new SelectPicto();
-    this->selection->DisplayPictograms(this->button[2]->text());*/
+    this->selection[2] = new SelectPicto();
+    this->selection[2]->DisplayPictograms(this->button[2]->text());
 }
 
 void Interface::on_button4_clicked()
 {
     Sound m_speech;
     m_speech.say(button[3]->text());
-    /*this->selection[3] = new SelectPicto();
-    this->selection->DisplayPictograms(this->button[3]->text());*/
+    this->selection[3] = new SelectPicto();
+    this->selection[3]->DisplayPictograms(this->button[3]->text());
 }

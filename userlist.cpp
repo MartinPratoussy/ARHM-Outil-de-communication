@@ -7,13 +7,20 @@ UserList::UserList(QWidget* parent) :
 {
 	ui->setupUi(this);
 
-#pragma region ConnexionBDD
+	ConnectToDatabase();
+	LoadUsers();
+	SetDisplayGeometry();
+	ShowUserList();
+}
+
+void UserList::ConnectToDatabase()
+{
 	// Initialise la base de données à utiliser
 	database = new QSqlDatabase();
 	const QString DRIVER("QSQLITE");
 	if (QSqlDatabase::isDriverAvailable(DRIVER))
 	{
-		// Défini le SGBD utilisée
+		// Défini le SGBD utilisé
 		*database = QSqlDatabase::addDatabase(DRIVER);
 		// Se connecte à la base de données à utiliser
 		database->setDatabaseName("database.db");
@@ -21,9 +28,10 @@ UserList::UserList(QWidget* parent) :
 		if (!database->open()) qWarning() << "ERROR: " << database->lastError().text();
 	}
 	else qWarning() << "ERROR: " << database->lastError().text();
-#pragma endregion /*Connecte l'application à la base de données*/
+}
 
-#pragma region getUser
+void UserList::LoadUsers()
+{
 	// Génère un objet query qui contiendra les prochaines requêtes
 	query = new QSqlQuery(*database);
 	// Récupère les utilisateurs dans la base de données
@@ -35,11 +43,8 @@ UserList::UserList(QWidget* parent) :
 	qDebug() << "Nombre d'utilisateurs : " << this->nbUser;
 
 	// Récupère les valeurs des utilisateurs enregistrés dans la base de données et les ajoute aux utilisateurs dans le programme
+	QString firstname, lastname, birthDate, handicap;
 	for (int i = 1; i <= this->nbUser; i++) {
-		QString firstname;
-		QString lastname;
-		QString birthDate;
-		QString handicap;
 		if (!query->exec("SELECT firstname FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
 		while (query->next()) firstname = query->value(0).toString();
 		if (!query->exec("SELECT lastname FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
@@ -48,25 +53,19 @@ UserList::UserList(QWidget* parent) :
 		while (query->next()) birthDate = query->value(0).toString();
 		this->user[i] = new User(firstname, lastname, birthDate, database, query, i);
 	}
+}
 
-	nbUser = 10;
-
-#pragma endregion /*Récupère chaque utilisateur dans la base de données*/
-
-#pragma region setDisplay
+void UserList::SetDisplayGeometry()
+{
 	// Initialisation de la taille de la fenêtre
 	this->width = QApplication::desktop()->width();
 	this->height = QApplication::desktop()->height();
-	QApplication::desktop()->setGeometry(0, 0, this->width, this->height + this->height * (1 / 8) * nbUser);
+	QApplication::desktop()->setGeometry(0, 0, this->width, this->height + this->height * (1 / NB_USER_DISPLAYABLE) * nbUser);
 
 	this->area = new QScrollArea(this);
 	area->setWidgetResizable(true);
 	area->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-
-	ShowUserList();
-
 	area->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-#pragma endregion /*Affiche l'interface du menu principal*/
 }
 
 UserList::~UserList()
@@ -76,16 +75,15 @@ UserList::~UserList()
 
 void UserList::ShowUserList()
 {
-#pragma region DisplayButtons
 	// Place chacun des boutons de l'interface
 	for (int numUserY = 0; numUserY < nbUser / 4; numUserY++) 
 	{
 		for (int numUserX = 0; numUserX < 4; numUserX++)
 		{
 			// Crée les boutons d'accès aux interfaces utilisateurs
-			interfaceButton[numUserX + numUserX] = new QPushButton(this);
+			interfaceButton[numUserX + numUserY] = new QPushButton(this);
 			// Crée les boutons d'accès aux interfaces d'édition
-			editButton[numUserX + numUserX] = new QPushButton(this);
+			editButton[numUserX + numUserY] = new QPushButton(this);
 
 			// Position et taille des boutons d'accès aux interfaces utilisateur
 			int posX = this->width / 17 + 4 * numUserX * this->width / 17;
@@ -94,27 +92,28 @@ void UserList::ShowUserList()
 			int sizeY = this->height * 3 / 9;
 
 			// Place les boutons d'accès aux interfaces utilisateurs
-			this->interfaceButton[numUserX + numUserX]->setGeometry(posX, posY, sizeX, sizeY);
+			this->interfaceButton[numUserX + numUserY]->setGeometry(posX, posY, sizeX, sizeY);
 
 			// Place les boutons d'accès aux interfaces utilisateurs
-			this->editButton[numUserX + numUserX]->setGeometry(
+			this->editButton[numUserX + numUserY]->setGeometry(
 				posX + this->width / 17,
 				posY + this->height * 3/9, 
 				this->width / 18, 
 				this->height / 18);
 
 			// Affiche les boutons
-			this->interfaceButton[numUserX + numUserX]->show();
-			this->editButton[numUserX + numUserX]->show();
+			this->interfaceButton[numUserX + numUserY]->show();
+			this->editButton[numUserX + numUserY]->show();
 
 			/* Bouton de test */
 			connect(ui->pushButton, SIGNAL(released()), this, SLOT(on_editButton_clicked(0)));
 
 			// Attribue aux boutons des méthodes de la classse
-			connect(interfaceButton[numUserX + numUserX], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(numUserX + numUserX)));
-			connect(editButton[numUserX + numUserX], SIGNAL(released()), this, SLOT(on_addButton_clicked(numUserX + numUserX)));
+			connect(interfaceButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(numUserX + numUserY)));
+			connect(editButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_addButton_clicked(numUserX + numUserY)));
 		}
 	}
+	// Place les boutons qui n'ont pas été placés dans la boucle for précédente
 	for (int numUser = 0; numUser < nbUser % 4; numUser++)
 	{
 		// Crée les boutons d'accès aux interfaces utilisateurs
@@ -128,10 +127,10 @@ void UserList::ShowUserList()
 		int sizeY = this->height * 3 / 9;
 
 		this->interfaceButton[(nbUser / 4) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
-		//this->editButton[(nbUser / 4) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
+		this->editButton[(nbUser / 4) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
 
 		connect(interfaceButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked((nbUser / 4) + numUser)));
-		connect(editButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_addButton_clicked((nbUser / 4) + numUser)));
+		connect(editButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_editButton_clicked((nbUser / 4) + numUser)));
 	}
 	// Ajoute le bouton d'ajout d'utilisateur après le dernier utilisateur ajouté
 	this->addUserButton = new QPushButton(this);
@@ -141,8 +140,7 @@ void UserList::ShowUserList()
 		this->width * 3 / 17,
 		this->height / 9);
 	this->addUserButton->show();
-
-#pragma endregion
+	connect(addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked()));
 }
 
 void UserList::on_interfaceButton_clicked(int numUser)

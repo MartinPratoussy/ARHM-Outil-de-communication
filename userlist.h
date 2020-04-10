@@ -2,6 +2,7 @@
 #define USERLIST_H
 
 #define NB_MAX_USER 100
+#define NB_USER_DISPLAYABLE 8
 
 #include <QMainWindow>
 
@@ -21,9 +22,6 @@ class UserList : public QMainWindow
 public:
     explicit UserList(QWidget *parent = nullptr);
     ~UserList();
-
-    // Affiche la liste des utilisateurs sous forme boutons vers leur interface
-    void ShowUserList();
 
 private slots:
     // Clic sur un bouton d'accès à une interface utilisateur
@@ -71,6 +69,15 @@ private:
 
     // Zone de scrolling
     QScrollArea* area;
+
+    // Connexion à la base de données
+    void ConnectToDatabase();
+    // Récupération des utlisateurs présents dans la base de données
+    void LoadUsers();
+    // Initialise la taille de la fenêtre
+    void SetDisplayGeometry();
+    // Affiche la liste des utilisateurs sous forme boutons vers leur interface
+    void ShowUserList();
 };
 
 #endif // USERLIST_H
