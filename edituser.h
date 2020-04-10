@@ -6,22 +6,18 @@
 class EditUser : public AddEditUser
 {
 public:
-    EditUser();
+    EditUser(User* user);
 
     // Getter de l'utilisateur
     User* GetUser();
 
-    // Supprime l'utilisateur
-    void DeleteUser();
-
     // Initialise l'interface d'édition d'utilisateur
-    void InitInterface(User* user, QSqlQuery* query);
-
-    // Enregistrement de informations dans la base de données 
-    void Validate(QString lastname, QString firstname, QString birthDate);
+    void InitInterface(QSqlQuery* query);
 
 private slots:
     void on_validationButton_clicked();
+
+    void on_deleteButton_clicked();
 
 private:
 

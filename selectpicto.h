@@ -1,7 +1,12 @@
-#pragma once
+#ifndef SELECTPICTO_H
+#define SELECTPICTO_H
 
 #include <QWidget>
 #include "user.h"
+
+namespace Ui {
+class SelectPicto;
+}
 
 class SelectPicto : public QWidget
 {
@@ -14,7 +19,9 @@ public:
 	void DisplayPictograms(QString category);
 
 private:
-	Ui::SelectPicto ui;
+	Ui::SelectPicto *ui;
 
 	User* user;
 };
+
+#endif

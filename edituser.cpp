@@ -1,14 +1,13 @@
 #include "edituser.h"
+#include "ui_addedituser.h"
 
-
-void EditUser::on_validationButton_clicked()
+EditUser::EditUser(User* user)
 {
-    Validate(this->firstnameEdit->toPlainText(), this->lastnameEdit->toPlainText(), this->birtDateEdit->date().toString());
-}
+    this->user = user;
 
-EditUser::EditUser()
-{
-
+    connect(ui->validateButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
+    connect(ui->deleteButton, SIGNAL(released()), this, SLOT(on_deleteButton_clicked()));
+    connect(ui->cancelButton, SIGNAL(released()), this, SLOT(on_cancelButton_clicked()));
 }
 
 User* EditUser::GetUser()
@@ -16,29 +15,28 @@ User* EditUser::GetUser()
     return this->user;
 }
 
-void EditUser::DeleteUser()
+void EditUser::on_validationButton_clicked()
 {
-    this->user->~User();
-}
-
-void EditUser::InitInterface(User* user, QSqlQuery* query)
-{
-    this->user = user;
-    AddEditUser::query = query;
-
-    lastnameEdit = new QTextEdit(this->user->getLastname(), this);
-    firstnameEdit = new QTextEdit(this->user->getFirstname(), this);
-    birtDateEdit = new QDateEdit(QDate::fromString(this->user->getBirthDate(), "dd/MM/yyyy"),  this);
-    validation = new QPushButton("Valider", this);
-
-    connect(validation, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
-}
-
-void EditUser::Validate(QString firstname, QString lastname, QString birthDate)
-{
-    this->user->setFirstname(firstname, query);
-    this->user->setLastname(lastname, query);
-    this->user->setBirthDate(birthDate, query);
+    this->user->setFirstname(ui->firstnameEdit->toPlainText(), query);
+    this->user->setLastname(ui->lastnameEdit->toPlainText(), query);
+    this->user->setBirthDate(ui->birthDateEdit->date().toString("dd/mm/YYYY"), query);
 
     this->close();
+}
+
+void EditUser::on_deleteButton_clicked()
+{
+    if (!this->query->exec("DELETE FROM User WHERE userId = " + QString::number(this->user->getId()) + ";")) qWarning() << "ERROR: " << database->lastError().text();
+    this->close();
+}
+
+void EditUser::InitInterface(QSqlQuery* query)
+{
+    AddEditUser::query = query;
+
+    ui->lastnameEdit->setText(this->user->getLastname());
+    ui->firstnameEdit->setText(this->user->getFirstname());
+    ui->birthDateEdit->setDate(QDate::fromString(this->user->getBirthDate(), "dd/MM/yyyy"));
+
+    
 }

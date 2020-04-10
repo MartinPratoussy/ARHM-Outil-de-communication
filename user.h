@@ -25,6 +25,7 @@ class User
 {
 private:
     // Attributs de l'utlisateur
+    int id;
     QString firstname;
     QString lastname;
     QString birthDate;
@@ -33,17 +34,18 @@ private:
     int nbPicto;
 
     // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
-    QList<Pictogram*> pictos[NB_MAX_PICTO];
+    QList<Pictogram*> pictos;
 
     // Catégories de boutons
     QString category[4];
 
 public:
     User();
-    User(QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser);
+    User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser);
     ~User();
 
     // Getters des attributs privés
+    int getId();
     QString getFirstname();
     QString getLastname();
     QString getBirthDate();

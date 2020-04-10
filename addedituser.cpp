@@ -12,3 +12,8 @@ AddEditUser::~AddEditUser()
 {
     delete ui;
 }
+
+void AddEditUser::on_cancelButton_clicked()
+{
+    this->close();
+}

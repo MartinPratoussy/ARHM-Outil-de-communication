@@ -43,15 +43,18 @@ void UserList::LoadUsers()
 	qDebug() << "Nombre d'utilisateurs : " << this->nbUser;
 
 	// Récupère les valeurs des utilisateurs enregistrés dans la base de données et les ajoute aux utilisateurs dans le programme
+	int id;
 	QString firstname, lastname, birthDate, handicap;
 	for (int i = 1; i <= this->nbUser; i++) {
+		if (!query->exec("SELECT userId FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
+		while (query->next()) id = query->value(0).toInt();
 		if (!query->exec("SELECT firstname FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
 		while (query->next()) firstname = query->value(0).toString();
 		if (!query->exec("SELECT lastname FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
 		while (query->next()) lastname = query->value(0).toString();
 		if (!query->exec("SELECT birthdate FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
 		while (query->next()) birthDate = query->value(0).toString();
-		this->user[i] = new User(firstname, lastname, birthDate, database, query, i);
+		this->user[i] = new User(id, firstname, lastname, birthDate, database, query, i);
 	}
 }
 
@@ -105,9 +108,6 @@ void UserList::ShowUserList()
 			this->interfaceButton[numUserX + numUserY]->show();
 			this->editButton[numUserX + numUserY]->show();
 
-			/* Bouton de test */
-			connect(ui->pushButton, SIGNAL(released()), this, SLOT(on_editButton_clicked(0)));
-
 			// Attribue aux boutons des méthodes de la classse
 			connect(interfaceButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(numUserX + numUserY)));
 			connect(editButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_addButton_clicked(numUserX + numUserY)));
@@ -152,13 +152,13 @@ void UserList::on_interfaceButton_clicked(int numUser)
 
 void UserList::on_editButton_clicked(int numUser)
 {
-	userEdits = new EditUser();
-	userEdits->InitInterface(user[numUser], this->query);
+	userEdits = new EditUser(user[numUser]);
+	userEdits->InitInterface(this->query);
 	userEdits->show();
 }
 
 void UserList::on_addButton_clicked()
 {
-	addUser = new AddUser();
+	addUser = new AddUser(this->database, this->query);
 	addUser->show();
 }

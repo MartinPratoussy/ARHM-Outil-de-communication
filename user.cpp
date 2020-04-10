@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser)
+User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser)
 {
     this->firstname = firstname;
     this->lastname = lastname;
@@ -49,12 +49,17 @@ User::User(QString firstname, QString lastname, QString birthDate, QSqlDatabase*
         QPixmap image(urlImage);
         Sound sound(urlSound);
         // Création de l'objet Pictogram
-        this->pictos->append(new Pictogram(definition, urlImage, urlSound, category));
+        this->pictos.append(new Pictogram(definition, urlImage, urlSound, category));
     }
 }
 
 User::~User()
 {
+}
+
+int User::getId()
+{
+    return this->id;
 }
 
 QString User::getFirstname()
@@ -79,7 +84,7 @@ int User::getNbPicto()
 
 QList<Pictogram*> User::getPicto()
 {
-    return *this->pictos;
+    return this->pictos;
 }
 
 QString User::getCategory(int i)
@@ -110,7 +115,7 @@ User & User::operator=(const User &user)
     this->firstname = user.firstname;
     this->lastname = user.lastname;
     this->birthDate = user.birthDate;
-    //for each (Pictogram * picto in user.pictos) this->pictos->append(picto);
+    for each (Pictogram * picto in user.pictos) this->pictos.append(picto);
 
     return * this;
 }

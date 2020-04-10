@@ -20,6 +20,9 @@ public:
     explicit AddEditUser(QWidget *parent = nullptr);
     virtual ~AddEditUser() = 0;
 
+private slots:
+    void on_cancelButton_clicked();
+
 protected:
     Ui::AddEditUser *ui;
 
@@ -28,14 +31,6 @@ protected:
 
     // Pointeur de la requête SQL
     QSqlQuery * query;
-
-    // Bouton de validation
-    QPushButton * validation;
-
-    // Zone d'édition des attributs de l'utilisateur
-    QTextEdit * lastnameEdit;
-    QTextEdit * firstnameEdit;
-    QDateEdit * birtDateEdit;
 };
 
 #endif // ADDEDITUSER_H

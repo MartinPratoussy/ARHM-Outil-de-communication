@@ -1,37 +1,19 @@
 #include "adduser.h"
+#include "ui_addedituser.h"
 
-AddUser::AddUser()
+AddUser::AddUser(QSqlDatabase* database, QSqlQuery* query)
 {
-
+    this->database = database;
+    this->query = query;
+    connect(ui->validateButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
 }
 
 void AddUser::on_validationButton_clicked()
 {
-    Validate(this->firstnameEdit->toPlainText(), this->lastnameEdit->toPlainText(), this->birtDateEdit->date().toString());
-}
-
-void AddUser::InitInterface(QSqlDatabase* database, QSqlQuery* query)
-{
-    this->database = database;
-    this->query = query;
-
-    lastnameEdit = new QTextEdit(this);
-    firstnameEdit = new QTextEdit(this);
-    birtDateEdit = new QDateEdit(this);
-    validation = new QPushButton("Valider", this);
-
-    connect(validation, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
-}
-
-void AddUser::Validate(QString lastname, QString firstname, QString birthDate)
-{
-    if (!this->query->exec("INSERT INTO User(firstname, lastname, birthDate) VALUES ("
-        + lastname
-        + firstname
-        + birthDate
-        + ")")
-        ) qWarning() << "ERROR: " << this->database->lastError().text();
+    if (!this->query->exec("INSERT INTO User(lastname, firstname, birthDate) VALUES ("
+        + ui->lastnameEdit->toPlainText() + ", "
+        + ui->firstnameEdit->toPlainText() + ", "
+        + ui->birthDateEdit->date().toString() + ");"
+        )) qWarning() << "ERROR: " << this->database->lastError().text();
     this->close();
 }
-
-
