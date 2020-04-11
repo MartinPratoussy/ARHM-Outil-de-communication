@@ -127,7 +127,7 @@
     <string>Date de naissance</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="validateButton">
+  <widget class="QPushButton" name="validationButton">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -142,7 +142,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(85, 255, 0);</string>
+    <string notr="true">background-color: rgb(85, 255, 0);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Valider</string>
@@ -163,7 +164,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 0, 4);</string>
+    <string notr="true">background-color: rgb(255, 0, 4);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Annuler</string>
@@ -179,7 +181,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 85, 0);</string>
+    <string notr="true">background-color: rgb(255, 85, 0);
+background-color: rgb(255, 170, 0);</string>
    </property>
   </widget>
   <widget class="QLabel" name="icon">
@@ -243,7 +246,7 @@ color: rgb(255, 255, 255);</string>
   <zorder>lastnameLabel</zorder>
   <zorder>firstnameLabe</zorder>
   <zorder>birtDateLabel</zorder>
-  <zorder>validateButton</zorder>
+  <zorder>validationButton</zorder>
   <zorder>cancelButton</zorder>
   <zorder>topBorder</zorder>
   <zorder>icon</zorder>

@@ -30,7 +30,10 @@ protected:
     QSqlDatabase* database;
 
     // Pointeur de la requête SQL
-    QSqlQuery * query;
+    QSqlQuery* query;
+
+    // Classe parent
+    QWidget* parent;
 };
 
 #endif // ADDEDITUSER_H

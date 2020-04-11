@@ -41,7 +41,7 @@ private:
 
 public:
     User();
-    User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser);
+    User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query);
     ~User();
 
     // Getters des attributs privés

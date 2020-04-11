@@ -32,9 +32,6 @@ public:
     // Getter de l'utlisateur de l'interface
     User * GetUser();
 
-    // Affiche le menu principal
-    void ShowMainMenu();
-
     // Surcharge de l'opérateur d'affection
     Interface & operator=(const Interface & interface);
 
@@ -46,13 +43,13 @@ public slots :
     void readSentence();
 
 private slots:
-    void on_button1_clicked();
+    void on_firstCategoryButton_clicked();
 
-    void on_button2_clicked();
+    void on_secondCategoryButton_clicked();
 
-    void on_button3_clicked();
+    void on_thirdCategoryButton_clicked();
 
-    void on_button4_clicked();
+    void on_fourthCategoryButton_clicked();
 
 private:
     Ui::Interface *ui;
@@ -61,16 +58,7 @@ private:
     User * user;
 
     // Phrase créée par l'utilisateur
-    QList<Pictogram*> sentence[3];
-
-    // Boutons de l'interface principale
-    QPushButton * button[4];
-
-    // Bouton d'annulation du drenier mot de la phrase
-    QPushButton * cancelButton;
-
-    // Bouton de lecture de la phrase
-    QPushButton * readButton;
+    QList<Pictogram*> sentence;
 
     // Interfaces de séléction des pictogrammes
     SelectPicto * selection[4];

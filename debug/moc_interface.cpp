@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Interface_t {
     QByteArrayData data[10];
-    char stringdata0[134];
+    char stringdata0[184];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,16 +38,17 @@ QT_MOC_LITERAL(2, 28, 0), // ""
 QT_MOC_LITERAL(3, 29, 10), // "Pictogram*"
 QT_MOC_LITERAL(4, 40, 4), // "word"
 QT_MOC_LITERAL(5, 45, 12), // "readSentence"
-QT_MOC_LITERAL(6, 58, 18), // "on_button1_clicked"
-QT_MOC_LITERAL(7, 77, 18), // "on_button2_clicked"
-QT_MOC_LITERAL(8, 96, 18), // "on_button3_clicked"
-QT_MOC_LITERAL(9, 115, 18) // "on_button4_clicked"
+QT_MOC_LITERAL(6, 58, 30), // "on_firstCategoryButton_clicked"
+QT_MOC_LITERAL(7, 89, 31), // "on_secondCategoryButton_clicked"
+QT_MOC_LITERAL(8, 121, 30), // "on_thirdCategoryButton_clicked"
+QT_MOC_LITERAL(9, 152, 31) // "on_fourthCategoryButton_clicked"
 
     },
     "Interface\0addWordToSentence\0\0Pictogram*\0"
-    "word\0readSentence\0on_button1_clicked\0"
-    "on_button2_clicked\0on_button3_clicked\0"
-    "on_button4_clicked"
+    "word\0readSentence\0on_firstCategoryButton_clicked\0"
+    "on_secondCategoryButton_clicked\0"
+    "on_thirdCategoryButton_clicked\0"
+    "on_fourthCategoryButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -91,10 +92,10 @@ void Interface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         switch (_id) {
         case 0: _t->addWordToSentence((*reinterpret_cast< Pictogram*(*)>(_a[1]))); break;
         case 1: _t->readSentence(); break;
-        case 2: _t->on_button1_clicked(); break;
-        case 3: _t->on_button2_clicked(); break;
-        case 4: _t->on_button3_clicked(); break;
-        case 5: _t->on_button4_clicked(); break;
+        case 2: _t->on_firstCategoryButton_clicked(); break;
+        case 3: _t->on_secondCategoryButton_clicked(); break;
+        case 4: _t->on_thirdCategoryButton_clicked(); break;
+        case 5: _t->on_fourthCategoryButton_clicked(); break;
         default: ;
         }
     }

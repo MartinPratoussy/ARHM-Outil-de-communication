@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query, int numUser)
+User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query)
 {
     this->firstname = firstname;
     this->lastname = lastname;
@@ -15,7 +15,7 @@ User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlD
 
     QList<int> values;
     // Selectionne tous les pictogrammes de l'utilisateur dans la base de données
-    if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram_User.idPictogram = Pictogram.idPictogram AND Pictogram_User.idUser = User.idUser AND Pictogram_User.idUser = " + numUser)
+    if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\",\"User\",\"Pictogram_User\" WHERE Pictogram_User.idPictogram = Pictogram.idPictogram AND Pictogram_User.idUser = User.idUser AND Pictogram_User.idUser = " + id)
         ) qWarning() << "ERROR: " << database->lastError().text();
     // Tant qu'il y a des pictogrammes, le nombre de pictogramme s'incrémente
     while (query->next())

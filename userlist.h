@@ -25,13 +25,13 @@ public:
 
 private slots:
     // Clic sur un bouton d'accès à une interface utilisateur
-    void on_interfaceButton_clicked(int numUser);
+    void on_interfaceButton_clicked(/*UserList* userList, int numUser*/);
 
     // Clic sur un bouton d'édition d'utilisateur
-    void on_editButton_clicked(int numUser);
+    void on_editButton_clicked(/*UserList* userList, int numUser*/);
 
     // Clic sur le bouton d'ajout d'utilisateur
-    void on_addButton_clicked();
+    void on_addButton_clicked(/*UserList* userList*/);
 
 private:
     Ui::UserList *ui;
@@ -40,6 +40,7 @@ private:
     QSqlDatabase* database;
     QSqlQuery* query;
 
+    // Utilisateurs
     User* user[NB_MAX_USER];
 
     // Interface utilisateur

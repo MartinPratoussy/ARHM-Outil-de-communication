@@ -39,6 +39,8 @@ void UserList::LoadUsers()
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
 	while (query->next()) nbUser++;
 
+	nbUser = 5;
+
 	// nbUser prend la valeur du nombre de lignes dans la base de données
 	qDebug() << "Nombre d'utilisateurs : " << this->nbUser;
 
@@ -54,7 +56,7 @@ void UserList::LoadUsers()
 		while (query->next()) lastname = query->value(0).toString();
 		if (!query->exec("SELECT birthdate FROM \"User\" WHERE id = " + QString::number(i))) qWarning() << "ERROR: " << database->lastError().text();
 		while (query->next()) birthDate = query->value(0).toString();
-		this->user[i] = new User(id, firstname, lastname, birthDate, database, query, i);
+		this->user[i] = new User(id, firstname, lastname, birthDate, database, query);
 	}
 }
 
@@ -109,8 +111,8 @@ void UserList::ShowUserList()
 			this->editButton[numUserX + numUserY]->show();
 
 			// Attribue aux boutons des méthodes de la classse
-			connect(interfaceButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(numUserX + numUserY)));
-			connect(editButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_addButton_clicked(numUserX + numUserY)));
+			connect(interfaceButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(/*this, numUserX + numUserY*/)));
+			connect(editButton[numUserX + numUserY], SIGNAL(released()), this, SLOT(on_addButton_clicked(/*this, */numUserX + numUserY)));
 		}
 	}
 	// Place les boutons qui n'ont pas été placés dans la boucle for précédente
@@ -129,8 +131,8 @@ void UserList::ShowUserList()
 		this->interfaceButton[(nbUser / 4) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
 		this->editButton[(nbUser / 4) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
 
-		connect(interfaceButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked((nbUser / 4) + numUser)));
-		connect(editButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_editButton_clicked((nbUser / 4) + numUser)));
+		connect(interfaceButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(this, (nbUser / 4) + numUser, )));
+		connect(editButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_editButton_clicked(this, (nbUser / 4) + numUser)));
 	}
 	// Ajoute le bouton d'ajout d'utilisateur après le dernier utilisateur ajouté
 	this->addUserButton = new QPushButton(this);
@@ -138,26 +140,26 @@ void UserList::ShowUserList()
 		this->width / 17 + nbUser * (1 / 4) * this->width / 17,
 		(nbUser + 1) * (this->height / 9 + nbUser * (1 / 2) * this->height / 9),
 		this->width * 3 / 17,
-		this->height / 9);
+		this->height / 3);
 	this->addUserButton->show();
-	connect(addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked()));
+	connect(addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked(/*this*/)));
 }
 
-void UserList::on_interfaceButton_clicked(int numUser)
+void UserList::on_interfaceButton_clicked(/*UserList* userList, int numUser*/)
 {
 	interface = new Interface();
-	interface->InitInterface(user[numUser]);
+	interface->InitInterface(user[0]);
 	interface->show();
 }
 
-void UserList::on_editButton_clicked(int numUser)
+void UserList::on_editButton_clicked(/*UserList* userList, int numUser*/)
 {
-	userEdits = new EditUser(user[numUser]);
+	userEdits = new EditUser(user[0]);
 	userEdits->InitInterface(this->query);
 	userEdits->show();
 }
 
-void UserList::on_addButton_clicked()
+void UserList::on_addButton_clicked(/*UserList* userList*/)
 {
 	addUser = new AddUser(this->database, this->query);
 	addUser->show();

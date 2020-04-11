@@ -29,7 +29,7 @@ public:
     QLabel *lastnameLabel;
     QLabel *firstnameLabe;
     QLabel *birtDateLabel;
-    QPushButton *validateButton;
+    QPushButton *validationButton;
     QPushButton *cancelButton;
     QGraphicsView *topBorder;
     QLabel *icon;
@@ -72,22 +72,25 @@ public:
         birtDateLabel->setObjectName(QString::fromUtf8("birtDateLabel"));
         birtDateLabel->setGeometry(QRect(850, 690, 441, 61));
         birtDateLabel->setFont(font1);
-        validateButton = new QPushButton(AddEditUser);
-        validateButton->setObjectName(QString::fromUtf8("validateButton"));
-        validateButton->setGeometry(QRect(110, 920, 231, 71));
+        validationButton = new QPushButton(AddEditUser);
+        validationButton->setObjectName(QString::fromUtf8("validationButton"));
+        validationButton->setGeometry(QRect(110, 920, 231, 71));
         QFont font2;
         font2.setPointSize(30);
-        validateButton->setFont(font2);
-        validateButton->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 255, 0);"));
+        validationButton->setFont(font2);
+        validationButton->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 255, 0);\n"
+"color: rgb(255, 255, 255);"));
         cancelButton = new QPushButton(AddEditUser);
         cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
         cancelButton->setGeometry(QRect(450, 920, 231, 71));
         cancelButton->setFont(font2);
-        cancelButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 0, 4);"));
+        cancelButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 0, 4);\n"
+"color: rgb(255, 255, 255);"));
         topBorder = new QGraphicsView(AddEditUser);
         topBorder->setObjectName(QString::fromUtf8("topBorder"));
         topBorder->setGeometry(QRect(0, 0, 1921, 151));
-        topBorder->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 85, 0);"));
+        topBorder->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 85, 0);\n"
+"background-color: rgb(255, 170, 0);"));
         icon = new QLabel(AddEditUser);
         icon->setObjectName(QString::fromUtf8("icon"));
         icon->setGeometry(QRect(250, 330, 291, 371));
@@ -112,7 +115,7 @@ public:
         lastnameLabel->raise();
         firstnameLabe->raise();
         birtDateLabel->raise();
-        validateButton->raise();
+        validationButton->raise();
         cancelButton->raise();
         topBorder->raise();
         icon->raise();
@@ -131,7 +134,7 @@ public:
         lastnameLabel->setText(QCoreApplication::translate("AddEditUser", "Nom", nullptr));
         firstnameLabe->setText(QCoreApplication::translate("AddEditUser", "Pr\303\251nom", nullptr));
         birtDateLabel->setText(QCoreApplication::translate("AddEditUser", "Date de naissance", nullptr));
-        validateButton->setText(QCoreApplication::translate("AddEditUser", "Valider", nullptr));
+        validationButton->setText(QCoreApplication::translate("AddEditUser", "Valider", nullptr));
         cancelButton->setText(QCoreApplication::translate("AddEditUser", "Annuler", nullptr));
         icon->setText(QString());
         deleteButton->setText(QCoreApplication::translate("AddEditUser", "Supprimer l'utilisateur", nullptr));
