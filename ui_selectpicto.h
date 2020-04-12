@@ -23,7 +23,7 @@ public:
     {
         if (SelectPicto->objectName().isEmpty())
             SelectPicto->setObjectName(QString::fromUtf8("SelectPicto"));
-        SelectPicto->resize(400, 300);
+        SelectPicto->resize(1920, 1080);
 
         retranslateUi(SelectPicto);
 

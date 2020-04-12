@@ -51,7 +51,7 @@ public:
         readButton->setAutoFillBackground(false);
         readButton->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);"));
         QIcon icon;
-        icon.addFile(QString::fromUtf8("data/speak.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("data/read.png"), QSize(), QIcon::Normal, QIcon::Off);
         readButton->setIcon(icon);
         readButton->setIconSize(QSize(128, 128));
         readButton->setAutoRepeat(false);

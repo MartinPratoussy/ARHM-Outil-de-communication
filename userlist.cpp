@@ -7,6 +7,8 @@ UserList::UserList(QWidget* parent) :
 {
 	ui->setupUi(this);
 
+	qDebug() << this->geometry().height();
+
 	ConnectToDatabase();
 	LoadUsers();
 	SetDisplayGeometry();
@@ -63,14 +65,18 @@ void UserList::LoadUsers()
 void UserList::SetDisplayGeometry()
 {
 	// Initialisation de la taille de la fenêtre
-	this->width = QApplication::desktop()->width();
-	this->height = QApplication::desktop()->height();
-	QApplication::desktop()->setGeometry(0, 0, this->width, this->height + this->height * (1 / NB_USER_DISPLAYABLE) * nbUser);
+	//ui->scrollArea->setGeometry(0, 0, this->width, this->height + this->height * (1 / NB_USER_DISPLAYABLE) * nbUser);
 
-	this->area = new QScrollArea(this);
-	area->setWidgetResizable(true);
-	area->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-	area->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+	/*ui->scrollArea->setWidgetResizable(true);
+	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+	ui->scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);*/
+	QLabel* imageLabel = new QLabel;
+	QImage image("data/arhm.png");
+	imageLabel->setPixmap(QPixmap::fromImage(image));
+
+	ui->scrollArea->setBackgroundRole(QPalette::Dark);
+	ui->scrollArea->setWidget(imageLabel);
+	//ui->scrollArea->show();
 }
 
 UserList::~UserList()
@@ -81,30 +87,30 @@ UserList::~UserList()
 void UserList::ShowUserList()
 {
 	// Place chacun des boutons de l'interface
-	for (int numUserY = 0; numUserY < nbUser / 4; numUserY++) 
+	for (int numUserY = 0; numUserY < 2 * nbUser / NB_USER_DISPLAYABLE; numUserY++)
 	{
-		for (int numUserX = 0; numUserX < 4; numUserX++)
+		for (int numUserX = 0; numUserX < NB_USER_DISPLAYABLE / 2; numUserX++)
 		{
 			// Crée les boutons d'accès aux interfaces utilisateurs
-			interfaceButton[numUserX + numUserY] = new QPushButton(this);
+			interfaceButton[numUserX + numUserY] = new QPushButton(this/*ui->scrollArea*/);
 			// Crée les boutons d'accès aux interfaces d'édition
-			editButton[numUserX + numUserY] = new QPushButton(this);
+			editButton[numUserX + numUserY] = new QPushButton(this/*ui->scrollArea*/);
 
 			// Position et taille des boutons d'accès aux interfaces utilisateur
-			int posX = this->width / 17 + 4 * numUserX * this->width / 17;
-			int posY = this->height / 9 + 4 * numUserY * this->height / 9;
-			int sizeX = this->width * 3 / 17;
-			int sizeY = this->height * 3 / 9;
+			int posX = this->geometry().height() / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUserX * this->geometry().width() / WIDTH_PIECES;
+			int posY = this->geometry().height() / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * numUserY * this->geometry().height() / HEIGHT_PIECES;
+			int sizeX = this->geometry().width() * 3 / WIDTH_PIECES;
+			int sizeY = this->geometry().height() * 3 / HEIGHT_PIECES;
 
 			// Place les boutons d'accès aux interfaces utilisateurs
 			this->interfaceButton[numUserX + numUserY]->setGeometry(posX, posY, sizeX, sizeY);
 
 			// Place les boutons d'accès aux interfaces utilisateurs
 			this->editButton[numUserX + numUserY]->setGeometry(
-				posX + this->width / 17,
-				posY + this->height * 3/9, 
-				this->width / 18, 
-				this->height / 18);
+				posX + this->geometry().width() / WIDTH_PIECES,
+				posY + this->geometry().height() * 3 / HEIGHT_PIECES,
+				this->geometry().width() / 18,
+				this->geometry().height() / 18);
 
 			// Affiche les boutons
 			this->interfaceButton[numUserX + numUserY]->show();
@@ -116,31 +122,31 @@ void UserList::ShowUserList()
 		}
 	}
 	// Place les boutons qui n'ont pas été placés dans la boucle for précédente
-	for (int numUser = 0; numUser < nbUser % 4; numUser++)
+	for (int numUser = 0; numUser < nbUser % NB_USER_DISPLAYABLE / 2; numUser++)
 	{
 		// Crée les boutons d'accès aux interfaces utilisateurs
-		interfaceButton[(nbUser / 4) + numUser] = new QPushButton(this);
+		interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(ui->scrollArea);
 		// Crée les boutons d'accès aux interfaces d'édition
-		editButton[(nbUser / 4) + numUser] = new QPushButton(this);
+		editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(ui->scrollArea);
 
-		int posX = this->width / 17 + 4 * numUser * this->width / 17;
-		int posY = this->height / 9 + 4 * (nbUser / 4) * this->height / 9;
-		int sizeX = this->width * 3 / 17;
-		int sizeY = this->height * 3 / 9;
+		int posX = this->geometry().width() / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUser * this->width / WIDTH_PIECES;
+		int posY = this->geometry().height() / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
+		int sizeX = this->geometry().width() * 3 / WIDTH_PIECES;
+		int sizeY = this->geometry().height() * 3 / HEIGHT_PIECES;
 
-		this->interfaceButton[(nbUser / 4) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
-		this->editButton[(nbUser / 4) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
+		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
+		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
 
-		connect(interfaceButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(this, (nbUser / 4) + numUser, )));
-		connect(editButton[(nbUser / 4) + numUser], SIGNAL(released()), this, SLOT(on_editButton_clicked(this, (nbUser / 4) + numUser)));
+		connect(interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], SIGNAL(released()), this, SLOT(on_interfaceButton_clicked(this, (2 * nbUser / NB_USER_DISPLAYABLE) + numUser, )));
+		connect(editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], SIGNAL(released()), this, SLOT(on_editButton_clicked(this, (2 * nbUser / NB_USER_DISPLAYABLE) + numUser)));
 	}
 	// Ajoute le bouton d'ajout d'utilisateur après le dernier utilisateur ajouté
-	this->addUserButton = new QPushButton(this);
+	this->addUserButton = new QPushButton(ui->scrollArea);
 	this->addUserButton->setGeometry(
-		this->width / 17 + nbUser * (1 / 4) * this->width / 17,
-		(nbUser + 1) * (this->height / 9 + nbUser * (1 / 2) * this->height / 9),
-		this->width * 3 / 17,
-		this->height / 3);
+		this->geometry().width() / WIDTH_PIECES + nbUser * (2 / NB_USER_DISPLAYABLE) * this->geometry().width() / WIDTH_PIECES,
+		(nbUser + 1) * (this->geometry().height() / HEIGHT_PIECES + nbUser * (2 / NB_USER_DISPLAYABLE) * this->geometry().height() / HEIGHT_PIECES),
+		this->geometry().width() * 3 / WIDTH_PIECES,
+		this->geometry().height() / 3);
 	this->addUserButton->show();
 	connect(addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked(/*this*/)));
 }

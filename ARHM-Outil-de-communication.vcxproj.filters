@@ -77,9 +77,6 @@
     <ClCompile Include="userlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="unittests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="addedituser.h">
@@ -109,17 +106,26 @@
     <QtMoc Include="userlist.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="unittests.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    
+    
+    
+    
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    
+    
+    
+    
+    
+    
+    
+    
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="addedituser.ui">

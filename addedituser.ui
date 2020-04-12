@@ -13,11 +13,17 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="toolTipDuration">
+   <number>0</number>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(202, 202, 202);</string>
+  </property>
   <widget class="QTextEdit" name="lastnameEdit">
    <property name="geometry">
     <rect>
      <x>890</x>
-     <y>370</y>
+     <y>240</y>
      <width>811</width>
      <height>71</height>
     </rect>
@@ -27,6 +33,9 @@
      <pointsize>28</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
    <property name="placeholderText">
     <string>Entrer le nom de l'utilisateur ici</string>
    </property>
@@ -35,7 +44,7 @@
    <property name="geometry">
     <rect>
      <x>890</x>
-     <y>560</y>
+     <y>430</y>
      <width>811</width>
      <height>71</height>
     </rect>
@@ -51,6 +60,9 @@
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
    <property name="placeholderText">
     <string>Entrez le prénom de l'utilisateur ici</string>
    </property>
@@ -59,7 +71,7 @@
    <property name="geometry">
     <rect>
      <x>1120</x>
-     <y>770</y>
+     <y>640</y>
      <width>361</width>
      <height>71</height>
     </rect>
@@ -69,6 +81,9 @@
      <pointsize>28</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
    <property name="readOnly">
     <bool>false</bool>
    </property>
@@ -77,7 +92,7 @@
    <property name="geometry">
     <rect>
      <x>860</x>
-     <y>300</y>
+     <y>170</y>
      <width>151</width>
      <height>61</height>
     </rect>
@@ -95,7 +110,7 @@
    <property name="geometry">
     <rect>
      <x>860</x>
-     <y>490</y>
+     <y>360</y>
      <width>251</width>
      <height>61</height>
     </rect>
@@ -113,7 +128,7 @@
    <property name="geometry">
     <rect>
      <x>850</x>
-     <y>690</y>
+     <y>560</y>
      <width>441</width>
      <height>61</height>
     </rect>
@@ -130,8 +145,8 @@
   <widget class="QPushButton" name="validationButton">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>920</y>
+     <x>100</x>
+     <y>850</y>
      <width>231</width>
      <height>71</height>
     </rect>
@@ -152,8 +167,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>920</y>
+     <x>440</x>
+     <y>850</y>
      <width>231</width>
      <height>71</height>
     </rect>
@@ -204,26 +219,13 @@ background-color: rgb(255, 170, 0);</string>
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>-20</y>
-     <width>1921</width>
-     <height>1081</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(213, 213, 213);</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
-     <x>1060</x>
-     <y>920</y>
-     <width>461</width>
-     <height>51</height>
+     <x>190</x>
+     <y>970</y>
+     <width>381</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -239,7 +241,120 @@ color: rgb(255, 255, 255);</string>
     <string>Supprimer l'utilisateur</string>
    </property>
   </widget>
-  <zorder>graphicsView</zorder>
+  <widget class="QLineEdit" name="category1Edit">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>840</y>
+     <width>381</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>Catégorie 1</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="category2Edit">
+   <property name="geometry">
+    <rect>
+     <x>1300</x>
+     <y>840</y>
+     <width>381</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>Catégorie 2</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="category3Edit">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>930</y>
+     <width>381</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>Catégorie 3</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="category4Edit">
+   <property name="geometry">
+    <rect>
+     <x>1300</x>
+     <y>930</y>
+     <width>381</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>Catégorie 4</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="birtDateLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>750</y>
+     <width>691</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>40</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Catégories de pictogrammes</string>
+   </property>
+  </widget>
   <zorder>lastnameEdit</zorder>
   <zorder>firstnameEdit</zorder>
   <zorder>birthDateEdit</zorder>
@@ -249,8 +364,13 @@ color: rgb(255, 255, 255);</string>
   <zorder>validationButton</zorder>
   <zorder>cancelButton</zorder>
   <zorder>topBorder</zorder>
-  <zorder>icon</zorder>
   <zorder>deleteButton</zorder>
+  <zorder>icon</zorder>
+  <zorder>category1Edit</zorder>
+  <zorder>category2Edit</zorder>
+  <zorder>category3Edit</zorder>
+  <zorder>category4Edit</zorder>
+  <zorder>birtDateLabel_2</zorder>
  </widget>
  <resources/>
  <connections/>

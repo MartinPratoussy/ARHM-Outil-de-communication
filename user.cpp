@@ -110,6 +110,11 @@ void User::setBirthDate(QString birthDate, QSqlQuery* query)
     if (!query->exec("UPDATE user SET birthDate = '" + this->birthDate + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
+void User::setCategory(QString* category)
+{
+    for (int i = 0; i < 4; i++) this->category[i] = category[i];
+}
+
 User & User::operator=(const User &user)
 {
     this->firstname = user.firstname;

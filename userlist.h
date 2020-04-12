@@ -4,6 +4,9 @@
 #define NB_MAX_USER 100
 #define NB_USER_DISPLAYABLE 8
 
+#define WIDTH_PIECES 17
+#define HEIGHT_PIECES 9
+
 #include <QMainWindow>
 
 #include <QScrollArea>

@@ -14,6 +14,7 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,6 +25,8 @@ public:
     QWidget *centralWidget;
     QGraphicsView *graphicsView;
     QLabel *label;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
 
     void setupUi(QMainWindow *UserList)
     {
@@ -43,6 +46,15 @@ public:
         label->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);"));
         label->setPixmap(QPixmap(QString::fromUtf8("data/arhm.png")));
         label->setScaledContents(true);
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setGeometry(QRect(0, 130, 1920, 951));
+        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1918, 949));
+        scrollArea->setWidget(scrollAreaWidgetContents);
         UserList->setCentralWidget(centralWidget);
 
         retranslateUi(UserList);

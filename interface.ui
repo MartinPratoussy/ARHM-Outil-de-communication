@@ -49,7 +49,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>data/speak.png</normaloff>data/speak.png</iconset>
+     <normaloff>data/read.png</normaloff>data/read.png</iconset>
    </property>
    <property name="iconSize">
     <size>

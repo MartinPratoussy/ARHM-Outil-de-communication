@@ -57,6 +57,7 @@ public:
     void setFirstname(QString firstname, QSqlQuery * query);
     void setLastname(QString lastname, QSqlQuery * query);
     void setBirthDate(QString birthDate, QSqlQuery * query);
+    void setCategory(QString* category);
 
     // Surcharge de l'opérateur d'affection
     User & operator=(const User & user);
