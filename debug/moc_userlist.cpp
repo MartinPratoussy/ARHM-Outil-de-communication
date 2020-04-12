@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_UserList_t {
-    QByteArrayData data[5];
-    char stringdata0[80];
+    QByteArrayData data[6];
+    char stringdata0[88];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,11 +36,13 @@ QT_MOC_LITERAL(0, 0, 8), // "UserList"
 QT_MOC_LITERAL(1, 9, 26), // "on_interfaceButton_clicked"
 QT_MOC_LITERAL(2, 36, 0), // ""
 QT_MOC_LITERAL(3, 37, 21), // "on_editButton_clicked"
-QT_MOC_LITERAL(4, 59, 20) // "on_addButton_clicked"
+QT_MOC_LITERAL(4, 59, 7), // "numUser"
+QT_MOC_LITERAL(5, 67, 20) // "on_addButton_clicked"
 
     },
     "UserList\0on_interfaceButton_clicked\0"
-    "\0on_editButton_clicked\0on_addButton_clicked"
+    "\0on_editButton_clicked\0numUser\0"
+    "on_addButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -59,12 +61,12 @@ static const uint qt_meta_data_UserList[] = {
 
  // slots: name, argc, parameters, tag, flags
        1,    0,   29,    2, 0x08 /* Private */,
-       3,    0,   30,    2, 0x08 /* Private */,
-       4,    0,   31,    2, 0x08 /* Private */,
+       3,    1,   30,    2, 0x08 /* Private */,
+       5,    0,   33,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    4,
     QMetaType::Void,
 
        0        // eod
@@ -77,12 +79,11 @@ void UserList::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_interfaceButton_clicked(); break;
-        case 1: _t->on_editButton_clicked(); break;
+        case 1: _t->on_editButton_clicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->on_addButton_clicked(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject UserList::staticMetaObject = { {

@@ -36,6 +36,7 @@ SOURCES += \
         pictogram.cpp \
         selectpicto.cpp \
         sound.cpp \
+        testinterface.cpp \
         user.cpp \
         userlist.cpp
 
@@ -47,6 +48,7 @@ HEADERS += \
         pictogram.h \
         selectpicto.h \
         sound.h \
+        testinterface.h \
         user.h \
         userlist.h
 

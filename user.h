@@ -25,10 +25,10 @@ class User
 {
 private:
     // Attributs de l'utlisateur
-    int id;
-    QString firstname;
-    QString lastname;
-    QString birthDate;
+    int id = 0;
+    QString firstname = "";
+    QString lastname = "";
+    QString birthDate = "";
 
     // Nombre de pictogrammes que l'utilisateur possède
     int nbPicto;
@@ -51,7 +51,7 @@ public:
     QString getBirthDate();
     int getNbPicto();
     QList<Pictogram*> getPicto();
-    QString getCategory(int i);
+    QString* getCategory();
 
     // Setters des attributs privés
     void setFirstname(QString firstname, QSqlQuery * query);
