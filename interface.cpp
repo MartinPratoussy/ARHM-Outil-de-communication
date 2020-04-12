@@ -8,17 +8,11 @@ Interface::Interface(QWidget* parent) :
 {
 	ui->setupUi(this);
 
-}
-
-void Interface::InitInterface(User* user)
-{
-	this->user = user;
-
 	// Initialisation du texte des boutons
-	ui->firstCategoryButton->setText(this->user->getCategory()[0]);
-	ui->secondCategoryButton->setText(this->user->getCategory()[1]);
-	ui->thirdCategoryButton->setText(this->user->getCategory()[2]);
-	ui->fourthCategoryButton->setText(this->user->getCategory()[3]);
+	ui->firstCategoryButton->setText(this->user->getCategory(0));
+	ui->secondCategoryButton->setText(this->user->getCategory(1));
+	ui->thirdCategoryButton->setText(this->user->getCategory(2));
+	ui->fourthCategoryButton->setText(this->user->getCategory(3));
 
 	// Connexion des boutons à leur méthode lors du clic
 	connect(ui->firstCategoryButton, SIGNAL(released()), this, SLOT(on_firstCategoryButton_clicked()));
@@ -31,6 +25,11 @@ void Interface::InitInterface(User* user)
 
 	// Connexion du bouton de lecture à la méthode correspondante
 	connect(ui->readButton, SIGNAL(released()), this, SLOT(readSentence()));
+}
+
+void Interface::InitInterface(User* user)
+{
+	this->user = user;
 }
 
 Interface::~Interface()

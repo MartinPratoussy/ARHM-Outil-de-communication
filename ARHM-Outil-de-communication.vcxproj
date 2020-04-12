@@ -194,7 +194,6 @@
     <ClCompile Include="pictogram.cpp" />
     <ClCompile Include="selectpicto.cpp" />
     <ClCompile Include="sound.cpp" />
-    <ClCompile Include="testinterface.cpp" />
     <ClCompile Include="user.cpp" />
     <ClCompile Include="userlist.cpp" />
   </ItemGroup>
@@ -209,8 +208,6 @@
     <QtMoc Include="selectpicto.h">
     </QtMoc>
     <ClInclude Include="sound.h" />
-    <QtMoc Include="testinterface.h">
-    </QtMoc>
     <ClInclude Include="user.h" />
     <QtMoc Include="userlist.h">
     </QtMoc>

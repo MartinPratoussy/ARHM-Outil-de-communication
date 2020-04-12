@@ -71,9 +71,6 @@
     <ClCompile Include="sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testinterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -103,9 +100,6 @@
     <ClInclude Include="sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="testinterface.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClInclude Include="user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -124,8 +118,6 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    
-    
     
     
     

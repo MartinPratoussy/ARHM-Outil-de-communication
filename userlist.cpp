@@ -148,14 +148,13 @@ void UserList::ShowUserList()
 void UserList::on_interfaceButton_clicked(/*UserList* userList, int numUser*/)
 {
 	interface = new Interface();
-	User* user = new User(0, "test", "test", "01/01/2000", database, query);
-	interface->InitInterface(user);
+	interface->InitInterface(user[0]);
 	interface->show();
 }
 
-void UserList::on_editButton_clicked(/*UserList* userList, */int numUser)
+void UserList::on_editButton_clicked(/*UserList* userList, int numUser*/)
 {
-	userEdits = new EditUser(user[numUser]);
+	userEdits = new EditUser(user[0]);
 	userEdits->InitInterface(this->query);
 	userEdits->show();
 }

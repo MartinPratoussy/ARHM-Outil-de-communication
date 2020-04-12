@@ -1,10 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ARHM-Outil-de-communication.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ARHM-Outil-de-communication.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
-  Moc'ing testinterface.h...
-   Warning: Failed to resolve include "D:/Documents/Dossier Martin/BTS SNIR/2e ann?e/Informatique et r?seaux/Projet/Application Qt/ARHM-Outil-de-communication/Debug/moc_predefs.h" for moc file D:\Documents\Dossier Martin\BTS SNIR\2e annÚe\Informatique et rÚseaux\Projet\Application Qt\ARHM-Outil-de-communication\testinterface.h
-  testinterface.cpp
-D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\testinterface.cpp(21,13): warning C4189: 'picto' : variable locale initialisée mais non référencée
-  moc_testinterface.cpp
-testinterface.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) char * __cdecl QTest::toPrettyUnicode(class QStringView)" (__imp_?toPrettyUnicode@QTest@@YAPEADVQStringView@@@Z) référencé dans la fonction "char * __cdecl QTest::toString<class QStringView>(class QStringView const &)" (??$toString@VQStringView@@@QTest@@YAPEADAEBVQStringView@@@Z)
-testinterface.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) bool __cdecl QTest::compare_helper(bool,char const *,char *,char *,char const *,char const *,char const *,int)" (__imp_?compare_helper@QTest@@YA_N_NPEBDPEAD2111H@Z) référencé dans la fonction "bool __cdecl QTest::qCompare<class QString>(class QString const &,class QString const &,char const *,char const *,char const *,int)" (??$qCompare@VQString@@@QTest@@YA_NAEBVQString@@0PEBD11H@Z)
-debug\\ARHM-Outil-de-communication.exe : fatal error LNK1120: 2 externes non résolus
+  userlist.cpp
+  moc_userlist.cpp
+  ARHM-Outil-de-communication.vcxproj -> D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\debug\ARHM-Outil-de-communication.exe

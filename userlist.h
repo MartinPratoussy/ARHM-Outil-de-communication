@@ -28,7 +28,7 @@ private slots:
     void on_interfaceButton_clicked(/*UserList* userList, int numUser*/);
 
     // Clic sur un bouton d'édition d'utilisateur
-    void on_editButton_clicked(/*UserList* userList,*/ int numUser);
+    void on_editButton_clicked(/*UserList* userList, int numUser*/);
 
     // Clic sur le bouton d'ajout d'utilisateur
     void on_addButton_clicked(/*UserList* userList*/);
