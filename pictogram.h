@@ -18,21 +18,17 @@ private:
     // Son à jouer lors de l'appui sur le bouton
     Sound sound;
 
-    // Rubrique à laquelle appartient le pictogramme
-    QString category;
-
 public:
     Pictogram();
 
-    Pictogram(QString definition, QPixmap picture, Sound sound, QString category);
+    Pictogram(QString definition, QPixmap picture, Sound sound);
 
     ~Pictogram();
 
     // Getters des attributs privés
-    QString getDefinition();
-    QPixmap getPicture();
-    Sound getSound();
-    QString getCategory();
+    QString GetDefinition();
+    QPixmap GetPicture();
+    Sound GetSound();
 };
 
 #endif // PICTOGRAM_H

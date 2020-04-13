@@ -188,6 +188,7 @@
   <ItemGroup>
     <ClCompile Include="addedituser.cpp" />
     <ClCompile Include="adduser.cpp" />
+    <ClCompile Include="category.cpp" />
     <ClCompile Include="edituser.cpp" />
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="main.cpp" />
@@ -201,6 +202,7 @@
     <QtMoc Include="addedituser.h">
     </QtMoc>
     <ClInclude Include="adduser.h" />
+    <ClInclude Include="category.h" />
     <ClInclude Include="edituser.h" />
     <QtMoc Include="interface.h">
     </QtMoc>

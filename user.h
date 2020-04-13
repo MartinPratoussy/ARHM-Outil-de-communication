@@ -19,7 +19,7 @@
 // Permet de générer une erreur lors d'un problème dans la base de donnnées
 #include <QSqlError>
 
-#include "pictogram.h"
+#include "category.h"
 
 class User
 {
@@ -30,14 +30,12 @@ private:
     QString lastname;
     QString birthDate;
 
-    // Nombre de pictogrammes que l'utilisateur possède
-    int nbPicto;
-
-    // Tableau contenant les pictogrammes que l'utilisateur peut utiliser
-    QList<Pictogram*> pictos;
-
     // Catégories de boutons
-    QString category[4];
+    Category * category[4];
+
+    // Méthodes de factorisation du constructeur
+    void InitiateUser(QSqlDatabase* database, QSqlQuery* query);
+    void InitiateCategory(Category* category, QSqlDatabase* database, QSqlQuery* query);
 
 public:
     User();
@@ -45,19 +43,17 @@ public:
     ~User();
 
     // Getters des attributs privés
-    int getId();
-    QString getFirstname();
-    QString getLastname();
-    QString getBirthDate();
-    int getNbPicto();
-    QList<Pictogram*> getPicto();
-    QString getCategory(int i);
+    int GetId();
+    QString GetFirstname();
+    QString GetLastname();
+    QString GetBirthDate();
+    Category* GetCategory();
 
     // Setters des attributs privés
-    void setFirstname(QString firstname, QSqlQuery * query);
-    void setLastname(QString lastname, QSqlQuery * query);
-    void setBirthDate(QString birthDate, QSqlQuery * query);
-    void setCategory(QString* category);
+    void SetFirstname(QString firstname, QSqlQuery * query);
+    void SetLastname(QString lastname, QSqlQuery * query);
+    void SetBirthDate(QString birthDate, QSqlQuery * query);
+    void SetCategory(Category* category);
 
     // Surcharge de l'opérateur d'affection
     User & operator=(const User & user);

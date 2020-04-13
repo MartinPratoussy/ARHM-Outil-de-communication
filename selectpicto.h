@@ -16,12 +16,12 @@ public:
 	SelectPicto(QWidget *parent = Q_NULLPTR);
 	~SelectPicto();
 
-	void DisplayPictograms(QString category);
+	void DisplayPictograms(Category category);
 
 private:
 	Ui::SelectPicto *ui;
 
-	User* user;
+	Category* category;
 };
 
 #endif

@@ -1,29 +1,31 @@
 #include "pictogram.h"
 
-Pictogram::Pictogram(QString definition, QPixmap picture, Sound sound, QString category)
+Pictogram::Pictogram()
+{
+}
+
+Pictogram::Pictogram(QString definition, QPixmap picture, Sound sound)
 {
     this->definition = definition;
     this->picture = picture;
     this->sound = sound;
-    this->category = category;
 }
 
-QString Pictogram::getDefinition()
+Pictogram::~Pictogram()
+{
+}
+
+QString Pictogram::GetDefinition()
 {
     return this->definition;
 }
 
-QPixmap Pictogram::getPicture()
+QPixmap Pictogram::GetPicture()
 {
     return this->picture;
 }
 
-Sound Pictogram::getSound()
+Sound Pictogram::GetSound()
 {
     return this->sound;
-}
-
-QString Pictogram::getCategory()
-{
-	return this->category;
 }

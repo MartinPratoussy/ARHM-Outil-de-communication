@@ -12,12 +12,7 @@ SelectPicto::~SelectPicto()
 {
 }
 
-void SelectPicto::DisplayPictograms(QString category)
+void SelectPicto::DisplayPictograms(Category category)
 {
-	for (int i = 0; i < this->user->getNbPicto(); i++)
-	{
-		if (this->user->getPicto()[i]->getCategory() == category) {
-			this->user->getPicto()[i]->getPicture();
-		}
-	}
+	for each (Pictogram * picto in category)
 }

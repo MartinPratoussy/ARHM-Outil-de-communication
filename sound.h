@@ -15,10 +15,10 @@ public:
     ~Sound();
 
     // Synthèse vocale
-    void say(QString text);
+    void Say(QString text);
 
     // Joue le son non synthétisé
-    void play(QString text);
+    void Play(QString text);
 
 private:
     // Pointeur permettant de synthétiser vocalement la définition

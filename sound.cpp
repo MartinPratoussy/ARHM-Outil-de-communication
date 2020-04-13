@@ -14,19 +14,19 @@ Sound::~Sound()
 {
 }
 
-void Sound::say(QString text)
+void Sound::Say(QString text)
 {
     this->speech->setLocale(QLocale());
     this->speech->setPitch(0.2);
     this->speech->setRate(-0.2);
-    this->speech->say(text);
+    this->speech->Say(text);
 }
 
-void Sound::play(QString text)
+void Sound::Play(QString text)
 {
     switch (this->isSynthetic)
     {
-    case true: this->say(text); break;
-    case false: this->sound->play(); break;
+    case true: this->Say(text); break;
+    case false: this->sound->Play(); break;
     }
 }
