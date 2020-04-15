@@ -9,10 +9,10 @@ Interface::Interface(QWidget* parent) :
 	ui->setupUi(this);
 
 	// Initialisation du texte des boutons
-	ui->firstCategoryButton->setText(this->user->GetCategory(0));
-	ui->secondCategoryButton->setText(this->user->GetCategory(1));
-	ui->thirdCategoryButton->setText(this->user->GetCategory(2));
-	ui->fourthCategoryButton->setText(this->user->GetCategory(3));
+	ui->firstCategoryButton->setText(this->user->GetCategory()[0].GetText());
+	ui->secondCategoryButton->setText(this->user->GetCategory()[1].GetText());
+	ui->thirdCategoryButton->setText(this->user->GetCategory()[2].GetText());
+	ui->fourthCategoryButton->setText(this->user->GetCategory()[3].GetText());
 
 	// Connexion des boutons à leur méthode lors du clic
 	connect(ui->firstCategoryButton, SIGNAL(released()), this, SLOT(on_firstCategoryButton_clicked()));
@@ -66,38 +66,38 @@ void Interface::readSentence()
 {
 	for each (Pictogram * word in this->sentence)
 	{
-		word->GetSound().Play(word->GetDefinition());
+		word->GetSound().PlaySound();
 	}
 }
 
 void Interface::on_firstCategoryButton_clicked()
 {
-	Sound m_speech;
-	m_speech.Say(ui->firstCategoryButton->text());
+	Sound m_speech(ui->firstCategoryButton->text());
+	m_speech.PlaySound();
 	this->selection[0] = new SelectPicto();
-	this->selection[0]->DisplayPictograms(ui->firstCategoryButton->text());
+	this->selection[0]->DisplayPictograms(this->user->GetCategory()[0]);
 }
 
 void Interface::on_secondCategoryButton_clicked()
 {
-	Sound m_speech;
-	m_speech.Say(ui->secondCategoryButton->text());
+	Sound m_speech(ui->secondCategoryButton->text());
+	m_speech.PlaySound();
 	this->selection[1] = new SelectPicto();
-	this->selection[1]->DisplayPictograms(ui->secondCategoryButton->text());
+	this->selection[1]->DisplayPictograms(this->user->GetCategory()[1]);
 }
 
 void Interface::on_thirdCategoryButton_clicked()
 {
-	Sound m_speech;
-	m_speech.Say(ui->thirdCategoryButton->text());
+	Sound m_speech(ui->thirdCategoryButton->text());
+	m_speech.PlaySound();
 	this->selection[2] = new SelectPicto();
-	this->selection[2]->DisplayPictograms(ui->thirdCategoryButton->text());
+	this->selection[2]->DisplayPictograms(this->user->GetCategory()[2]);
 }
 
 void Interface::on_fourthCategoryButton_clicked()
 {
-	Sound m_speech;
-	m_speech.Say(ui->fourthCategoryButton->text());
+	Sound m_speech(ui->fourthCategoryButton->text());
+	m_speech.PlaySound();
 	this->selection[3] = new SelectPicto();
-	this->selection[3]->DisplayPictograms(ui->fourthCategoryButton->text());
+	this->selection[3]->DisplayPictograms(this->user->GetCategory()[3]);
 }

@@ -48,7 +48,7 @@ void EditUser::on_validationButton_clicked()
 		ui->category3Edit->text(),
 		ui->category4Edit->text()
 	};
-	this->user->SetCategory(category);
+	this->user->SetCategory(category, query);
 
 	// Met à jour la fenêtre principale
 	this->parent->update();

@@ -25,14 +25,24 @@ int Category::GetId()
 	return this->id;
 }
 
-int Category::GetNbPicto()
+QString Category::GetText()
 {
-	return nbPicto;
+	return this->text;;
 }
 
 QList<Pictogram*> Category::GetPicto()
 {
 	return this->pictos;
+}
+
+void Category::SetId(int value)
+{
+	this->id = value;
+}
+
+void Category::SetText(QString text)
+{
+	this->text = text;
 }
 
 void Category::SetNbPicto(int value)

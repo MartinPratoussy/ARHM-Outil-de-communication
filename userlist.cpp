@@ -41,8 +41,6 @@ void UserList::LoadUsers()
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
 	while (query->next()) nbUser++;
 
-	nbUser = 5;
-
 	// nbUser prend la valeur du nombre de lignes dans la base de données
 	qDebug() << "Nombre d'utilisateurs : " << this->nbUser;
 
@@ -69,13 +67,13 @@ void UserList::SetDisplayGeometry()
 
 	/*ui->scrollArea->setWidgetResizable(true);
 	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-	ui->scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);*/
+	ui->scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
 	QLabel* imageLabel = new QLabel;
 	QImage image("data/arhm.png");
 	imageLabel->setPixmap(QPixmap::fromImage(image));
 
 	ui->scrollArea->setBackgroundRole(QPalette::Dark);
-	ui->scrollArea->setWidget(imageLabel);
+	ui->scrollArea->setWidget(imageLabel);*/
 	//ui->scrollArea->show();
 }
 

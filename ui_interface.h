@@ -96,7 +96,7 @@ public:
         firstCategoryButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         thirdCategoryButton = new QPushButton(Interface);
         thirdCategoryButton->setObjectName(QString::fromUtf8("thirdCategoryButton"));
-        thirdCategoryButton->setGeometry(QRect(240, 750, 551, 241));
+        thirdCategoryButton->setGeometry(QRect(250, 750, 551, 241));
         thirdCategoryButton->setFont(font1);
         thirdCategoryButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         secondCategoryButton = new QPushButton(Interface);

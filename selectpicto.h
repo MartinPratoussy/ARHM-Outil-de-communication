@@ -2,6 +2,9 @@
 #define SELECTPICTO_H
 
 #include <QWidget>
+
+#include <QPushButton>
+
 #include "user.h"
 
 namespace Ui {
@@ -18,10 +21,18 @@ public:
 
 	void DisplayPictograms(Category category);
 
+	void ChosePicto();
+
+private slots:
+	// Appui sur un pictogramme
+	void on_pictoButton_clicked(int numPicto);
+
 private:
 	Ui::SelectPicto *ui;
 
 	Category* category;
+
+	QList<QPushButton*> pictoChose;
 };
 
 #endif

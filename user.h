@@ -31,11 +31,11 @@ private:
     QString birthDate;
 
     // Catégories de boutons
-    Category * category[4];
+    Category category[4];
 
     // Méthodes de factorisation du constructeur
     void InitiateUser(QSqlDatabase* database, QSqlQuery* query);
-    void InitiateCategory(Category* category, QSqlDatabase* database, QSqlQuery* query);
+    void InitiateCategory(Category * category, QSqlDatabase* database, QSqlQuery* query);
 
 public:
     User();
@@ -47,13 +47,13 @@ public:
     QString GetFirstname();
     QString GetLastname();
     QString GetBirthDate();
-    Category* GetCategory();
+    Category * GetCategory();
 
     // Setters des attributs privés
     void SetFirstname(QString firstname, QSqlQuery * query);
     void SetLastname(QString lastname, QSqlQuery * query);
     void SetBirthDate(QString birthDate, QSqlQuery * query);
-    void SetCategory(Category* category);
+    void SetCategory(QString* category, QSqlQuery* query);
 
     // Surcharge de l'opérateur d'affection
     User & operator=(const User & user);

@@ -3,6 +3,7 @@
 
 AddUser::AddUser(QSqlDatabase* database, QSqlQuery* query)
 {
+	ui->deleteButton->hide();
 	this->database = database;
 	this->query = query;
 	connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));

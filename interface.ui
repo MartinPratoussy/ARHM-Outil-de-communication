@@ -192,7 +192,7 @@
   <widget class="QPushButton" name="thirdCategoryButton">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>250</x>
      <y>750</y>
      <width>551</width>
      <height>241</height>

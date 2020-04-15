@@ -11,13 +11,9 @@ User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlD
 	// Initialisation des catégories
 	int numCategory = 0;
 	while (query->next()) {
-		category[numCategory] = new Category(query->value(numCategory).toInt(), );
-		numCategory++;
-	}
-
-	// Chargement des pictogrammes pour chacune des catégories de l'utilisateur
-	for each (Category* category in this->category) {
-		InitiateCategory(category, database, query);
+		this->category[numCategory].SetId(query->value(numCategory).toInt());
+		this->category[numCategory].SetText(query->value(numCategory + 1).toString());
+		numCategory += 2;
 	}
 }
 
@@ -30,7 +26,7 @@ void User::InitiateUser(QSqlDatabase* database, QSqlQuery* query)
 		+ this->birthDate + ")"))
 		qWarning() << "ERROR: " << query->lastError().text();
 
-	if (!query->exec("SELECT Category.id FROM Category, User, Category_User WHERE Category_User.category = Category.id AND Category_User.user = User.id AND User.id = this->id")
+	if (!query->exec("SELECT Category.id, Category.text FROM Category, User, Category_User WHERE Category_User.category = Category.id AND Category_User.user = User.id AND User.id = " + this->id)
 		)qWarning() << "ERROR: " << database->lastError().text();
 }
 
@@ -38,7 +34,7 @@ void User::InitiateCategory(Category * category, QSqlDatabase* database, QSqlQue
 {
 	QList<int> values;
 	// Selectionne tous les pictogrammes de l'utilisateur dans la base de données
-	if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\", \"Category\", \"Pictogram_Category\" WHERE Pictogram_Category.pictogram = Pictogram.id AND Pictogram_Category.category = Category.id AND Pictogram_Category.category = " + category.GetId())
+	if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\", \"Category\", \"Pictogram_Category\" WHERE Pictogram_Category.pictogram = Pictogram.id AND Pictogram_Category.category = Category.id AND Pictogram_Category.category = " + category->GetId())
 		) qWarning() << "ERROR: " << database->lastError().text();
 
 	// Tant qu'il y a des pictogrammes, le nombre de pictogramme s'incrémente
@@ -69,10 +65,10 @@ void User::InitiateCategory(Category * category, QSqlDatabase* database, QSqlQue
 
 		//Conversion des QString en QPixmap et en Sound
 		QPixmap image(urlImage);
-		Sound sound(urlSound);
+		Sound sound(definition, urlSound);
 
 		// Création de l'objet Pictogram
-		category->GetPicto().append(new Pictogram(definition, urlImage, urlSound));
+		category->GetPicto().append(new Pictogram(definition, image, sound));
 	}
 }
 
@@ -101,9 +97,9 @@ QString User::GetBirthDate()
 	return this->birthDate;
 }
 
-Category* User::GetCategory()
+Category * User::GetCategory()
 {
-	return *this->category;
+	return this->category;
 }
 
 void User::SetFirstname(QString firstname, QSqlQuery* query)
@@ -124,9 +120,12 @@ void User::SetBirthDate(QString birthDate, QSqlQuery* query)
 	if (!query->exec("UPDATE user SET birthDate = '" + this->birthDate + "WHERE firstname = " + this->firstname + "'")) qWarning() << "ERROR : " << query->lastError().text();
 }
 
-void User::SetCategory(Category* category)
+void User::SetCategory(QString* category, QSqlQuery* query)
 {
-	*this->category = category;
+	for (int i = 0; i < 4; i++) this->category[i].SetText(category[i]);
+	for each (Category category in this->category) {
+		if (!query->exec("UPDATE Category SET text = " + category.GetText() + "WHERE idCategory = " + category.GetId() + "")) qWarning() << "ERROR : " << query->lastError().text();
+	}
 }
 
 User& User::operator=(const User& user)
