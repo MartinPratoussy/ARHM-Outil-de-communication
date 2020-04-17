@@ -14,6 +14,7 @@ User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlD
 	while (query->next()) {
 		this->category[numCategory].SetId(query->value(0).toInt());
 		this->category[numCategory].SetText(query->value(1 + 1).toString());
+		InitiateCategory(&this->category[numCategory], database, query);
 		numCategory++;
 	}
 
@@ -22,7 +23,7 @@ User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlD
 void User::InitiateUser(QSqlDatabase* database, QSqlQuery* query)
 {
 	if (!query->exec("SELECT Category.id, Category.text FROM Category, User, Category_User WHERE Category_User.category = Category.id AND Category_User.user = User.id AND User.id = " + QString::number(this->id) + ";")
-		)qWarning() << "ERROR: " << database->lastError().text();
+		)qWarning() << "ERROR: no category found";
 }
 
 void User::InitiateCategory(Category * category, QSqlDatabase* database, QSqlQuery* query)
@@ -30,7 +31,7 @@ void User::InitiateCategory(Category * category, QSqlDatabase* database, QSqlQue
 	QList<int> values;
 	// Selectionne tous les pictogrammes de l'utilisateur dans la base de données
 	if (!query->exec("SELECT Pictogram.id FROM \"Pictogram\", \"Category\", \"Pictogram_Category\" WHERE Pictogram_Category.pictogram = Pictogram.id AND Pictogram_Category.category = Category.id AND Pictogram_Category.category = " + QString::number(category->GetId()) + ";")
-		) qWarning() << "ERROR: " << database->lastError().text();
+		) qWarning() << "ERROR: no pictogram found for category" + category->GetText();
 
 	// Tant qu'il y a des pictogrammes, le nombre de pictogramme s'incrémente
 	while (query->next())
@@ -47,15 +48,15 @@ void User::InitiateCategory(Category * category, QSqlDatabase* database, QSqlQue
 		// Requêtes SQL récupérant les trois attributs d'un pictogramme selon l'utlisateur qui le possède
 		if (!query->exec(
 			"SELECT definition FROM \"Pictogram\" WHERE idPictogram = " + QString::number(value) + ";")
-			) qWarning() << "ERROR: " << database->lastError().text();
+			) qWarning() << "ERROR: no definiton found for pictogram" + value;
 		while (query->next()) definition = query->value(0).toString();
 		if (!query->exec(
 			"SELECT urlImage FROM \"Pictogram\" WHERE idPictogram = " + QString::number(value) + ";")
-			) qWarning() << "ERROR: " << database->lastError().text();
+			) qWarning() << "ERROR: no urlImage found for pictogram" + value;
 		while (query->next()) urlImage = query->value(0).toString();
 		if (!query->exec(
 			"SELECT urlSound FROM \"Pictogram\" WHERE idPictogram = " + QString::number(value) + ";")
-			) qWarning() << "ERROR: " << database->lastError().text();
+			) qWarning() << "ERROR: no urlSound found for pictogram" + value;
 		while (query->next()) urlSound = query->value(0).toString();
 
 		//Conversion des QString en QPixmap et en Sound

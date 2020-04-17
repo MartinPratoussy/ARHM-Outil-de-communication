@@ -57,7 +57,7 @@ void EditUser::Validate()
 void EditUser::on_deleteButton_clicked()
 {
 	// Supprime l'utlisateur de la base de données
-	if (!this->query->exec("DELETE FROM User WHERE userId = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: " << database->lastError().text();
+	if (!this->query->exec("DELETE FROM User WHERE userId = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: user has not been deleted";
 	this->close();
 }
 

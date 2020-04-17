@@ -27,9 +27,9 @@ void UserList::ConnectToDatabase()
 		// Se connecte à la base de données à utiliser
 		database->setDatabaseName("database.db");
 		// Ouvre la base de données
-		if (!database->open()) qWarning() << "ERROR: " << database->lastError().text();
+		if (!database->open()) qWarning() << "ERROR: database not open";
 	}
-	else qWarning() << "ERROR: " << database->lastError().text();
+	else qWarning() << "ERROR: driver not available";
 }
 
 void UserList::LoadUsers()
@@ -37,7 +37,7 @@ void UserList::LoadUsers()
 	// Génère un objet query qui contiendra les prochaines requêtes
 	query = new QSqlQuery(*database);
 	// Récupère les utilisateurs dans la base de données
-	if (!query->exec("SELECT idUser FROM \"User\"")) qWarning() << "ERROR: " << database->lastError().text();
+	if (!query->exec("SELECT idUser FROM \"User\"")) qWarning() << "ERROR: idUser not found";
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
 	while (query->next()) {
 		usersId.append(query->value(0).toInt());
@@ -51,13 +51,13 @@ void UserList::LoadUsers()
 	// Récupère les valeurs des utilisateurs enregistrés dans la base de données et les ajoute aux utilisateurs dans le programme
 	QString firstname, lastname, birthDate, handicap;
 	for each(int i in usersId) {
-		if (!query->exec("SELECT firstname FROM User WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: " << database->lastError().text();
+		if (!query->exec("SELECT firstname FROM User WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: firstname for user" + QString::number(i) + "not found";
 		while (query->next()) firstname = query->value(0).toString();
 		qDebug() << "firstname = " << firstname;
-		if (!query->exec("SELECT lastname FROM \"User\" WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: " << database->lastError().text();
+		if (!query->exec("SELECT lastname FROM \"User\" WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: lastname for user" + QString::number(i) + "not found";
 		while (query->next()) lastname = query->value(0).toString();
 		qDebug() << "lastname = " << lastname;
-		if (!query->exec("SELECT birthdate FROM \"User\" WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: " << database->lastError().text();
+		if (!query->exec("SELECT birthdate FROM \"User\" WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: birthdate for user" + QString::number(i) + "not found";
 		while (query->next()) birthDate = query->value(0).toString();
 		qDebug() << "birthDate = " << birthDate;
 		this->user[i] = new User(i, firstname, lastname, birthDate, database, query);

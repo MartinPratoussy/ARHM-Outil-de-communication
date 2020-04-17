@@ -26,7 +26,7 @@ void AddUser::Validate()
 		+ ui->lastnameEdit->toPlainText() + ", "
 		+ ui->firstnameEdit->toPlainText() + ", "
 		+ ui->birthDateEdit->date().toString() + ");"
-	)) qWarning() << "ERROR: " << this->database->lastError().text();
+	)) qWarning() << "ERROR: new user has not been inserted into the database";
 
 	// Met à jour la liste d'utilisateurs avec le nouvel utilisateur
 	this->close();
