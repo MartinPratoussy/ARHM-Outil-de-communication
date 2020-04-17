@@ -14,8 +14,10 @@ public:
     // Initialise l'interface d'édition d'utilisateur
     void InitInterface(QSqlQuery* query);
 
+    // Enregistre les modifications apportées à l'utilisateur dans la base de données
+    void Validate();
+
 private slots:
-    void on_validationButton_clicked();
 
     void on_deleteButton_clicked();
 

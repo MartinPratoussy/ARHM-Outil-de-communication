@@ -7,10 +7,9 @@ AddUser::AddUser(QSqlDatabase* database, QSqlQuery* query)
 	this->database = database;
 	this->query = query;
 	connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
-	this->parentWidget();
 }
 
-void AddUser::on_validationButton_clicked()
+void AddUser::Validate()
 {
 	// Vérifie si les champs d'édition sont bien tous rempli par l'utilisateur
 	if (ui->firstnameEdit->toPlainText().isEmpty()
@@ -30,6 +29,5 @@ void AddUser::on_validationButton_clicked()
 	)) qWarning() << "ERROR: " << this->database->lastError().text();
 
 	// Met à jour la liste d'utilisateurs avec le nouvel utilisateur
-	this->parent->update();
 	this->close();
 }

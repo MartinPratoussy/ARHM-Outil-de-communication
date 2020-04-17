@@ -28,13 +28,13 @@ public:
 
 private slots:
     // Clic sur un bouton d'accès à une interface utilisateur
-    void on_interfaceButton_clicked(/*UserList* userList, int numUser*/);
+    void on_interfaceButton_clicked(int numUser);
 
     // Clic sur un bouton d'édition d'utilisateur
-    void on_editButton_clicked(/*UserList* userList, int numUser*/);
+    void on_editButton_clicked(int numUser);
 
     // Clic sur le bouton d'ajout d'utilisateur
-    void on_addButton_clicked(/*UserList* userList*/);
+    void on_addButton_clicked();
 
 private:
     Ui::UserList *ui;
@@ -63,6 +63,13 @@ private:
 
     // Bouton d'ajout d'utilisateur
     QPushButton* addUserButton;
+
+    // Mapper des boutons d'interface et d"édition
+    QSignalMapper* interfaceMapper;
+    QSignalMapper* editMapper;
+
+    // Nombre d'utilisateur dans la liste
+    QList<int> usersId;
 
     // Nombre d'utilisateur dans la liste
     int nbUser = 0;

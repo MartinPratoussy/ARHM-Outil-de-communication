@@ -6,7 +6,7 @@ EditUser::EditUser(User* user)
 	this->user = user;
 
 	// Connecte les boutons à leurs fonctions respectives
-	connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
+	//connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
 	connect(ui->deleteButton, SIGNAL(released()), this, SLOT(on_deleteButton_clicked()));
 	connect(ui->cancelButton, SIGNAL(released()), this, SLOT(on_cancelButton_clicked()));
 }
@@ -26,7 +26,7 @@ User* EditUser::GetUser()
 	return this->user;
 }
 
-void EditUser::on_validationButton_clicked()
+void EditUser::Validate()
 {
 	// Vérifie si les champs d'édition sont bien tous rempli par l'utilisateur
 	if (ui->firstnameEdit->toPlainText().isEmpty()
@@ -51,7 +51,6 @@ void EditUser::on_validationButton_clicked()
 	this->user->SetCategory(category, query);
 
 	// Met à jour la fenêtre principale
-	this->parent->update();
 	this->close();
 }
 
@@ -59,7 +58,6 @@ void EditUser::on_deleteButton_clicked()
 {
 	// Supprime l'utlisateur de la base de données
 	if (!this->query->exec("DELETE FROM User WHERE userId = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: " << database->lastError().text();
-	this->parent->update();
 	this->close();
 }
 

@@ -5,6 +5,7 @@
 
 #include <QTextEdit>
 #include <QDateEdit>
+#include <QSignalMapper>
 
 #include "interface.h"
 
@@ -20,7 +21,12 @@ public:
     explicit AddEditUser(QWidget *parent = nullptr);
     virtual ~AddEditUser() = 0;
 
+    // Méthode virtuelle de validation des données saisies
+    virtual void Validate();
+
 private slots:
+    void on_validationButton_clicked();
+
     void on_cancelButton_clicked();
 
 protected:
@@ -33,7 +39,7 @@ protected:
     QSqlQuery* query;
 
     // Classe parent
-    QWidget* parent;
+    QSignalMapper* mapper;
 };
 
 #endif // ADDEDITUSER_H

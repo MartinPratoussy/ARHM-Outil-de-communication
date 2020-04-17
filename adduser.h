@@ -9,9 +9,8 @@ public:
     // Initialise l'interface d'ajout d'utilisateur
     AddUser(QSqlDatabase * database, QSqlQuery* query);
 
-private slots:
     // Enregistrement de informations dans la base de données 
-    void on_validationButton_clicked();
+    void Validate();
 };
 
 #endif ADDUSER_H
