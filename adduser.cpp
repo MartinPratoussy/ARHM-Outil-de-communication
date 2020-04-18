@@ -3,17 +3,16 @@
 
 AddUser::AddUser(QSqlDatabase* database, QSqlQuery* query)
 {
-	ui->deleteButton->hide();
 	this->database = database;
 	this->query = query;
-	connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
+	ui->deleteButton->hide();
 }
 
 void AddUser::Validate()
 {
 	// Vérifie si les champs d'édition sont bien tous rempli par l'utilisateur
-	if (ui->firstnameEdit->toPlainText().isEmpty()
-		|| ui->lastnameEdit->toPlainText().isEmpty()
+	if (ui->firstnameEdit->text().isEmpty()
+		|| ui->lastnameEdit->text().isEmpty()
 		|| ui->birthDateEdit->date().toString().isEmpty()
 		|| ui->category1Edit->text().isEmpty()
 		|| ui->category2Edit->text().isEmpty()
@@ -22,12 +21,47 @@ void AddUser::Validate()
 		) return;
 
 	// Ajout el nouvel utlisateur dans la base de données
-	if (!this->query->exec("INSERT INTO User(lastname, firstname, birthDate) VALUES ("
-		+ ui->lastnameEdit->toPlainText() + ", "
-		+ ui->firstnameEdit->toPlainText() + ", "
-		+ ui->birthDateEdit->date().toString() + ");"
+	if (!this->query->exec("INSERT INTO \"User\"(firstname, lastname, birthDate) VALUES (\""
+		+ ui->firstnameEdit->text() + "\", \""
+		+ ui->lastnameEdit->text() + "\", \""
+		+ ui->birthDateEdit->date().toString("dd/MM/yyyy") + "\");"
 	)) qWarning() << "ERROR: new user has not been inserted into the database";
+	
+	// Ajoute les catégories de l'utilisateur dans la base de données
+	InsertCategories(ui->category1Edit->text());
+	InsertCategories(ui->category2Edit->text());
+	InsertCategories(ui->category3Edit->text());
+	InsertCategories(ui->category4Edit->text());
+
+	// Sélection du dernier utilisateur dans la base de données
+	int idUser;
+	if (!this->query->exec("SELECT idUser FROM \"User\" ORDER BY idUser DESC LIMIT 1;")) qWarning() << "ERROR: last user has not been found";
+	while (this->query->next()) idUser = this->query->value(0).toInt();
+
+	// Sélection des 4 dernières catégories dans la base de données
+	int categories[4];
+	for (int i = 0; i < 4; i++)
+	{
+		if (!this->query->exec("SELECT idCategory FROM \"Category\" ORDER BY idCategory DESC LIMIT " + QString::number(i + 1) + ";")) qWarning() << "ERROR: last category has not been found";
+		while (this->query->next()) categories[i] = this->query->value(0).toInt();
+	}
+
+	// Ajoute les liens entre l'utilisateur et ses catégories dans la base de données
+	for (int i = 3; i >= 0; i--)
+	{
+		if (!query->exec("INSERT INTO \"Category_User\"(category, user) VALUES ("
+			+ QString::number(categories[i]) + ","
+			+ QString::number(idUser) + ");")
+			) qWarning() << "ERROR: category " + QString::number(idUser) + " has not been linked with user" + this->query->value(0).toInt();
+	}
 
 	// Met à jour la liste d'utilisateurs avec le nouvel utilisateur
 	this->close();
+	delete this;
+}
+
+void AddUser::InsertCategories(QString category)
+{
+	if (!this->query->exec("INSERT INTO \"Category\"(text) VALUES (\"" + category + "\");"
+	)) qWarning() << "ERROR: new category has not been inserted into the database";
 }

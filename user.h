@@ -31,7 +31,7 @@ private:
     QString birthDate;
 
     // Catégories de boutons
-    Category category[4];
+    Category* category[4];
 
     // Méthodes de factorisation du constructeur
     void InitiateUser(QSqlDatabase* database, QSqlQuery* query);
@@ -47,7 +47,7 @@ public:
     QString GetFirstname();
     QString GetLastname();
     QString GetBirthDate();
-    Category * GetCategory();
+    Category* GetCategory();
 
     // Setters des attributs privés
     void SetFirstname(QString firstname, QSqlQuery * query);

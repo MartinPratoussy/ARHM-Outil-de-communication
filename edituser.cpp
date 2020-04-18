@@ -6,9 +6,7 @@ EditUser::EditUser(User* user)
 	this->user = user;
 
 	// Connecte les boutons à leurs fonctions respectives
-	//connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
 	connect(ui->deleteButton, SIGNAL(released()), this, SLOT(on_deleteButton_clicked()));
-	connect(ui->cancelButton, SIGNAL(released()), this, SLOT(on_cancelButton_clicked()));
 }
 
 void EditUser::InitInterface(QSqlQuery* query)
@@ -29,8 +27,8 @@ User* EditUser::GetUser()
 void EditUser::Validate()
 {
 	// Vérifie si les champs d'édition sont bien tous rempli par l'utilisateur
-	if (ui->firstnameEdit->toPlainText().isEmpty()
-		|| ui->lastnameEdit->toPlainText().isEmpty()
+	if (ui->firstnameEdit->text().isEmpty()
+		|| ui->lastnameEdit->text().isEmpty()
 		|| ui->birthDateEdit->date().toString().isEmpty()
 		|| ui->category1Edit->text().isEmpty()
 		|| ui->category2Edit->text().isEmpty()
@@ -39,9 +37,10 @@ void EditUser::Validate()
 		) return;
 
 	// Met à jour l'utlisateur dans la base de données
-	this->user->SetFirstname(ui->firstnameEdit->toPlainText(), query);
-	this->user->SetLastname(ui->lastnameEdit->toPlainText(), query);
-	this->user->SetBirthDate(ui->birthDateEdit->date().toString("dd/mm/YYYY"), query);
+	this->user->SetFirstname(ui->firstnameEdit->text(), query);
+	this->user->SetLastname(ui->lastnameEdit->text(), query);
+	this->user->SetBirthDate(ui->birthDateEdit->date().toString("dd/MM/yyyy"), query);
+
 	QString category[4] = {
 		ui->category1Edit->text(),
 		ui->category2Edit->text(),
@@ -58,6 +57,13 @@ void EditUser::on_deleteButton_clicked()
 {
 	// Supprime l'utlisateur de la base de données
 	if (!this->query->exec("DELETE FROM User WHERE userId = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: user has not been deleted";
+
+	// Supprime les liens de l'utilisateur à ses catégories
+	if (!this->query->exec("DELETE FROM Category_User WHERE user = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: link between category and user has not been deleted";
+	
+	// Supprime les catégories de l'utilisateur
+	for (int i = 0; i < 4; i++)	
+		if (!this->query->exec("DELETE FROM Category WHERE id = " + QString::number(this->user->GetCategory()[i].GetId()) + ";")) qWarning() << "ERROR: category has not been deleted";
+	
 	this->close();
 }
-

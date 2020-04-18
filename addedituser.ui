@@ -19,54 +19,6 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(202, 202, 202);</string>
   </property>
-  <widget class="QTextEdit" name="lastnameEdit">
-   <property name="geometry">
-    <rect>
-     <x>890</x>
-     <y>240</y>
-     <width>811</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>28</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="placeholderText">
-    <string>Entrer le nom de l'utilisateur ici</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="firstnameEdit">
-   <property name="geometry">
-    <rect>
-     <x>890</x>
-     <y>430</y>
-     <width>811</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>28</pointsize>
-    </font>
-   </property>
-   <property name="cursor" stdset="0">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="placeholderText">
-    <string>Entrez le prénom de l'utilisateur ici</string>
-   </property>
-  </widget>
   <widget class="QDateEdit" name="birthDateEdit">
    <property name="geometry">
     <rect>
@@ -355,8 +307,48 @@ color: rgb(255, 255, 255);</string>
     <string>Catégories de pictogrammes</string>
    </property>
   </widget>
-  <zorder>lastnameEdit</zorder>
-  <zorder>firstnameEdit</zorder>
+  <widget class="QLineEdit" name="lastnameEdit">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>260</y>
+     <width>781</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="placeholderText">
+    <string>Entrez le nom de l'utilisateur ici</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="firstnameEdit">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>450</y>
+     <width>781</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="placeholderText">
+    <string>Entrez le prénom de l'utilisateur ici</string>
+   </property>
+  </widget>
   <zorder>birthDateEdit</zorder>
   <zorder>lastnameLabel</zorder>
   <zorder>firstnameLabe</zorder>
@@ -371,6 +363,8 @@ color: rgb(255, 255, 255);</string>
   <zorder>category3Edit</zorder>
   <zorder>category4Edit</zorder>
   <zorder>birtDateLabel_2</zorder>
+  <zorder>lastnameEdit</zorder>
+  <zorder>firstnameEdit</zorder>
  </widget>
  <resources/>
  <connections/>

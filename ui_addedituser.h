@@ -16,7 +16,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,8 +23,6 @@ QT_BEGIN_NAMESPACE
 class Ui_AddEditUser
 {
 public:
-    QTextEdit *lastnameEdit;
-    QTextEdit *firstnameEdit;
     QDateEdit *birthDateEdit;
     QLabel *lastnameLabel;
     QLabel *firstnameLabe;
@@ -40,6 +37,8 @@ public:
     QLineEdit *category3Edit;
     QLineEdit *category4Edit;
     QLabel *birtDateLabel_2;
+    QLineEdit *lastnameEdit;
+    QLineEdit *firstnameEdit;
 
     void setupUi(QWidget *AddEditUser)
     {
@@ -48,23 +47,11 @@ public:
         AddEditUser->resize(1920, 1080);
         AddEditUser->setToolTipDuration(0);
         AddEditUser->setStyleSheet(QString::fromUtf8("background-color: rgb(202, 202, 202);"));
-        lastnameEdit = new QTextEdit(AddEditUser);
-        lastnameEdit->setObjectName(QString::fromUtf8("lastnameEdit"));
-        lastnameEdit->setGeometry(QRect(890, 240, 811, 71));
-        QFont font;
-        font.setPointSize(28);
-        lastnameEdit->setFont(font);
-        lastnameEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-        firstnameEdit = new QTextEdit(AddEditUser);
-        firstnameEdit->setObjectName(QString::fromUtf8("firstnameEdit"));
-        firstnameEdit->setGeometry(QRect(890, 430, 811, 71));
-        firstnameEdit->setFont(font);
-        firstnameEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
-        firstnameEdit->setAutoFillBackground(false);
-        firstnameEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         birthDateEdit = new QDateEdit(AddEditUser);
         birthDateEdit->setObjectName(QString::fromUtf8("birthDateEdit"));
         birthDateEdit->setGeometry(QRect(1120, 640, 361, 71));
+        QFont font;
+        font.setPointSize(28);
         birthDateEdit->setFont(font);
         birthDateEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         birthDateEdit->setReadOnly(false);
@@ -138,8 +125,16 @@ public:
         birtDateLabel_2->setObjectName(QString::fromUtf8("birtDateLabel_2"));
         birtDateLabel_2->setGeometry(QRect(850, 750, 691, 71));
         birtDateLabel_2->setFont(font1);
-        lastnameEdit->raise();
-        firstnameEdit->raise();
+        lastnameEdit = new QLineEdit(AddEditUser);
+        lastnameEdit->setObjectName(QString::fromUtf8("lastnameEdit"));
+        lastnameEdit->setGeometry(QRect(900, 260, 781, 71));
+        lastnameEdit->setFont(font);
+        lastnameEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        firstnameEdit = new QLineEdit(AddEditUser);
+        firstnameEdit->setObjectName(QString::fromUtf8("firstnameEdit"));
+        firstnameEdit->setGeometry(QRect(900, 450, 781, 71));
+        firstnameEdit->setFont(font);
+        firstnameEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         birthDateEdit->raise();
         lastnameLabel->raise();
         firstnameLabe->raise();
@@ -154,6 +149,8 @@ public:
         category3Edit->raise();
         category4Edit->raise();
         birtDateLabel_2->raise();
+        lastnameEdit->raise();
+        firstnameEdit->raise();
 
         retranslateUi(AddEditUser);
 
@@ -163,8 +160,6 @@ public:
     void retranslateUi(QWidget *AddEditUser)
     {
         AddEditUser->setWindowTitle(QCoreApplication::translate("AddEditUser", "Form", nullptr));
-        lastnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrer le nom de l'utilisateur ici", nullptr));
-        firstnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrez le pr\303\251nom de l'utilisateur ici", nullptr));
         lastnameLabel->setText(QCoreApplication::translate("AddEditUser", "Nom", nullptr));
         firstnameLabe->setText(QCoreApplication::translate("AddEditUser", "Pr\303\251nom", nullptr));
         birtDateLabel->setText(QCoreApplication::translate("AddEditUser", "Date de naissance", nullptr));
@@ -181,6 +176,8 @@ public:
         category4Edit->setText(QString());
         category4Edit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Cat\303\251gorie 4", nullptr));
         birtDateLabel_2->setText(QCoreApplication::translate("AddEditUser", "Cat\303\251gories de pictogrammes", nullptr));
+        lastnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrez le nom de l'utilisateur ici", nullptr));
+        firstnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrez le pr\303\251nom de l'utilisateur ici", nullptr));
     } // retranslateUi
 
 };

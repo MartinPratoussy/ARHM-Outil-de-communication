@@ -36,6 +36,7 @@ void UserList::LoadUsers()
 {
 	// Génère un objet query qui contiendra les prochaines requêtes
 	query = new QSqlQuery(*database);
+
 	// Récupère les utilisateurs dans la base de données
 	if (!query->exec("SELECT idUser FROM \"User\"")) qWarning() << "ERROR: idUser not found";
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente

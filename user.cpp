@@ -12,9 +12,9 @@ User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlD
 	// Initialisation des catégories
 	int numCategory = 0;
 	while (query->next()) {
-		this->category[numCategory].SetId(query->value(0).toInt());
-		this->category[numCategory].SetText(query->value(1 + 1).toString());
-		InitiateCategory(&this->category[numCategory], database, query);
+		this->category[numCategory]->SetId(query->value(0).toInt());
+		this->category[numCategory]->SetText(query->value(1 + 1).toString());
+		InitiateCategory(this->category[numCategory], database, query);
 		numCategory++;
 	}
 
@@ -93,34 +93,39 @@ QString User::GetBirthDate()
 	return this->birthDate;
 }
 
-Category * User::GetCategory()
+Category* User::GetCategory()
 {
-	return this->category;
+	return *this->category;
 }
 
 void User::SetFirstname(QString firstname, QSqlQuery* query)
 {
 	this->firstname = firstname;
+	// La modification est aussi apportée à la base de données
 	if (!query->exec("UPDATE user SET firstname = '" + this->firstname + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set firstname for user id = " + this->id;
 }
 
 void User::SetLastname(QString lastname, QSqlQuery* query)
 {
 	this->lastname = lastname;
+	// La modification est aussi apportée à la base de données
 	if (!query->exec("UPDATE user SET lastname = '" + this->lastname + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set lastname for user id = " + this->id;
 }
 
 void User::SetBirthDate(QString birthDate, QSqlQuery* query)
 {
 	this->birthDate = birthDate;
+	// La modification est aussi apportée à la base de données
 	if (!query->exec("UPDATE user SET birthDate = '" + this->birthDate + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set birthdate for user id = " + this->id;
 }
 
 void User::SetCategory(QString* category, QSqlQuery* query)
 {
-	for (int i = 0; i < 4; i++) this->category[i].SetText(category[i]);
-	for each (Category category in this->category) {
-		if (!query->exec("UPDATE Category SET text = '" + category.GetText() + "' WHERE idCategory = '" + category.GetId() + "';")) qWarning() << "ERROR : Set category for user id = " + this->id;
+	// Le texte des 4 catégories est changé
+	for (int i = 0; i < 4; i++) this->category[i]->SetText(category[i]);
+	// La modification est aussi apportée à la base de données
+	for each (Category* category in this->category) {
+		if (!query->exec("UPDATE Category SET text = '" + category->GetText() + "' WHERE idCategory = '" + category->GetId() + "';")) qWarning() << "ERROR : Set category for user id = " + this->id;
 	}
 }
 

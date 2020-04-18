@@ -316,6 +316,8 @@ debug\moc_addedituser.cpp: addedituser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QSignalMapper \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qsignalmapper.h \
 		interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
@@ -337,6 +339,7 @@ debug\moc_addedituser.cpp: addedituser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -491,6 +494,7 @@ debug\moc_interface.cpp: interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -624,6 +628,10 @@ debug\moc_selectpicto.cpp: selectpicto.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
+		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qicon.h \
 		user.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QString \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QDate \
@@ -638,6 +646,7 @@ debug\moc_selectpicto.cpp: selectpicto.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -794,6 +803,8 @@ debug\moc_userlist.cpp: userlist.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QSignalMapper \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qsignalmapper.h \
 		interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
@@ -814,6 +825,7 @@ debug\moc_userlist.cpp: userlist.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -998,6 +1010,8 @@ debug\addedituser.obj: addedituser.cpp addedituser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QSignalMapper \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qsignalmapper.h \
 		interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
@@ -1019,6 +1033,7 @@ debug\addedituser.obj: addedituser.cpp addedituser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -1181,6 +1196,8 @@ debug\adduser.obj: adduser.cpp adduser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QSignalMapper \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qsignalmapper.h \
 		interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
@@ -1202,6 +1219,7 @@ debug\adduser.obj: adduser.cpp adduser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -1364,6 +1382,8 @@ debug\edituser.obj: edituser.cpp edituser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QSignalMapper \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qsignalmapper.h \
 		interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
@@ -1385,6 +1405,7 @@ debug\edituser.obj: edituser.cpp edituser.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -1552,6 +1573,7 @@ debug\interface.obj: interface.cpp interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -1726,6 +1748,8 @@ debug\main.obj: main.cpp userlist.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QSignalMapper \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qsignalmapper.h \
 		interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
@@ -1746,6 +1770,7 @@ debug\main.obj: main.cpp userlist.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -1996,6 +2021,10 @@ debug\selectpicto.obj: selectpicto.cpp selectpicto.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
+		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qicon.h \
 		user.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QString \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QDate \
@@ -2010,6 +2039,7 @@ debug\selectpicto.obj: selectpicto.cpp selectpicto.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \
@@ -2203,6 +2233,7 @@ debug\user.obj: user.cpp user.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
@@ -2389,6 +2420,8 @@ debug\userlist.obj: userlist.cpp userlist.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\QSignalMapper \
+		C:\Qt\5.13.2\msvc2017_64\include\QtCore\qsignalmapper.h \
 		interface.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.13.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
@@ -2409,6 +2442,7 @@ debug\userlist.obj: userlist.cpp userlist.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlquery.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\QSqlError \
 		C:\Qt\5.13.2\msvc2017_64\include\QtSql\qsqlerror.h \
+		category.h \
 		pictogram.h \
 		C:\Qt\5.13.2\msvc2017_64\include\QtGui\QPixmap \
 		sound.h \

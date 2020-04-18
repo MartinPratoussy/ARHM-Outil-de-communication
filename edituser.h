@@ -18,7 +18,6 @@ public:
     void Validate();
 
 private slots:
-
     void on_deleteButton_clicked();
 
 private:

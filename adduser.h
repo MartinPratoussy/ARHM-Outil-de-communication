@@ -11,6 +11,9 @@ public:
 
     // Enregistrement de informations dans la base de données 
     void Validate();
+
+    // Méthode de factorisation de l'enregistrement des catégories dans la base de données
+    void InsertCategories(QString category);
 };
 
 #endif ADDUSER_H
