@@ -5,10 +5,49 @@ Category::Category()
 
 }
 
-Category::Category(int id, int nbPicto)
+Category::Category(QSqlQuery* query, int id, QString text)
 {
 	this->id = id;
-	this->nbPicto = nbPicto;
+	this->text = text;
+
+	// Selectionne tous les pictogrammes de l'utilisateur dans la base de données
+	if (!query->exec("SELECT Pictogram.idPictogram FROM \"Pictogram\", \"Category\", \"Pictogram_Category\" WHERE Pictogram_Category.pictogram = Pictogram.idPictogram AND Pictogram_Category.category = Category.idCategory AND Pictogram_Category.category = " + QString::number(this->id)) + ";"
+		) qWarning() << "ERROR: no pictogram found for category " + this->text;
+
+	// Tant qu'il y a des pictogrammes, le nombre de pictogramme s'incrémente et leurs id sont récupérés
+	QList<int> values;
+	while (query->next())
+	{
+		this->SetNbPicto(this->nbPicto + 1);
+		values.append(query->value(0).toInt());
+	}
+
+	// Création des pictogrammes dans le code
+	QString definition, urlImage, urlSound;
+
+	for each (int value in values)
+	{
+		// Requêtes SQL récupérant les trois attributs d'un pictogramme selon l'utlisateur qui le possède
+		if (!query->exec(
+			"SELECT definition FROM \"Pictogram\" WHERE idPictogram = " + QString::number(value) + ";")
+			) qWarning() << "ERROR: no definiton found for pictogram " + value;
+		while (query->next()) definition = query->value("definition").toString();
+		if (!query->exec(
+			"SELECT urlImage FROM \"Pictogram\" WHERE idPictogram = " + QString::number(value) + ";")
+			) qWarning() << "ERROR: no urlImage found for pictogram " + value;
+		while (query->next()) urlImage = query->value("urlImage").toString();
+		if (!query->exec(
+			"SELECT urlSound FROM \"Pictogram\" WHERE idPictogram = " + QString::number(value) + ";")
+			) qWarning() << "ERROR: no urlSound found for pictogram " + value;
+		while (query->next()) urlSound = query->value("urlSound").toString();
+
+		//Conversion des QString en QPixmap et en Sound
+		QPixmap image(urlImage);
+		Sound sound(definition, urlSound);
+
+		// Création de l'objet Pictogram
+		this->pictos.append(new Pictogram(definition, image, sound));
+	}
 }
 
 Category::~Category()
@@ -27,7 +66,7 @@ int Category::GetId()
 
 QString Category::GetText()
 {
-	return this->text;;
+	return this->text;
 }
 
 QList<Pictogram*> Category::GetPicto()

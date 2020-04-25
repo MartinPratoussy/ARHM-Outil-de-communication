@@ -17,6 +17,10 @@ void EditUser::InitInterface(QSqlQuery* query)
 	ui->lastnameEdit->setText(this->user->GetLastname());
 	ui->firstnameEdit->setText(this->user->GetFirstname());
 	ui->birthDateEdit->setDate(QDate::fromString(this->user->GetBirthDate(), "dd/MM/yyyy"));
+	ui->category1Edit->setText(this->user->GetCategory()[0].GetText());
+	ui->category2Edit->setText(this->user->GetCategory()[1].GetText());
+	ui->category3Edit->setText(this->user->GetCategory()[2].GetText());
+	ui->category4Edit->setText(this->user->GetCategory()[3].GetText());
 }
 
 User* EditUser::GetUser()

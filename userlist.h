@@ -9,8 +9,6 @@
 
 #include <QMainWindow>
 
-#include <QScrollArea>
-
 #include "edituser.h"
 #include "adduser.h"
 
@@ -26,13 +24,13 @@ public:
     explicit UserList(QWidget *parent = nullptr);
     ~UserList();
 
-private slots:
     // Clic sur un bouton d'accès à une interface utilisateur
     void on_interfaceButton_clicked(int numUser);
 
     // Clic sur un bouton d'édition d'utilisateur
     void on_editButton_clicked(int numUser);
 
+private slots:
     // Clic sur le bouton d'ajout d'utilisateur
     void on_addButton_clicked();
 
@@ -64,10 +62,6 @@ private:
     // Bouton d'ajout d'utilisateur
     QPushButton* addUserButton;
 
-    // Mapper des boutons d'interface et d"édition
-    QSignalMapper* interfaceMapper;
-    QSignalMapper* editMapper;
-
     // Nombre d'utilisateur dans la liste
     QList<int> usersId;
 
@@ -78,8 +72,8 @@ private:
     int width;
     int height;
 
-    // Zone de scrolling
-    QScrollArea* area;
+    // Conteneur des boutons
+    QWidget* content;
 
     // Connexion à la base de données
     void ConnectToDatabase();

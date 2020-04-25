@@ -1,36 +1,8 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ARHM-Outil-de-communication.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
-  Reading Qt configuration (C:\Qt\5.13.2\msvc2017_64\bin\qmake.exe)
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ARHM-Outil-de-communication.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
-  Generate moc_predefs.h
-  Uic'ing addedituser.ui...
-  Uic'ing interface.ui...
-  Uic'ing selectpicto.ui...
-  Uic'ing userlist.ui...
-  Moc'ing addedituser.h...
-  Moc'ing interface.h...
-  Moc'ing selectpicto.h...
-   Warning: Failed to resolve include "D:/Documents/Dossier Martin/BTS SNIR/2e ann?e/Informatique et r?seaux/Projet/Application Qt/ARHM-Outil-de-communication/Debug/moc_predefs.h" for moc file D:\Documents\Dossier Martin\BTS SNIR\2e annÚe\Informatique et rÚseaux\Projet\Application Qt\ARHM-Outil-de-communication\addedituser.h
-  Moc'ing userlist.h...
-   Warning: Failed to resolve include "D:/Documents/Dossier Martin/BTS SNIR/2e ann?e/Informatique et r?seaux/Projet/Application Qt/ARHM-Outil-de-communication/Debug/moc_predefs.h" for moc file D:\Documents\Dossier Martin\BTS SNIR\2e annÚe\Informatique et rÚseaux\Projet\Application Qt\ARHM-Outil-de-communication\interface.h
-   Warning: Failed to resolve include "D:/Documents/Dossier Martin/BTS SNIR/2e ann?e/Informatique et r?seaux/Projet/Application Qt/ARHM-Outil-de-communication/Debug/moc_predefs.h" for moc file D:\Documents\Dossier Martin\BTS SNIR\2e annÚe\Informatique et rÚseaux\Projet\Application Qt\ARHM-Outil-de-communication\selectpicto.h
-   Warning: Failed to resolve include "D:/Documents/Dossier Martin/BTS SNIR/2e ann?e/Informatique et r?seaux/Projet/Application Qt/ARHM-Outil-de-communication/Debug/moc_predefs.h" for moc file D:\Documents\Dossier Martin\BTS SNIR\2e annÚe\Informatique et rÚseaux\Projet\Application Qt\ARHM-Outil-de-communication\userlist.h
-  addedituser.cpp
-  adduser.cpp
-  category.cpp
-  edituser.cpp
-  interface.cpp
-  main.cpp
-  pictogram.cpp
-  selectpicto.cpp
-  sound.cpp
-  user.cpp
   userlist.cpp
-D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\sound.cpp(30,5): warning C4809: l'instruction switch a une étiquette 'default' redondante ; toutes les étiquettes 'case' possibles sont fournies
-D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\user.cpp(23,39): warning C4100: 'database' : paramètre formel non référencé
-D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\user.cpp(29,64): warning C4100: 'database' : paramètre formel non référencé
-D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\userlist.cpp(167,42): warning C4100: 'numUser' : paramètre formel non référencé
-  moc_addedituser.cpp
-  moc_interface.cpp
-  moc_selectpicto.cpp
-  moc_userlist.cpp
+D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\userlist.cpp(163,6): warning C4189: 'sizeY' : variable locale initialisée mais non référencée
+D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\userlist.cpp(161,6): warning C4189: 'posY' : variable locale initialisée mais non référencée
+D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\userlist.cpp(162,6): warning C4189: 'sizeX' : variable locale initialisée mais non référencée
+D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\userlist.cpp(160,6): warning C4189: 'posX' : variable locale initialisée mais non référencée
   ARHM-Outil-de-communication.vcxproj -> D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\debug\ARHM-Outil-de-communication.exe

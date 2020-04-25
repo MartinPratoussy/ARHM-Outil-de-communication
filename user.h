@@ -7,17 +7,6 @@
 #include <QString>
 // Format de date de Qt
 #include <QDate>
-// Contrôle les flux d'entrée/sortie
-#include <iostream>
-
-// Permet d'accéder à des bases de données spécifiques
-#include <QSqlDriver>
-// Permet de charger une base de données
-#include <QSqlDatabase>
-// Permet de générer des requêtes SQL en direction d'une base de données
-#include <QSqlQuery>
-// Permet de générer une erreur lors d'un problème dans la base de donnnées
-#include <QSqlError>
 
 #include "category.h"
 
@@ -32,10 +21,6 @@ private:
 
     // Catégories de boutons
     Category* category[4];
-
-    // Méthodes de factorisation du constructeur
-    void InitiateUser(QSqlDatabase* database, QSqlQuery* query);
-    void InitiateCategory(Category * category, QSqlDatabase* database, QSqlQuery* query);
 
 public:
     User();

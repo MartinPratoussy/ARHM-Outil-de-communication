@@ -10,8 +10,6 @@ UserList::UserList(QWidget* parent) :
 	ConnectToDatabase();
 	LoadUsers();
 	SetDisplayGeometry();
-	this->interfaceMapper = new QSignalMapper();
-	this->editMapper = new QSignalMapper();
 	ShowUserList();
 }
 
@@ -50,26 +48,36 @@ void UserList::LoadUsers()
 	qDebug() << "Nombre d'utilisateurs : " << this->nbUser;
 
 	// Récupère les valeurs des utilisateurs enregistrés dans la base de données et les ajoute aux utilisateurs dans le programme
+	int numUser = 0;
 	QString firstname, lastname, birthDate, handicap;
-	for each(int i in usersId) {
-		if (!query->exec("SELECT firstname FROM User WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: firstname for user" + QString::number(i) + "not found";
+	for each(int id in usersId) {
+		if (!query->exec("SELECT firstname FROM User WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: firstname for user" + QString::number(id) + "not found";
 		while (query->next()) firstname = query->value(0).toString();
 		qDebug() << "firstname = " << firstname;
-		if (!query->exec("SELECT lastname FROM \"User\" WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: lastname for user" + QString::number(i) + "not found";
+		if (!query->exec("SELECT lastname FROM \"User\" WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: lastname for user" + QString::number(id) + "not found";
 		while (query->next()) lastname = query->value(0).toString();
 		qDebug() << "lastname = " << lastname;
-		if (!query->exec("SELECT birthdate FROM \"User\" WHERE idUser = " + QString::number(i) + " ;")) qWarning() << "ERROR: birthdate for user" + QString::number(i) + "not found";
+		if (!query->exec("SELECT birthdate FROM \"User\" WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: birthdate for user" + QString::number(id) + "not found";
 		while (query->next()) birthDate = query->value(0).toString();
 		qDebug() << "birthDate = " << birthDate;
-		this->user[i] = new User(i, firstname, lastname, birthDate, database, query);
+		this->user[numUser] = new User(id, firstname, lastname, birthDate, database, query);
+		numUser++;
 	}
 }
 
 void UserList::SetDisplayGeometry()
 {
 	// Initialisation de la taille de la fenêtre
-	/*ui->scrollArea->setGeometry(0, 0, this->width, this->height + this->height * (1 / NB_USER_DISPLAYABLE) * nbUser);
-	ui->scrollArea->show();*/
+	this->width = ui->scrollArea->width();
+	this->height = ui->scrollArea->height();
+
+	// Le conteneur est implémenté à la zone de scrolling
+	content = new QWidget(this);
+	ui->scrollArea->setWidget(content);
+
+	// Initialisation de la taille du conteneur
+	ui->scrollArea->widget()->setMinimumSize(this->width, this->height);
+	ui->scrollArea->widget()->setGeometry(ui->scrollArea->x(), ui->scrollArea->y(), this->width, this->height + this->height * ((nbUser + 1) / NB_USER_DISPLAYABLE));
 }
 
 UserList::~UserList()
@@ -85,88 +93,90 @@ void UserList::ShowUserList()
 		for (int numUserX = 0; numUserX < NB_USER_DISPLAYABLE / 2; numUserX++)
 		{
 			// Crée les boutons d'accès aux interfaces utilisateurs
-			interfaceButton[numUserX + numUserY] = new QPushButton(this/*ui->scrollArea*/);
+			interfaceButton[numUserX + numUserY] = new QPushButton(content);
 			// Crée les boutons d'accès aux interfaces d'édition
-			editButton[numUserX + numUserY] = new QPushButton(this/*ui->scrollArea*/);
+			editButton[numUserX + numUserY] = new QPushButton(content);
 
 			// Position et taille des boutons d'accès aux interfaces utilisateur
-			int posX = this->geometry().height() / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUserX * this->geometry().width() / WIDTH_PIECES;
-			int posY = this->geometry().height() / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * numUserY * this->geometry().height() / HEIGHT_PIECES;
-			int sizeX = this->geometry().width() * 3 / WIDTH_PIECES;
-			int sizeY = this->geometry().height() * 3 / HEIGHT_PIECES;
+			int posX = this->height / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUserX * this->width / WIDTH_PIECES;
+			int posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * numUserY * this->height / HEIGHT_PIECES;
+			int sizeX = this->width * 3 / WIDTH_PIECES;
+			int sizeY = this->height * 3 / HEIGHT_PIECES;
 
 			// Place les boutons d'accès aux interfaces utilisateurs
 			this->interfaceButton[numUserX + numUserY]->setGeometry(posX, posY, sizeX, sizeY);
 
 			// Place les boutons d'accès aux interfaces utilisateurs
 			this->editButton[numUserX + numUserY]->setGeometry(
-				posX + this->geometry().width() / WIDTH_PIECES,
-				posY + this->geometry().height() * 3 / HEIGHT_PIECES,
-				this->geometry().width() / 18,
-				this->geometry().height() / 18);
+				posX + this->width / WIDTH_PIECES,
+				posY + this->height * 3 / HEIGHT_PIECES,
+				this->width / 18,
+				this->height / 18);
 
 			// Affiche les boutons
 			this->interfaceButton[numUserX + numUserY]->show();
 			this->editButton[numUserX + numUserY]->show();
 
 			// Attribue aux boutons des slots paramétrés de la classse
-			// Boutons d'interface
-			connect(interfaceButton[numUserX + numUserY], SIGNAL(released()), this->interfaceMapper, SLOT(map()));
-			this->interfaceMapper->setMapping(interfaceButton[numUserX + numUserY], numUserX + numUserY);
+			connect(this->interfaceButton[numUserX + numUserY], &QPushButton::released, [=] {
+				on_interfaceButton_clicked(numUserX + numUserY);
+			});
 
-			// Boutons d'édtion
-			connect(editButton[numUserX + numUserY], SIGNAL(released()), this->editMapper, SLOT(map()));
-			this->editMapper->setMapping(editButton[numUserX + numUserY], numUserX + numUserY);
+			connect(this->editButton[numUserX + numUserY], &QPushButton::released, [=] {
+				on_editButton_clicked(numUserX + numUserY);
+			});
 		}
 	}
 	// Place les boutons qui n'ont pas été placés dans la boucle for précédente
-	for (int numUser = 0; numUser < nbUser % NB_USER_DISPLAYABLE / 2; numUser++)
+	for (int numUser = 0; numUser < nbUser % (NB_USER_DISPLAYABLE / 2); numUser++)
 	{
 		// Crée les boutons d'accès aux interfaces utilisateurs
-		interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(ui->scrollArea);
+		interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(content);
 		// Crée les boutons d'accès aux interfaces d'édition
-		editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(ui->scrollArea);
+		editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(content);
 
-		int posX = this->geometry().width() / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUser * this->width / WIDTH_PIECES;
-		int posY = this->geometry().height() / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
-		int sizeX = this->geometry().width() * 3 / WIDTH_PIECES;
-		int sizeY = this->geometry().height() * 3 / HEIGHT_PIECES;
+		int posX = this->width / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUser * this->width / WIDTH_PIECES;
+		int posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
+		int sizeX = this->width * 3 / WIDTH_PIECES;
+		int sizeY = this->height * 3 / HEIGHT_PIECES;
 
 		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
 		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
 
-		connect(interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], SIGNAL(released()), this->interfaceMapper, SLOT(map()));
-		this->interfaceMapper->setMapping(interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], (2 * nbUser / NB_USER_DISPLAYABLE) + numUser);
+		// Attribue aux boutons des slots paramétrés de la classse
+		connect(interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], &QPushButton::released, [=] {
+			on_interfaceButton_clicked((2 * nbUser / NB_USER_DISPLAYABLE) + numUser);
+		});
 
-		connect(editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], SIGNAL(released()), this->editMapper, SLOT(map()));
-		this->editMapper->setMapping(editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], (2 * nbUser / NB_USER_DISPLAYABLE) + numUser);
+		connect(editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], &QPushButton::released, [=] {
+			on_editButton_clicked((2 * nbUser / NB_USER_DISPLAYABLE) + numUser);
+		});
 	}
 
-	// Connecte les mappeurs aux slots paramétré
-	connect(this->interfaceMapper, SIGNAL(mapped(int)), this, SLOT(on_interfaceButton_clicked()));
-	connect(this->editMapper, SIGNAL(mapped(int)), this, SLOT(on_editButton_clicked()));
+	// Création du bouton d'ajout d'utilisateur
+	addUserButton = new QPushButton(content);
 
-	// Ajoute le bouton d'ajout d'utilisateur après le dernier utilisateur ajouté
-	this->addUserButton = new QPushButton(ui->scrollArea);
-	this->addUserButton->setGeometry(
-		this->geometry().width() / WIDTH_PIECES + nbUser * (2 / NB_USER_DISPLAYABLE) * this->geometry().width() / WIDTH_PIECES,
-		(nbUser + 1) * (this->geometry().height() / HEIGHT_PIECES + nbUser * (2 / NB_USER_DISPLAYABLE) * this->geometry().height() / HEIGHT_PIECES),
-		this->geometry().width() * 3 / WIDTH_PIECES,
-		this->geometry().height() / 3);
-	this->addUserButton->show();
+	// Placement du bouton d'ajout d'utilisateur
+	int posX = this->width / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * nbUser * this->width / WIDTH_PIECES;
+	int posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
+	int sizeX = this->width * 3 / WIDTH_PIECES;
+	int sizeY = this->height * 3 / HEIGHT_PIECES;
+
+	this->addUserButton->setGeometry(0, 0, 50, 50);
+
 	connect(this->addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked()));
 }
 
 void UserList::on_interfaceButton_clicked(int numUser)
 {
 	interface = new Interface();
-	interface->InitInterface(user[numUser]);
+	interface->InitInterface(this->user[numUser]);
 	interface->show();
 }
 
 void UserList::on_editButton_clicked(int numUser)
 {
-	userEdits = new EditUser(user[0]);
+	userEdits = new EditUser(this->user[numUser]);
 	userEdits->InitInterface(this->query);
 	userEdits->show();
 }
