@@ -18,9 +18,18 @@ void AddEditUser::Validate()
 {
 }
 
+void AddEditUser::SetPhoto()
+{
+}
+
 void AddEditUser::on_validationButton_clicked()
 {
     Validate();
+}
+
+void AddEditUser::on_photoButton_clicked()
+{
+
 }
 
 void AddEditUser::on_cancelButton_clicked()

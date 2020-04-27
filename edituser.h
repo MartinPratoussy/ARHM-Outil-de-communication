@@ -14,6 +14,8 @@ public:
     // Initialise l'interface d'édition d'utilisateur
     void InitInterface(QSqlQuery* query);
 
+    void SetPhoto();
+
     // Enregistre les modifications apportées à l'utilisateur dans la base de données
     void Validate();
 

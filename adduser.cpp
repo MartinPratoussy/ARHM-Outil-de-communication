@@ -18,13 +18,15 @@ void AddUser::Validate()
 		|| ui->category2Edit->text().isEmpty()
 		|| ui->category3Edit->text().isEmpty()
 		|| ui->category4Edit->text().isEmpty()
+		|| ui->photoEdit->text().isEmpty()
 		) return;
 
 	// Ajout el nouvel utlisateur dans la base de données
-	if (!this->query->exec("INSERT INTO \"User\"(firstname, lastname, birthDate) VALUES (\""
+	if (!this->query->exec("INSERT INTO \"User\"(firstname, lastname, birthDate, urlPhoto) VALUES (\""
 		+ ui->firstnameEdit->text() + "\", \""
 		+ ui->lastnameEdit->text() + "\", \""
-		+ ui->birthDateEdit->date().toString("dd/MM/yyyy") + "\");"
+		+ ui->birthDateEdit->date().toString("dd/MM/yyyy") + "\", \""
+		+ ui->photoEdit->text() + "\");"
 	)) qWarning() << "ERROR: new user has not been inserted into the database";
 	
 	// Ajoute les catégories de l'utilisateur dans la base de données
@@ -64,4 +66,9 @@ void AddUser::InsertCategories(QString category)
 {
 	if (!this->query->exec("INSERT INTO \"Category\"(text) VALUES (\"" + category + "\");"
 	)) qWarning() << "ERROR: new category has not been inserted into the database";
+}
+
+void AddUser::SetPhoto()
+{
+	ui->icon->setPixmap(QPixmap(ui->photoEdit->text()));
 }

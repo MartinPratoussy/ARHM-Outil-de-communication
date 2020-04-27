@@ -14,6 +14,8 @@ public:
 
     // Méthode de factorisation de l'enregistrement des catégories dans la base de données
     void InsertCategories(QString category);
+
+    void SetPhoto();
 };
 
 #endif ADDUSER_H

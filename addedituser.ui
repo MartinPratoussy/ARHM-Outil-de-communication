@@ -289,7 +289,7 @@ color: rgb(255, 255, 255);</string>
     <string>Catégorie 4</string>
    </property>
   </widget>
-  <widget class="QLabel" name="birtDateLabel_2">
+  <widget class="QLabel" name="categoryLabel">
    <property name="geometry">
     <rect>
      <x>850</x>
@@ -349,6 +349,45 @@ color: rgb(255, 255, 255);</string>
     <string>Entrez le prénom de l'utilisateur ici</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="photoEdit">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>720</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>data/folder.png</normaloff>data/folder.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>720</y>
+     <width>461</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
   <zorder>birthDateEdit</zorder>
   <zorder>lastnameLabel</zorder>
   <zorder>firstnameLabe</zorder>
@@ -357,14 +396,16 @@ color: rgb(255, 255, 255);</string>
   <zorder>cancelButton</zorder>
   <zorder>topBorder</zorder>
   <zorder>deleteButton</zorder>
-  <zorder>icon</zorder>
   <zorder>category1Edit</zorder>
   <zorder>category2Edit</zorder>
   <zorder>category3Edit</zorder>
   <zorder>category4Edit</zorder>
-  <zorder>birtDateLabel_2</zorder>
+  <zorder>categoryLabel</zorder>
   <zorder>lastnameEdit</zorder>
   <zorder>firstnameEdit</zorder>
+  <zorder>icon</zorder>
+  <zorder>photoEdit</zorder>
+  <zorder>lineEdit</zorder>
  </widget>
  <resources/>
  <connections/>

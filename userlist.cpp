@@ -49,7 +49,7 @@ void UserList::LoadUsers()
 
 	// Récupère les valeurs des utilisateurs enregistrés dans la base de données et les ajoute aux utilisateurs dans le programme
 	int numUser = 0;
-	QString firstname, lastname, birthDate, handicap;
+	QString firstname, lastname, birthDate, handicap, urlPhoto;
 	for each(int id in usersId) {
 		if (!query->exec("SELECT firstname FROM User WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: firstname for user" + QString::number(id) + "not found";
 		while (query->next()) firstname = query->value(0).toString();
@@ -60,7 +60,11 @@ void UserList::LoadUsers()
 		if (!query->exec("SELECT birthdate FROM \"User\" WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: birthdate for user" + QString::number(id) + "not found";
 		while (query->next()) birthDate = query->value(0).toString();
 		qDebug() << "birthDate = " << birthDate;
-		this->user[numUser] = new User(id, firstname, lastname, birthDate, database, query);
+		if (!query->exec("SELECT urlPhoto FROM \"User\" WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: photo for user" + QString::number(id) + "not found";
+		while (query->next()) urlPhoto = query->value(0).toString();
+		qDebug() << "birthDate = " << urlPhoto;
+		QPixmap* photo = new QPixmap(urlPhoto);
+		this->user[numUser] = new User(id, firstname, lastname, birthDate, photo, database, query);
 		numUser++;
 	}
 }
@@ -87,6 +91,12 @@ UserList::~UserList()
 
 void UserList::ShowUserList()
 {
+	// Positions et tailles des boutons
+	int posX;
+	int posY;
+	int sizeX;
+	int sizeY;
+
 	// Place chacun des boutons de l'interface
 	for (int numUserY = 0; numUserY < 2 * nbUser / NB_USER_DISPLAYABLE; numUserY++)
 	{
@@ -98,10 +108,10 @@ void UserList::ShowUserList()
 			editButton[numUserX + numUserY] = new QPushButton(content);
 
 			// Position et taille des boutons d'accès aux interfaces utilisateur
-			int posX = this->height / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUserX * this->width / WIDTH_PIECES;
-			int posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * numUserY * this->height / HEIGHT_PIECES;
-			int sizeX = this->width * 3 / WIDTH_PIECES;
-			int sizeY = this->height * 3 / HEIGHT_PIECES;
+			posX = this->width / WIDTH_PIECES + (NB_USER_DISPLAYABLE / 2) * numUserX * this->width / WIDTH_PIECES;
+			posY = this->height / HEIGHT_PIECES + (NB_USER_DISPLAYABLE / 2) * numUserY * this->height / HEIGHT_PIECES;
+			sizeX = this->width * 3 / WIDTH_PIECES;
+			sizeY = this->height * 3 / HEIGHT_PIECES;
 
 			// Place les boutons d'accès aux interfaces utilisateurs
 			this->interfaceButton[numUserX + numUserY]->setGeometry(posX, posY, sizeX, sizeY);
@@ -127,6 +137,7 @@ void UserList::ShowUserList()
 			});
 		}
 	}
+
 	// Place les boutons qui n'ont pas été placés dans la boucle for précédente
 	for (int numUser = 0; numUser < nbUser % (NB_USER_DISPLAYABLE / 2); numUser++)
 	{
@@ -135,13 +146,17 @@ void UserList::ShowUserList()
 		// Crée les boutons d'accès aux interfaces d'édition
 		editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(content);
 
-		int posX = this->width / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUser * this->width / WIDTH_PIECES;
-		int posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
-		int sizeX = this->width * 3 / WIDTH_PIECES;
-		int sizeY = this->height * 3 / HEIGHT_PIECES;
+		posX = this->width / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUser * this->width / WIDTH_PIECES;
+		posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
+		sizeX = this->width * 3 / WIDTH_PIECES;
+		sizeY = this->height * 3 / HEIGHT_PIECES;
 
 		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
-		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
+		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(
+			posX + this->width / WIDTH_PIECES,
+			posY + this->height * 3 / HEIGHT_PIECES,
+			this->width / 18,
+			this->height / 18);
 
 		// Attribue aux boutons des slots paramétrés de la classse
 		connect(interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], &QPushButton::released, [=] {
@@ -156,13 +171,30 @@ void UserList::ShowUserList()
 	// Création du bouton d'ajout d'utilisateur
 	addUserButton = new QPushButton(content);
 
+	// Icône du bouton d'ajout d'utilisateur
+	QIcon addUserIcon("./data/addusericon.png");
+	addUserButton->setIcon(addUserIcon);
+	QSize iconsize(128, 128);
+	addUserButton->setIconSize(iconsize);
+	
 	// Placement du bouton d'ajout d'utilisateur
-	int posX = this->width / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * nbUser * this->width / WIDTH_PIECES;
-	int posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
-	int sizeX = this->width * 3 / WIDTH_PIECES;
-	int sizeY = this->height * 3 / HEIGHT_PIECES;
+	if (nbUser % (NB_MAX_USER / 2) == 0)
+	{
+		posX = this->width / WIDTH_PIECES;
+		posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * this->height / HEIGHT_PIECES;
+		sizeX = this->width * 3 / WIDTH_PIECES;
+		sizeY = this->height * 3 / HEIGHT_PIECES;
+	}
 
-	this->addUserButton->setGeometry(0, 0, 50, 50);
+	else
+	{
+		posX = this->width / WIDTH_PIECES + (NB_USER_DISPLAYABLE / 2) * (nbUser % (NB_USER_DISPLAYABLE / 2)) * this->width / WIDTH_PIECES;
+		posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
+		sizeX = this->width * 3 / WIDTH_PIECES;
+		sizeY = this->height * 3 / HEIGHT_PIECES;
+	}
+
+	this->addUserButton->setGeometry(posX, posY, sizeX, sizeY);
 
 	connect(this->addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked()));
 }

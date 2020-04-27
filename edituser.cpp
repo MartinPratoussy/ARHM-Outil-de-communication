@@ -21,6 +21,15 @@ void EditUser::InitInterface(QSqlQuery* query)
 	ui->category2Edit->setText(this->user->GetCategory()[1].GetText());
 	ui->category3Edit->setText(this->user->GetCategory()[2].GetText());
 	ui->category4Edit->setText(this->user->GetCategory()[3].GetText());
+	if (!query->exec("SELECT urlPhoto FROM \"User\" WHERE idUser = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: No urlPhoto found for user " + this->user->GetId();
+	QString urlPhoto(query->value("urlPhoto").toString());
+	ui->photoEdit->setText(urlPhoto);
+	ui->icon->setPixmap(ui->photoEdit->text());
+}
+
+void EditUser::SetPhoto()
+{
+	// Récupère le chemin d'accès dans l'eexplorateur de fichiers
 }
 
 User* EditUser::GetUser()
@@ -38,12 +47,14 @@ void EditUser::Validate()
 		|| ui->category2Edit->text().isEmpty()
 		|| ui->category3Edit->text().isEmpty()
 		|| ui->category4Edit->text().isEmpty()
+		|| ui->photoEdit->text().isEmpty()
 		) return;
 
 	// Met à jour l'utlisateur dans la base de données
 	this->user->SetFirstname(ui->firstnameEdit->text(), query);
 	this->user->SetLastname(ui->lastnameEdit->text(), query);
 	this->user->SetBirthDate(ui->birthDateEdit->date().toString("dd/MM/yyyy"), query);
+	this->user->SetPhoto(ui->photoEdit->text(), query);
 
 	QString category[4] = {
 		ui->category1Edit->text(),

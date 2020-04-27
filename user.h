@@ -22,9 +22,12 @@ private:
     // Catégories de boutons
     Category* category[4];
 
+    // Photo de l'utilisateur
+    QPixmap* photo;
+
 public:
     User();
-    User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query);
+    User(int id, QString firstname, QString lastname, QString birthDate, QPixmap* photo, QSqlDatabase* database, QSqlQuery* query);
     ~User();
 
     // Getters des attributs privés
@@ -39,6 +42,7 @@ public:
     void SetLastname(QString lastname, QSqlQuery * query);
     void SetBirthDate(QString birthDate, QSqlQuery * query);
     void SetCategory(QString* category, QSqlQuery* query);
+    void SetPhoto(QString urlPhoto, QSqlQuery* query);
 
     // Surcharge de l'opérateur d'affection
     User & operator=(const User & user);

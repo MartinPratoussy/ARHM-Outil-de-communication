@@ -4,7 +4,7 @@ User::User()
 {
 }
 
-User::User(int id, QString firstname, QString lastname, QString birthDate, QSqlDatabase* database, QSqlQuery* query)
+User::User(int id, QString firstname, QString lastname, QString birthDate, QPixmap* photo, QSqlDatabase* database, QSqlQuery* query)
 {
 	this->id = id;
 	this->firstname = firstname;
@@ -83,6 +83,14 @@ void User::SetCategory(QString* category, QSqlQuery* query)
 	for each (Category * category in this->category) {
 		if (!query->exec("UPDATE Category SET text = '" + category->GetText() + "' WHERE idCategory = '" + category->GetId() + "';")) qWarning() << "ERROR : Set category for user id = " + this->id;
 	}
+}
+
+void User::SetPhoto(QString urlPhoto, QSqlQuery* query)
+{
+	this->photo = new QPixmap(urlPhoto);
+	// La modification est aussi apportée à la base de données
+	if (!query->exec("UPDATE user SET urlPhoto = '" + urlPhoto + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set urlPhoto for user id = " + this->id;
+
 }
 
 User& User::operator=(const User& user)

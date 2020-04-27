@@ -24,20 +24,20 @@ public:
     ~Interface();
 
     // Initialise l'interface en fonction de l'utilisateur concerné
-    void InitInterface(User * user);
+    void InitInterface(User* user);
 
     // Annule l'action précédente
     void Cancel();
 
     // Getter de l'utlisateur de l'interface
-    User * GetUser();
+    User* GetUser();
 
     // Surcharge de l'opérateur d'affection
     Interface & operator=(const Interface & interface);
 
 public slots :
     // Ajoute un mot à la phrase
-    void addWordToSentence(Pictogram * word);
+    void addWordToSentence(Pictogram* word);
 
     // La synthèse vocale lit la phrase
     void readSentence();
@@ -55,13 +55,13 @@ private:
     Ui::Interface *ui;
 
     // Utilisateur de l'interface
-    User * user;
+    User* user;
 
     // Phrase créée par l'utilisateur
     QList<Pictogram*> sentence;
 
     // Interfaces de séléction des pictogrammes
-    SelectPicto * selection[4];
+    SelectPicto* selection[4];
 };
 
 #endif // INTERFACE_H
