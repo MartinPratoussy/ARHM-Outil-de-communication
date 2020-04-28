@@ -2,41 +2,67 @@
 #define MAINIMPORT_H
 
 #include <QMainWindow>
-// Format de cha�ne de caract�re de Qt
+// Format de chaène de caractêre de Qt
 #include <QString>
 // Format de date de Qt
 #include <QDate>
-// Contr�le les flux d'entr�e/sortie
+// Contr�le les flux d'entrée/sortie
 #include <iostream>
 
-// Permet d'acc�der � des bases de donn�es sp�cifiques
+#include <qdebug>
+
+// Permet d'accèder à des bases de données spécifiques
 #include <QSqlDriver>
 // Permet de charger une base de donn�es
 #include <QSqlDatabase>
-// Permet de g�n�rer des requ�tes SQL en direction d'une base de donn�es
+// Permet de génèrer des requêtes SQL en direction d'une base de donn�es
 #include <QSqlQuery>
-// Permet de g�n�rer une erreur lors d'un probl�me dans la base de donnn�es
+// Permet de génèrer une erreur lors d'un probl�me dans la base de donnn�es
 #include <QSqlError>
+// Permet d'ajouter une interface de selction de fichier
+#include <QFileDialog>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainImport; }
 QT_END_NAMESPACE
 
 class MainImport : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    MainImport(QWidget *parent = nullptr);
-    ~MainImport();
+	MainImport(QWidget* parent = nullptr);
+	~MainImport();
 
 private slots:
-    void on_BpValide_clicked();
+
+	void on_bPValide_clicked();
+
+    void on_parBP_clicked();
 
 private:
-    Ui::MainImport *ui;
-    //concte a la Db 
-    void ConnectToDatabase();
-    //pointe sur la basse de donn�es
-    QSqlDatabase* database;
+	Ui::MainImport* ui;
+	//concte a la Db 
+	void connectToDatabase();
+	//récuper les catégorie de l'user
+	void returnCategories();
+
+	//pointe sur la basse de données
+	QSqlDatabase* database;
+	QSqlQuery* query;
+	
+	//boite de dialog de sélection de fichier
+	QFileDialog imageDial;
+	
+	QString nom = NULL;
+	QString enLecture = NULL;
+	QString image = NULL;
+	QString category = NULL;
+
+
+	int idCategory1 = NULL;
+	int idCategory2 = NULL;
+	int idCategory3 = NULL;
+	int idCategory4 = NULL;
 };
 #endif // MAINIMPORT_H

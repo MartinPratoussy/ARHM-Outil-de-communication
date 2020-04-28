@@ -6,109 +6,190 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>769</width>
+    <height>555</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainImport</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="BpValide">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>480</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Valider</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="NomSql">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>130</y>
-      <width>461</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="Image">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>300</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Image</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="LectureSql">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
+      <x>90</x>
       <y>220</y>
-      <width>461</width>
-      <height>41</height>
+      <width>581</width>
+      <height>261</height>
      </rect>
     </property>
+    <property name="title">
+     <string>Pictograme</string>
+    </property>
+    <widget class="QLabel" name="nom">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Nom</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="nomSql">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>461</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="lectureSql">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>110</y>
+       <width>461</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lectureAudio">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Mie en lecture audio</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="imageSql">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>180</y>
+       <width>461</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Image">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>160</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Image</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="parBP">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>180</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Parcourir</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bPValide">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>220</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Valider</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QLineEdit" name="ImageSql">
+   <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>320</y>
-      <width>461</width>
-      <height>41</height>
+      <x>230</x>
+      <y>20</y>
+      <width>261</width>
+      <height>191</height>
      </rect>
     </property>
+    <property name="title">
+     <string>Catégory</string>
+    </property>
+    <widget class="QRadioButton" name="rBCat1">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>91</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rBCat3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>81</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rBCat4">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>120</y>
+       <width>91</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rBCat2">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>20</y>
+       <width>91</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QLabel" name="LectureAudio">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>200</y>
-      <width>111</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Mie en lecture audio</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="Nom">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>110</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>nom</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

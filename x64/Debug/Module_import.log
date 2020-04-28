@@ -1,7 +1,3 @@
-﻿  Generate moc_predefs.h
-  Uic'ing mainimport.ui...
-  Moc'ing mainimport.h...
-  main.cpp
-  mainimport.cpp
-  moc_mainimport.cpp
-  Module_import.vcxproj -> F:\ProjetEnDev\ARHM\Module_import\debug\Module_import.exe
+﻿  Moc'ing mainimport.h...
+   F:\ProjetEnDev\ARHM\import\Module_import\mainimport.h(40): Error: Not a signal or slot declaration
+mainimport.h : error 1: moc (F:\Logicelle_Dev\Qt\5.14.1\msvc2017_64\bin\moc.exe)

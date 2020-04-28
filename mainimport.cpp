@@ -6,6 +6,8 @@ MainImport::MainImport(QWidget *parent)
     , ui(new Ui::MainImport)
 {
     ui->setupUi(this);
+	connectToDatabase();
+	
 }
 
 MainImport::~MainImport()
@@ -13,24 +15,73 @@ MainImport::~MainImport()
     delete ui;
 }
 
-void MainImport::ConnectToDatabase()
+void MainImport::connectToDatabase()
 {
-	// Initialise la base de données à utiliser
+	// Initialise la base de donnÃ©es Ã  utiliser
 	database = new QSqlDatabase();
 	const QString DRIVER("QSQLITE");
 	if (QSqlDatabase::isDriverAvailable(DRIVER))
 	{
-		// Défini le SGBD utilisé
+		// DÃ©fini le SGBD utilisÃ©
 		*database = QSqlDatabase::addDatabase(DRIVER);
-		// Se connecte à la base de données à utiliser
+		// Se connecte Ã  la base de donnÃ©es Ã  utiliser
 		database->setDatabaseName("database.db");
-		// Ouvre la base de données
-        /*if (!database->open()) qWarning() << "ERROR: " << database->lastError().text();*/
+		// Ouvre la base de donnÃ©es
+		if(!database->open())qWarning() << "ERROR: " << database->lastError().text();
 	}
-    /*else qWarning() << "ERROR: " << database->lastError().text();*/
+    else qWarning() << "ERROR: " << database->lastError().text();
+	query = new QSqlQuery(*database);
+	
 }
 
-void MainImport::on_BpValide_clicked()
+void MainImport::returnCategories()
 {
 
+	ui->rBCat1->setText("Object");
+	ui->rBCat2->setText("Persone");
+	ui->rBCat3->setText("Action");
+	ui->rBCat4->setText("Interaction");
+}
+
+void MainImport::on_bPValide_clicked()
+{
+	int idPicto(NULL);
+	int *idCategory(NULL);
+	
+	nom = ui->nomSql->toPlainText();
+	enLecture = ui->lectureSql->toPlainText();
+	image = ui->imageSql->toPlainText();
+	/*************************************[SQL]*************************************/
+	
+	//enregistre dans la Basse de DonnÃ©e le pictograme 
+	if (!query->exec("INSERT INTO Pictogram (definition,urlSound,urlImage)"
+		"VALUES ('" + nom + "','" + enLecture + "','" + image +"')")) qWarning() << "ERROR: " << database->lastError().text();
+
+	//RÃ©cuper le dernier pictograme enregister dans la Base de DonnÃ©e
+	if (!query->exec("SELECT idPictogram FROM Pictogram ORDER BY idPictogram DESC LIMIT 1;")) qWarning() << "ERROR: " << database->lastError().text();
+	while (this->query->next()) idPicto = this->query->value(0).toInt();
+	
+	if (ui->rBCat1->isChecked()) {
+		/*if (!query->exec("INSERT INTO Pictogram_Category (pictogram,category)" 
+			"VALUES ('"+idPicto+"','6')")) qWarning() << "ERROR: " << database->lastError().text();*/
+	} 
+	else if (ui->rBCat2->isChecked()) {
+
+	}
+	else if (ui->rBCat3->isChecked()) {
+
+	}
+	else if (ui->rBCat4->isChecked()) {
+
+	}
+
+	
+	
+}
+
+
+void MainImport::on_parBP_clicked()
+{
+	//Ouvre une boite de dialoge + rÃ©cup URL du ficher Selctioner 
+	ui->imageSql->setText(imageDial.getOpenFileUrl().url());
 }
