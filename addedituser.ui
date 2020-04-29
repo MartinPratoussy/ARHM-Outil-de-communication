@@ -349,7 +349,7 @@ color: rgb(255, 255, 255);</string>
     <string>Entrez le prénom de l'utilisateur ici</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="photoEdit">
+  <widget class="QPushButton" name="photoButton">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -375,7 +375,7 @@ color: rgb(255, 255, 255);</string>
     </size>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="photoEdit">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -404,8 +404,8 @@ color: rgb(255, 255, 255);</string>
   <zorder>lastnameEdit</zorder>
   <zorder>firstnameEdit</zorder>
   <zorder>icon</zorder>
+  <zorder>photoButton</zorder>
   <zorder>photoEdit</zorder>
-  <zorder>lineEdit</zorder>
  </widget>
  <resources/>
  <connections/>

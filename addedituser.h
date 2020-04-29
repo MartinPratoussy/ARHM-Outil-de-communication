@@ -5,7 +5,7 @@
 
 #include <QTextEdit>
 #include <QDateEdit>
-#include <QSignalMapper>
+#include <QFileDialog>
 
 #include "interface.h"
 
@@ -42,8 +42,8 @@ protected:
     // Pointeur de la requête SQL
     QSqlQuery* query;
 
-    // Classe parent
-    QSignalMapper* mapper;
+    // Variable permettant de contourner le problème des méthodes qui s'exécutent 2 fois
+    bool isActive = true;
 };
 
 #endif // ADDEDITUSER_H

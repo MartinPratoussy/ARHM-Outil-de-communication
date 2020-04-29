@@ -30,7 +30,6 @@ private:
 
 public:
     Category();
-    Category(QSqlQuery* query, int id, QString text);
     ~Category();
 
     // Getters des attributs privés
@@ -40,6 +39,7 @@ public:
     QList<Pictogram*> GetPicto();
 
     // Setters des attributs privés
+    void InitiateCategory(QSqlQuery* query, int id, QString text);
     void SetId(int value);
     void SetText(QString text);
     void SetNbPicto(int value);

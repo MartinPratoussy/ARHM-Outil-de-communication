@@ -7,6 +7,11 @@ Interface::Interface(QWidget* parent) :
 	ui(new Ui::Interface)
 {
 	ui->setupUi(this);
+}
+
+void Interface::InitInterface(User* user)
+{
+	this->user = user;
 
 	// Initialisation du texte des boutons
 	ui->firstCategoryButton->setText(this->user->GetCategory()[0].GetText());
@@ -25,11 +30,6 @@ Interface::Interface(QWidget* parent) :
 
 	// Connexion du bouton de lecture à la méthode correspondante
 	connect(ui->readButton, SIGNAL(released()), this, SLOT(readSentence()));
-}
-
-void Interface::InitInterface(User* user)
-{
-	this->user = user;
 }
 
 Interface::~Interface()
@@ -76,6 +76,7 @@ void Interface::on_firstCategoryButton_clicked()
 	m_speech.PlaySound();
 	this->selection[0] = new SelectPicto();
 	this->selection[0]->DisplayPictograms(this->user->GetCategory()[0]);
+	this->selection[0]->show();
 }
 
 void Interface::on_secondCategoryButton_clicked()
@@ -84,6 +85,7 @@ void Interface::on_secondCategoryButton_clicked()
 	m_speech.PlaySound();
 	this->selection[1] = new SelectPicto();
 	this->selection[1]->DisplayPictograms(this->user->GetCategory()[1]);
+	this->selection[1]->show();
 }
 
 void Interface::on_thirdCategoryButton_clicked()
@@ -92,6 +94,7 @@ void Interface::on_thirdCategoryButton_clicked()
 	m_speech.PlaySound();
 	this->selection[2] = new SelectPicto();
 	this->selection[2]->DisplayPictograms(this->user->GetCategory()[2]);
+	this->selection[2]->show();
 }
 
 void Interface::on_fourthCategoryButton_clicked()
@@ -100,4 +103,5 @@ void Interface::on_fourthCategoryButton_clicked()
 	m_speech.PlaySound();
 	this->selection[3] = new SelectPicto();
 	this->selection[3]->DisplayPictograms(this->user->GetCategory()[3]);
+	this->selection[3]->show();
 }

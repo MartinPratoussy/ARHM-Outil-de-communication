@@ -40,8 +40,8 @@ public:
     QLabel *categoryLabel;
     QLineEdit *lastnameEdit;
     QLineEdit *firstnameEdit;
-    QPushButton *photoEdit;
-    QLineEdit *lineEdit;
+    QPushButton *photoButton;
+    QLineEdit *photoEdit;
 
     void setupUi(QWidget *AddEditUser)
     {
@@ -138,18 +138,18 @@ public:
         firstnameEdit->setGeometry(QRect(900, 450, 781, 71));
         firstnameEdit->setFont(font);
         firstnameEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-        photoEdit = new QPushButton(AddEditUser);
-        photoEdit->setObjectName(QString::fromUtf8("photoEdit"));
-        photoEdit->setGeometry(QRect(610, 720, 41, 41));
-        photoEdit->setStyleSheet(QString::fromUtf8(""));
+        photoButton = new QPushButton(AddEditUser);
+        photoButton->setObjectName(QString::fromUtf8("photoButton"));
+        photoButton->setGeometry(QRect(610, 720, 41, 41));
+        photoButton->setStyleSheet(QString::fromUtf8(""));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("data/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
-        photoEdit->setIcon(icon1);
-        photoEdit->setIconSize(QSize(32, 32));
-        lineEdit = new QLineEdit(AddEditUser);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(150, 720, 461, 41));
-        lineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        photoButton->setIcon(icon1);
+        photoButton->setIconSize(QSize(32, 32));
+        photoEdit = new QLineEdit(AddEditUser);
+        photoEdit->setObjectName(QString::fromUtf8("photoEdit"));
+        photoEdit->setGeometry(QRect(150, 720, 461, 41));
+        photoEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         birthDateEdit->raise();
         lastnameLabel->raise();
         firstnameLabe->raise();
@@ -166,8 +166,8 @@ public:
         lastnameEdit->raise();
         firstnameEdit->raise();
         icon->raise();
+        photoButton->raise();
         photoEdit->raise();
-        lineEdit->raise();
 
         retranslateUi(AddEditUser);
 
@@ -195,7 +195,7 @@ public:
         categoryLabel->setText(QCoreApplication::translate("AddEditUser", "Cat\303\251gories de pictogrammes", nullptr));
         lastnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrez le nom de l'utilisateur ici", nullptr));
         firstnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrez le pr\303\251nom de l'utilisateur ici", nullptr));
-        photoEdit->setText(QString());
+        photoButton->setText(QString());
     } // retranslateUi
 
 };

@@ -29,7 +29,14 @@ void EditUser::InitInterface(QSqlQuery* query)
 
 void EditUser::SetPhoto()
 {
+	if (!this->isActive) return;
+
 	// Récupère le chemin d'accès dans l'eexplorateur de fichiers
+	QFileDialog* fileDialog = new QFileDialog();
+	QString urlPhoto = fileDialog->getOpenFileUrl().url();
+	ui->photoEdit->setText(urlPhoto);
+
+	this->isActive = false;
 }
 
 User* EditUser::GetUser()

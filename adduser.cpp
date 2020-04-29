@@ -70,5 +70,13 @@ void AddUser::InsertCategories(QString category)
 
 void AddUser::SetPhoto()
 {
+	if (!this->isActive) return;
+
+	// Récupère le chemin d'accès dans l'explorateur de fichiers
+	QFileDialog* fileDialog = new QFileDialog();
+	QString urlPhoto = fileDialog->getOpenFileUrl().url();
+	ui->photoEdit->setText(urlPhoto);
 	ui->icon->setPixmap(QPixmap(ui->photoEdit->text()));
+	
+	this->isActive = false;
 }

@@ -5,7 +5,7 @@ Category::Category()
 
 }
 
-Category::Category(QSqlQuery* query, int id, QString text)
+void Category::InitiateCategory(QSqlQuery* query, int id, QString text)
 {
 	this->id = id;
 	this->text = text;

@@ -37,6 +37,7 @@ void UserList::LoadUsers()
 
 	// Récupère les utilisateurs dans la base de données
 	if (!query->exec("SELECT idUser FROM \"User\"")) qWarning() << "ERROR: idUser not found";
+
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
 	while (query->next()) {
 		usersId.append(query->value(0).toInt());
@@ -63,7 +64,7 @@ void UserList::LoadUsers()
 		if (!query->exec("SELECT urlPhoto FROM \"User\" WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: photo for user" + QString::number(id) + "not found";
 		while (query->next()) urlPhoto = query->value(0).toString();
 		qDebug() << "birthDate = " << urlPhoto;
-		QPixmap* photo = new QPixmap(urlPhoto);
+		QIcon* photo = new QIcon(urlPhoto);
 		this->user[numUser] = new User(id, firstname, lastname, birthDate, photo, database, query);
 		numUser++;
 	}
@@ -78,6 +79,7 @@ void UserList::SetDisplayGeometry()
 	// Le conteneur est implémenté à la zone de scrolling
 	content = new QWidget(this);
 	ui->scrollArea->setWidget(content);
+	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 	// Initialisation de la taille du conteneur
 	ui->scrollArea->widget()->setMinimumSize(this->width, this->height);
@@ -123,9 +125,15 @@ void UserList::ShowUserList()
 				this->width / 18,
 				this->height / 18);
 
+			// Affichage de la photo de l'utilisateur
+			this->interfaceButton[numUserX + numUserY]->setIcon(*this->user[numUserX + numUserY]->GetPhoto());
+			QSize iconsize(128, 128);
+			this->interfaceButton[numUserX + numUserY]->setIconSize(iconsize);
+
 			// Affiche les boutons
 			this->interfaceButton[numUserX + numUserY]->show();
 			this->editButton[numUserX + numUserY]->show();
+			this->editButton[numUserX + numUserY]->raise();
 
 			// Attribue aux boutons des slots paramétrés de la classse
 			connect(this->interfaceButton[numUserX + numUserY], &QPushButton::released, [=] {
@@ -157,6 +165,15 @@ void UserList::ShowUserList()
 			posY + this->height * 3 / HEIGHT_PIECES,
 			this->width / 18,
 			this->height / 18);
+
+		// Affichage de la photo de l'utilisateur
+		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIcon(*this->user[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->GetPhoto());
+		QSize iconsize(128, 128);
+		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIconSize(iconsize);
+
+		// Affiche les boutons
+		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->show();
+		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->show();
 
 		// Attribue aux boutons des slots paramétrés de la classse
 		connect(interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], &QPushButton::released, [=] {
