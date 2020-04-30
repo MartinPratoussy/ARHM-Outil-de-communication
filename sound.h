@@ -27,7 +27,7 @@ private:
     QMediaPlayer * sound;
 
     // Détermine si le son est produit par la synthèse vocale ou s'il existe déjà dans la base de données
-    bool isSynthetic = false;
+    bool isSynthetic = true;
 
     // Synthèse vocale
     void SyntheticSay();

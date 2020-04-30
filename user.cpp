@@ -72,21 +72,22 @@ void User::SetFirstname(QString firstname, QSqlQuery* query)
 {
 	this->firstname = firstname;
 	// La modification est aussi apportée à la base de données
-	if (!query->exec("UPDATE user SET firstname = '" + this->firstname + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set firstname for user id = " + this->id;
+	if (!query->exec("UPDATE User SET firstname = \"" + this->firstname + "\" WHERE idUser = " + QString::number(this->id) + ";")) qWarning() << "ERROR : Set firstname for user id = " + this->id;
+	qDebug() << "UPDATE User SET firstname = \"" + this->firstname + "\" WHERE idUser = " + QString::number(this->id) + ";";
 }
 
 void User::SetLastname(QString lastname, QSqlQuery* query)
 {
 	this->lastname = lastname;
 	// La modification est aussi apportée à la base de données
-	if (!query->exec("UPDATE user SET lastname = '" + this->lastname + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set lastname for user id = " + this->id;
+	if (!query->exec("UPDATE User SET lastname = '" + this->lastname + "' WHERE idUser = '" + QString::number(this->id) + "';")) qWarning() << "ERROR : Set lastname for user id = " + this->id;
 }
 
 void User::SetBirthDate(QString birthDate, QSqlQuery* query)
 {
 	this->birthDate = birthDate;
 	// La modification est aussi apportée à la base de données
-	if (!query->exec("UPDATE user SET birthDate = '" + this->birthDate + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set birthdate for user id = " + this->id;
+	if (!query->exec("UPDATE User SET birthDate = \"" + this->birthDate + "\" WHERE idUser = '" + QString::number(this->id) + "';")) qWarning() << "ERROR : Set birthdate for user id = " + this->id;
 }
 
 void User::SetCategory(QString* category, QSqlQuery* query)
@@ -95,7 +96,7 @@ void User::SetCategory(QString* category, QSqlQuery* query)
 	for (int i = 0; i < 4; i++) this->category[i].SetText(category[i]);
 	// La modification est aussi apportée à la base de données
 	for each (Category category in this->category) {
-		if (!query->exec("UPDATE Category SET text = '" + category.GetText() + "' WHERE idCategory = '" + category.GetId() + "';")) qWarning() << "ERROR : Set category for user id = " + this->id;
+		if (!query->exec("UPDATE Category SET text = \"" + category.GetText() + "\" WHERE idCategory = " + QString::number(category.GetId()) + ";")) qWarning() << "ERROR : Set category for user id = " + this->id;
 	}
 }
 
@@ -103,7 +104,7 @@ void User::SetPhoto(QString urlPhoto, QSqlQuery* query)
 {
 	this->photo = new QIcon(urlPhoto);
 	// La modification est aussi apportée à la base de données
-	if (!query->exec("UPDATE user SET urlPhoto = '" + urlPhoto + "' WHERE idUser = '" + this->id + "';")) qWarning() << "ERROR : Set urlPhoto for user id = " + this->id;
+	if (!query->exec("UPDATE User SET urlPhoto = \"" + urlPhoto + "\" WHERE idUser = " + QString::number(this->id) + ";")) qWarning() << "ERROR : Set urlPhoto for user id = " + this->id;
 
 }
 

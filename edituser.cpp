@@ -11,7 +11,7 @@ EditUser::EditUser(User* user)
 
 void EditUser::InitInterface(QSqlQuery* query)
 {
-	AddEditUser::query = query;
+	this->query = query;
 
 	// Rempli les champs de texte avec les valeurs actuelles de l'utlisateur
 	ui->lastnameEdit->setText(this->user->GetLastname());
@@ -21,9 +21,8 @@ void EditUser::InitInterface(QSqlQuery* query)
 	ui->category2Edit->setText(this->user->GetCategory()[1].GetText());
 	ui->category3Edit->setText(this->user->GetCategory()[2].GetText());
 	ui->category4Edit->setText(this->user->GetCategory()[3].GetText());
-	if (!query->exec("SELECT urlPhoto FROM \"User\" WHERE idUser = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: No urlPhoto found for user " + this->user->GetId();
-	QString urlPhoto(query->value("urlPhoto").toString());
-	ui->photoEdit->setText(urlPhoto);
+	if (!this->query->exec("SELECT urlPhoto FROM User WHERE idUser = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: No urlPhoto found for user " + this->user->GetId();
+	while(this->query->next()) ui->photoEdit->setText(this->query->value(0).toString());
 	ui->icon->setPixmap(ui->photoEdit->text());
 }
 
@@ -58,10 +57,10 @@ void EditUser::Validate()
 		) return;
 
 	// Met à jour l'utlisateur dans la base de données
-	this->user->SetFirstname(ui->firstnameEdit->text(), query);
-	this->user->SetLastname(ui->lastnameEdit->text(), query);
-	this->user->SetBirthDate(ui->birthDateEdit->date().toString("dd/MM/yyyy"), query);
-	this->user->SetPhoto(ui->photoEdit->text(), query);
+	this->user->SetFirstname(ui->firstnameEdit->text(), this->query);
+	this->user->SetLastname(ui->lastnameEdit->text(), this->query);
+	this->user->SetBirthDate(ui->birthDateEdit->date().toString("dd/MM/yyyy"), this->query);
+	this->user->SetPhoto(ui->photoEdit->text(), this->query);
 
 	QString category[4] = {
 		ui->category1Edit->text(),
@@ -69,7 +68,7 @@ void EditUser::Validate()
 		ui->category3Edit->text(),
 		ui->category4Edit->text()
 	};
-	this->user->SetCategory(category, query);
+	this->user->SetCategory(category, this->query);
 
 	// Met à jour la fenêtre principale
 	this->close();

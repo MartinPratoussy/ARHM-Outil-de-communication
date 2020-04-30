@@ -36,7 +36,7 @@ void UserList::LoadUsers()
 	query = new QSqlQuery(*database);
 
 	// Récupère les utilisateurs dans la base de données
-	if (!query->exec("SELECT idUser FROM \"User\"")) qWarning() << "ERROR: idUser not found";
+	if (!query->exec("SELECT idUser FROM \"User\" ORDER BY firstname")) qWarning() << "ERROR: idUser not found";
 
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
 	while (query->next()) {
@@ -125,15 +125,28 @@ void UserList::ShowUserList()
 				this->width / 18,
 				this->height / 18);
 
+			// Affiche le texte du bouton
+			QFont font("MS Shell Dlg 2", 24);
+			this->interfaceButton[numUserX + numUserY]->setFont(font);
+			this->interfaceButton[numUserX + numUserY]->setText(
+				this->user[numUserX + numUserY]->GetFirstname()
+				+ " "
+				+ this->user[numUserX + numUserY]->GetLastname());
+
 			// Affichage de la photo de l'utilisateur
 			this->interfaceButton[numUserX + numUserY]->setIcon(*this->user[numUserX + numUserY]->GetPhoto());
-			QSize iconsize(128, 128);
-			this->interfaceButton[numUserX + numUserY]->setIconSize(iconsize);
+			QSize interfaceiconsize(128, 128);
+			this->interfaceButton[numUserX + numUserY]->setIconSize(interfaceiconsize);
+
+			// Affichage de l'icône d'édition
+			QIcon editIcon("./data/edit.png");
+			QSize editiconsize(32, 32);
+			this->editButton[numUserX + numUserY]->setIcon(editIcon);
+			this->editButton[numUserX + numUserY]->setIconSize(editiconsize);
 
 			// Affiche les boutons
 			this->interfaceButton[numUserX + numUserY]->show();
 			this->editButton[numUserX + numUserY]->show();
-			this->editButton[numUserX + numUserY]->raise();
 
 			// Attribue aux boutons des slots paramétrés de la classse
 			connect(this->interfaceButton[numUserX + numUserY], &QPushButton::released, [=] {
@@ -166,10 +179,24 @@ void UserList::ShowUserList()
 			this->width / 18,
 			this->height / 18);
 
+		// Affiche le texte du bouton
+		QFont font("MS Shell Dlg 2", 24);
+		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setFont(font);
+		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setText(
+			this->user[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->GetFirstname()
+			+ " "
+			+ this->user[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->GetLastname());
+
 		// Affichage de la photo de l'utilisateur
 		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIcon(*this->user[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->GetPhoto());
-		QSize iconsize(128, 128);
-		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIconSize(iconsize);
+		QSize interfaceiconsize(256, 256);
+		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIconSize(interfaceiconsize);
+
+		// Affichage de l'icône d'édition
+		QIcon editIcon("./data/edit.png");
+		QSize editiconsize(32, 32);
+		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIcon(editIcon);
+		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIconSize(editiconsize);
 
 		// Affiche les boutons
 		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->show();
@@ -190,9 +217,9 @@ void UserList::ShowUserList()
 
 	// Icône du bouton d'ajout d'utilisateur
 	QIcon addUserIcon("./data/addusericon.png");
-	addUserButton->setIcon(addUserIcon);
-	QSize iconsize(128, 128);
-	addUserButton->setIconSize(iconsize);
+	QSize addiconsize(128, 128);
+	this->addUserButton->setIcon(addUserIcon);
+	this->addUserButton->setIconSize(addiconsize);
 	
 	// Placement du bouton d'ajout d'utilisateur
 	if (nbUser % (NB_MAX_USER / 2) == 0)
