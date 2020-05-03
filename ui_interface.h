@@ -28,7 +28,7 @@ public:
     QPushButton *backButton;
     QProgressBar *progressBar;
     QLabel *firstPictoLabel;
-    QLabel *secondePictoLabel;
+    QLabel *secondPictoLabel;
     QLabel *thirdPictoLabel;
     QPushButton *firstCategoryButton;
     QPushButton *thirdCategoryButton;
@@ -77,11 +77,11 @@ public:
         firstPictoLabel->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         firstPictoLabel->setScaledContents(true);
         firstPictoLabel->setAlignment(Qt::AlignCenter);
-        secondePictoLabel = new QLabel(Interface);
-        secondePictoLabel->setObjectName(QString::fromUtf8("secondePictoLabel"));
-        secondePictoLabel->setGeometry(QRect(770, 70, 291, 181));
-        secondePictoLabel->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-        secondePictoLabel->setAlignment(Qt::AlignCenter);
+        secondPictoLabel = new QLabel(Interface);
+        secondPictoLabel->setObjectName(QString::fromUtf8("secondPictoLabel"));
+        secondPictoLabel->setGeometry(QRect(770, 70, 291, 181));
+        secondPictoLabel->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        secondPictoLabel->setAlignment(Qt::AlignCenter);
         thirdPictoLabel = new QLabel(Interface);
         thirdPictoLabel->setObjectName(QString::fromUtf8("thirdPictoLabel"));
         thirdPictoLabel->setGeometry(QRect(1300, 70, 291, 181));
@@ -121,7 +121,7 @@ public:
         readButton->setText(QString());
         backButton->setText(QString());
         firstPictoLabel->setText(QString());
-        secondePictoLabel->setText(QString());
+        secondPictoLabel->setText(QString());
         thirdPictoLabel->setText(QString());
         firstCategoryButton->setText(QString());
         thirdCategoryButton->setText(QString());

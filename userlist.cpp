@@ -63,7 +63,7 @@ void UserList::LoadUsers()
 		qDebug() << "birthDate = " << birthDate;
 		if (!query->exec("SELECT urlPhoto FROM \"User\" WHERE idUser = " + QString::number(id) + ";")) qWarning() << "ERROR: photo for user" + QString::number(id) + "not found";
 		while (query->next()) urlPhoto = query->value(0).toString();
-		qDebug() << "birthDate = " << urlPhoto;
+		qDebug() << "urlPhoto = " << urlPhoto;
 		QIcon* photo = new QIcon(urlPhoto);
 		this->user[numUser] = new User(id, firstname, lastname, birthDate, photo, database, query);
 		numUser++;
@@ -122,8 +122,8 @@ void UserList::ShowUserList()
 			this->editButton[numUserX + numUserY]->setGeometry(
 				posX + this->width / WIDTH_PIECES,
 				posY + this->height * 3 / HEIGHT_PIECES,
-				this->width / 18,
-				this->height / 18);
+				this->width / (WIDTH_PIECES + 1),
+				this->height / (WIDTH_PIECES + 1));
 
 			// Affiche le texte du bouton
 			QFont font("MS Shell Dlg 2", 24);
@@ -167,8 +167,8 @@ void UserList::ShowUserList()
 		// Crée les boutons d'accès aux interfaces d'édition
 		editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(content);
 
-		posX = this->width / WIDTH_PIECES + NB_USER_DISPLAYABLE / 2 * numUser * this->width / WIDTH_PIECES;
-		posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * (2 * nbUser / NB_USER_DISPLAYABLE) * this->height / HEIGHT_PIECES;
+		posX = this->width / WIDTH_PIECES + (NB_USER_DISPLAYABLE / 2) * numUser * this->width / WIDTH_PIECES;
+		posY = this->height / HEIGHT_PIECES + (NB_USER_DISPLAYABLE / 2) * (2 * nbUser / NB_USER_DISPLAYABLE) * (this->height / HEIGHT_PIECES);
 		sizeX = this->width * 3 / WIDTH_PIECES;
 		sizeY = this->height * 3 / HEIGHT_PIECES;
 
@@ -176,8 +176,8 @@ void UserList::ShowUserList()
 		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(
 			posX + this->width / WIDTH_PIECES,
 			posY + this->height * 3 / HEIGHT_PIECES,
-			this->width / 18,
-			this->height / 18);
+			this->width / (WIDTH_PIECES + 1),
+			this->height / (WIDTH_PIECES + 1));
 
 		// Affiche le texte du bouton
 		QFont font("MS Shell Dlg 2", 24);

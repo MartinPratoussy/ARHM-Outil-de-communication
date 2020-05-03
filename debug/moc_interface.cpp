@@ -33,19 +33,19 @@ struct qt_meta_stringdata_Interface_t {
 static const qt_meta_stringdata_Interface_t qt_meta_stringdata_Interface = {
     {
 QT_MOC_LITERAL(0, 0, 9), // "Interface"
-QT_MOC_LITERAL(1, 10, 17), // "addWordToSentence"
+QT_MOC_LITERAL(1, 10, 17), // "AddWordToSentence"
 QT_MOC_LITERAL(2, 28, 0), // ""
 QT_MOC_LITERAL(3, 29, 10), // "Pictogram*"
 QT_MOC_LITERAL(4, 40, 4), // "word"
-QT_MOC_LITERAL(5, 45, 12), // "readSentence"
+QT_MOC_LITERAL(5, 45, 12), // "ReadSentence"
 QT_MOC_LITERAL(6, 58, 30), // "on_firstCategoryButton_clicked"
 QT_MOC_LITERAL(7, 89, 31), // "on_secondCategoryButton_clicked"
 QT_MOC_LITERAL(8, 121, 30), // "on_thirdCategoryButton_clicked"
 QT_MOC_LITERAL(9, 152, 31) // "on_fourthCategoryButton_clicked"
 
     },
-    "Interface\0addWordToSentence\0\0Pictogram*\0"
-    "word\0readSentence\0on_firstCategoryButton_clicked\0"
+    "Interface\0AddWordToSentence\0\0Pictogram*\0"
+    "word\0ReadSentence\0on_firstCategoryButton_clicked\0"
     "on_secondCategoryButton_clicked\0"
     "on_thirdCategoryButton_clicked\0"
     "on_fourthCategoryButton_clicked"
@@ -90,8 +90,8 @@ void Interface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<Interface *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->addWordToSentence((*reinterpret_cast< Pictogram*(*)>(_a[1]))); break;
-        case 1: _t->readSentence(); break;
+        case 0: _t->AddWordToSentence((*reinterpret_cast< Pictogram*(*)>(_a[1]))); break;
+        case 1: _t->ReadSentence(); break;
         case 2: _t->on_firstCategoryButton_clicked(); break;
         case 3: _t->on_secondCategoryButton_clicked(); break;
         case 4: _t->on_thirdCategoryButton_clicked(); break;

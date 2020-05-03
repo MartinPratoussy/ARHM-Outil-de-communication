@@ -130,7 +130,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="secondePictoLabel">
+  <widget class="QLabel" name="secondPictoLabel">
    <property name="geometry">
     <rect>
      <x>770</x>

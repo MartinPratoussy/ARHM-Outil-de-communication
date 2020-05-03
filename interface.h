@@ -37,10 +37,10 @@ public:
 
 public slots :
     // Ajoute un mot à la phrase
-    void addWordToSentence(Pictogram* word);
+    void AddWordToSentence(Pictogram* word);
 
     // La synthèse vocale lit la phrase
-    void readSentence();
+    void ReadSentence();
 
 private slots:
     void on_firstCategoryButton_clicked();
@@ -60,7 +60,7 @@ private:
     // Phrase créée par l'utilisateur
     QList<Pictogram*> sentence;
 
-    // Interfaces de séléction des pictogrammes
+    // Interfaces de sélection des pictogrammes
     SelectPicto* selection[4];
 };
 

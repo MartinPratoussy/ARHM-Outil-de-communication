@@ -6,8 +6,11 @@ AddEditUser::AddEditUser(QWidget *parent) :
     ui(new Ui::AddEditUser)
 {
     ui->setupUi(this);
+
+    // Connecte les boutons à leurs fonctions respectives
     connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
     connect(ui->photoButton, SIGNAL(released()), this, SLOT(on_photoButton_clicked()));
+    connect(ui->deleteButton, SIGNAL(released()), this, SLOT(on_deleteButton_clicked()));
 }
 
 AddEditUser::~AddEditUser()

@@ -24,6 +24,7 @@ public:
         if (SelectPicto->objectName().isEmpty())
             SelectPicto->setObjectName(QString::fromUtf8("SelectPicto"));
         SelectPicto->resize(1920, 1080);
+        SelectPicto->setStyleSheet(QString::fromUtf8("background-color: rgb(172, 172, 172);"));
 
         retranslateUi(SelectPicto);
 

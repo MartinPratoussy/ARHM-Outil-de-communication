@@ -4,9 +4,6 @@
 EditUser::EditUser(User* user)
 {
 	this->user = user;
-
-	// Connecte les boutons à leurs fonctions respectives
-	connect(ui->deleteButton, SIGNAL(released()), this, SLOT(on_deleteButton_clicked()));
 }
 
 void EditUser::InitInterface(QSqlQuery* query)
@@ -77,14 +74,18 @@ void EditUser::Validate()
 void EditUser::on_deleteButton_clicked()
 {
 	// Supprime l'utlisateur de la base de données
-	if (!this->query->exec("DELETE FROM User WHERE userId = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: user has not been deleted";
+	if (!this->query->exec("DELETE FROM User WHERE idUser = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: user has not been deleted";
 
 	// Supprime les liens de l'utilisateur à ses catégories
 	if (!this->query->exec("DELETE FROM Category_User WHERE user = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: link between category and user has not been deleted";
 	
+	// Supprime les liens avec les pictogrammes des catégories supprimées 
+	for (int i = 0; i < 4; i++)
+		if (!this->query->exec("DELETE FROM Pictogram_Category WHERE category = " + QString::number(this->user->GetCategory()[i].GetId()) + ";")) qWarning() << "ERROR: category has not been deleted";
+	
 	// Supprime les catégories de l'utilisateur
 	for (int i = 0; i < 4; i++)	
-		if (!this->query->exec("DELETE FROM Category WHERE id = " + QString::number(this->user->GetCategory()[i].GetId()) + ";")) qWarning() << "ERROR: category has not been deleted";
+		if (!this->query->exec("DELETE FROM Category WHERE idCategory = " + QString::number(this->user->GetCategory()[i].GetId()) + ";")) qWarning() << "ERROR: category has not been deleted";
 	
 	this->close();
 }
