@@ -14,13 +14,14 @@ public:
     // Initialise l'interface d'édition d'utilisateur
     void InitInterface(QSqlQuery* query);
 
+    // Modification de la photo de l'utilisateur
     void SetPhoto();
 
     // Enregistre les modifications apportées à l'utilisateur dans la base de données
     void Validate();
 
-private slots:
-    void on_deleteButton_clicked();
+    // Supprime l'utilisateur ainsi que tous ses composants
+    void Delete();
 
 private:
 

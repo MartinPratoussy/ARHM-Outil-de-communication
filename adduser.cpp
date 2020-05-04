@@ -58,6 +58,7 @@ void AddUser::Validate()
 	}
 
 	// Met à jour la liste d'utilisateurs avec le nouvel utilisateur
+	emit UpdateUsers();
 	this->close();
 	delete this;
 }

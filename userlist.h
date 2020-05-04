@@ -27,6 +27,9 @@ public:
     // Clic sur un bouton d'édition d'utilisateur
     void on_editButton_clicked(int numUser);
 
+    // Actualise la liste des utilisateurs
+    void UpdateUserlist();
+
 private slots:
     // Clic sur le bouton d'ajout d'utilisateur
     void on_addButton_clicked();

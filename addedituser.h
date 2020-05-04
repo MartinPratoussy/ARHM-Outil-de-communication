@@ -25,13 +25,19 @@ public:
 
     virtual void SetPhoto();
 
+    virtual void Delete();
+
+signals:
+    // Envoi un signal quand un utilisateur a été créé
+    void UpdateUsers();
+
 private slots:
-    // Slot liant le bouton de validation avec la méthode virtuelle Validate()
+    // Slot du bouton de validation
     void on_validationButton_clicked();
     // Slot du bouton de photo
     void on_photoButton_clicked();
-    // Slot liant le bouton d'annulation avec la méthode close()
-    void on_cancelButton_clicked();
+    // Slot du bouton de suppression
+    void on_deleteButton_clicked();
 
 protected:
     Ui::AddEditUser *ui;

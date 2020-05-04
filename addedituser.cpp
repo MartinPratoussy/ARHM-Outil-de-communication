@@ -26,6 +26,10 @@ void AddEditUser::SetPhoto()
 {
 }
 
+void AddEditUser::Delete()
+{
+}
+
 void AddEditUser::on_validationButton_clicked()
 {
     Validate();
@@ -36,7 +40,7 @@ void AddEditUser::on_photoButton_clicked()
     SetPhoto();
 }
 
-void AddEditUser::on_cancelButton_clicked()
+void AddEditUser::on_deleteButton_clicked()
 {
-    this->close();
+    Delete();
 }

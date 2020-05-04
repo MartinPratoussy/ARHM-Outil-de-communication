@@ -71,7 +71,7 @@ void EditUser::Validate()
 	this->close();
 }
 
-void EditUser::on_deleteButton_clicked()
+void EditUser::Delete()
 {
 	// Supprime l'utlisateur de la base de données
 	if (!this->query->exec("DELETE FROM User WHERE idUser = " + QString::number(this->user->GetId()) + ";")) qWarning() << "ERROR: user has not been deleted";
@@ -87,5 +87,7 @@ void EditUser::on_deleteButton_clicked()
 	for (int i = 0; i < 4; i++)	
 		if (!this->query->exec("DELETE FROM Category WHERE idCategory = " + QString::number(this->user->GetCategory()[i].GetId()) + ";")) qWarning() << "ERROR: category has not been deleted";
 	
+	emit UpdateUsers();
+
 	this->close();
 }

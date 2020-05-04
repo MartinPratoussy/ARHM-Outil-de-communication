@@ -65,27 +65,47 @@ void SelectPicto::DisplayPictograms()
 	for each (Pictogram* picto in this->category.GetPicto()) 
 	{
 		this->pictoChose[numPicto]->setIcon(picto->GetPicture());
-		this->pictoChose[numPicto]->show();
 		numPicto++;
 	}
-
 	this->nbPicto = numPicto;
+
+
+	// Placement des pictogrammes suivant le même algorithme que le placement des utilisateurs dans userlist.cpp
+	int posX, posY, sizeX, sizeY;
+
 	for (int numPictoY = 0; numPictoY < 2 * nbPicto / NB_PICTO_DISPLAYABLE; numPictoY++)
 	{
 		for (int numPictoX = 0; numPictoX < NB_PICTO_DISPLAYABLE / 2; numPictoX++)
 		{
-			int posX = this->width / (WIDTH_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * numPictoX * this->width / (WIDTH_PIECES * 4);
-			int posY = this->height / (HEIGHT_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * numPictoY * this->height / (HEIGHT_PIECES * 4);
-			int sizeX = this->width * 3 / (WIDTH_PIECES * 4);
-			int sizeY = this->height * 3 / (HEIGHT_PIECES * 4);
+			numPicto = numPictoX + (NB_PICTO_DISPLAYABLE / 2) * numPictoY;
 
-			this->pictoChose[numPictoX + numPictoY]->setGeometry(posX, posY, sizeX, sizeY);
+			posX = this->width / (WIDTH_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * numPictoX * this->width / (WIDTH_PIECES * 4);
+			posY = this->height / (HEIGHT_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * numPictoY * this->height / (HEIGHT_PIECES * 4);
+			sizeX = this->width * 3 / (WIDTH_PIECES * 4);
+			sizeY = this->height * 3 / (HEIGHT_PIECES * 4);
+
+			this->pictoChose[numPicto]->setGeometry(posX, posY, sizeX, sizeY);
 		}
+	}
+
+	for (int i = 0; i < nbPicto % (NB_PICTO_DISPLAYABLE / 2); i++)
+	{
+		numPicto = i + (nbPicto / (NB_PICTO_DISPLAYABLE / 2)) * (NB_PICTO_DISPLAYABLE / 2);
+
+		posX = this->width / (WIDTH_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * i * this->width / (WIDTH_PIECES * 4);
+		posY = this->height / (HEIGHT_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * (2 * nbPicto / NB_PICTO_DISPLAYABLE) * (this->height / (HEIGHT_PIECES * 4));
+		sizeX = this->width * 3 / (WIDTH_PIECES * 4);
+		sizeY = this->height * 3 / (HEIGHT_PIECES * 4);
+
+		this->pictoChose[numPicto]->setGeometry(posX, posY, sizeX, sizeY);
 	}
 
 	numPicto = 0;
 	for each (QPushButton * button in this->pictoChose) {
-		connect(button, &QPushButton::released, [=] { on_pictoButton_clicked(numPicto); });
+		connect(button, &QPushButton::released, [=] { 
+			on_pictoButton_clicked(numPicto); 
+		});
+		button->show();
 		numPicto++;
 	}
 }

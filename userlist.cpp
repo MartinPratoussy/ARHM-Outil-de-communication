@@ -28,16 +28,18 @@ void UserList::ConnectToDatabase()
 		if (!database->open()) qWarning() << "ERROR: database not open";
 	}
 	else qWarning() << "ERROR: driver not available";
+
+	// Génère un objet query qui contiendra les prochaines requêtes
+	query = new QSqlQuery(*database);
 }
 
 void UserList::LoadUsers()
 {
-	// Génère un objet query qui contiendra les prochaines requêtes
-	query = new QSqlQuery(*database);
-
 	// Récupère les utilisateurs dans la base de données
 	if (!query->exec("SELECT idUser FROM \"User\" ORDER BY firstname")) qWarning() << "ERROR: idUser not found";
 
+	this->nbUser = 0;
+	this->usersId.clear();
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
 	while (query->next()) {
 		usersId.append(query->value(0).toInt());
@@ -94,20 +96,22 @@ UserList::~UserList()
 void UserList::ShowUserList()
 {
 	// Positions et tailles des boutons
-	int posX;
-	int posY;
-	int sizeX;
-	int sizeY;
+	int posX, posY, sizeX, sizeY;
+
+	// Numéro de l'utilisateur
+	int numUser = 0;
 
 	// Place chacun des boutons de l'interface
 	for (int numUserY = 0; numUserY < 2 * nbUser / NB_USER_DISPLAYABLE; numUserY++)
 	{
 		for (int numUserX = 0; numUserX < NB_USER_DISPLAYABLE / 2; numUserX++)
 		{
+			numUser = numUserX + (NB_USER_DISPLAYABLE / 2) * numUserY;
+
 			// Crée les boutons d'accès aux interfaces utilisateurs
-			interfaceButton[numUserX + numUserY] = new QPushButton(content);
+			interfaceButton[numUser] = new QPushButton(content);
 			// Crée les boutons d'accès aux interfaces d'édition
-			editButton[numUserX + numUserY] = new QPushButton(content);
+			editButton[numUser] = new QPushButton(content);
 
 			// Position et taille des boutons d'accès aux interfaces utilisateur
 			posX = this->width / WIDTH_PIECES + (NB_USER_DISPLAYABLE / 2) * numUserX * this->width / WIDTH_PIECES;
@@ -116,10 +120,10 @@ void UserList::ShowUserList()
 			sizeY = this->height * 3 / HEIGHT_PIECES;
 
 			// Place les boutons d'accès aux interfaces utilisateurs
-			this->interfaceButton[numUserX + numUserY]->setGeometry(posX, posY, sizeX, sizeY);
+			this->interfaceButton[numUser]->setGeometry(posX, posY, sizeX, sizeY);
 
 			// Place les boutons d'accès aux interfaces utilisateurs
-			this->editButton[numUserX + numUserY]->setGeometry(
+			this->editButton[numUser]->setGeometry(
 				posX + this->width / WIDTH_PIECES,
 				posY + this->height * 3 / HEIGHT_PIECES,
 				this->width / (WIDTH_PIECES + 1),
@@ -127,53 +131,56 @@ void UserList::ShowUserList()
 
 			// Affiche le texte du bouton
 			QFont font("MS Shell Dlg 2", 24);
-			this->interfaceButton[numUserX + numUserY]->setFont(font);
-			this->interfaceButton[numUserX + numUserY]->setText(
-				this->user[numUserX + numUserY]->GetFirstname()
+			this->interfaceButton[numUser]->setFont(font);
+			this->interfaceButton[numUser]->setText(
+				this->user[numUser]->GetFirstname()
 				+ " "
-				+ this->user[numUserX + numUserY]->GetLastname());
+				+ this->user[numUser]->GetLastname());
 
 			// Affichage de la photo de l'utilisateur
-			this->interfaceButton[numUserX + numUserY]->setIcon(*this->user[numUserX + numUserY]->GetPhoto());
+			this->interfaceButton[numUser]->setIcon(*this->user[numUser]->GetPhoto());
 			QSize interfaceiconsize(128, 128);
-			this->interfaceButton[numUserX + numUserY]->setIconSize(interfaceiconsize);
+			this->interfaceButton[numUser]->setIconSize(interfaceiconsize);
 
 			// Affichage de l'icône d'édition
 			QIcon editIcon("./data/edit.png");
 			QSize editiconsize(32, 32);
-			this->editButton[numUserX + numUserY]->setIcon(editIcon);
-			this->editButton[numUserX + numUserY]->setIconSize(editiconsize);
+			this->editButton[numUser]->setIcon(editIcon);
+			this->editButton[numUser]->setIconSize(editiconsize);
 
 			// Affiche les boutons
-			this->interfaceButton[numUserX + numUserY]->show();
-			this->editButton[numUserX + numUserY]->show();
+			this->interfaceButton[numUser]->show();
+			this->editButton[numUser]->show();
 
 			// Attribue aux boutons des slots paramétrés de la classse
-			connect(this->interfaceButton[numUserX + numUserY], &QPushButton::released, [=] {
-				on_interfaceButton_clicked(numUserX + numUserY);
+			connect(this->interfaceButton[numUser], &QPushButton::released, [=] {
+				on_interfaceButton_clicked(numUser);
 			});
 
-			connect(this->editButton[numUserX + numUserY], &QPushButton::released, [=] {
-				on_editButton_clicked(numUserX + numUserY);
+			connect(this->editButton[numUser], &QPushButton::released, [=] {
+				on_editButton_clicked(numUser);
 			});
 		}
 	}
 
 	// Place les boutons qui n'ont pas été placés dans la boucle for précédente
-	for (int numUser = 0; numUser < nbUser % (NB_USER_DISPLAYABLE / 2); numUser++)
+	for (int i = 0; i < nbUser % (NB_USER_DISPLAYABLE / 2); i++)
 	{
-		// Crée les boutons d'accès aux interfaces utilisateurs
-		interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(content);
-		// Crée les boutons d'accès aux interfaces d'édition
-		editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser] = new QPushButton(content);
+		// Calcul le numéro de l'utilisateur
+		numUser = i + (nbUser / (NB_USER_DISPLAYABLE / 2)) * (NB_USER_DISPLAYABLE / 2);
 
-		posX = this->width / WIDTH_PIECES + (NB_USER_DISPLAYABLE / 2) * numUser * this->width / WIDTH_PIECES;
+		// Crée les boutons d'accès aux interfaces utilisateurs
+		interfaceButton[numUser] = new QPushButton(content);
+		// Crée les boutons d'accès aux interfaces d'édition
+		editButton[numUser] = new QPushButton(content);
+
+		posX = this->width / WIDTH_PIECES + (NB_USER_DISPLAYABLE / 2) * i * this->width / WIDTH_PIECES;
 		posY = this->height / HEIGHT_PIECES + (NB_USER_DISPLAYABLE / 2) * (2 * nbUser / NB_USER_DISPLAYABLE) * (this->height / HEIGHT_PIECES);
 		sizeX = this->width * 3 / WIDTH_PIECES;
 		sizeY = this->height * 3 / HEIGHT_PIECES;
 
-		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(posX, posY, sizeX, sizeY);
-		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setGeometry(
+		this->interfaceButton[numUser]->setGeometry(posX, posY, sizeX, sizeY);
+		this->editButton[numUser]->setGeometry(
 			posX + this->width / WIDTH_PIECES,
 			posY + this->height * 3 / HEIGHT_PIECES,
 			this->width / (WIDTH_PIECES + 1),
@@ -181,34 +188,34 @@ void UserList::ShowUserList()
 
 		// Affiche le texte du bouton
 		QFont font("MS Shell Dlg 2", 24);
-		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setFont(font);
-		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setText(
-			this->user[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->GetFirstname()
+		this->interfaceButton[numUser]->setFont(font);
+		this->interfaceButton[numUser]->setText(
+			this->user[numUser]->GetFirstname()
 			+ " "
-			+ this->user[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->GetLastname());
+			+ this->user[numUser]->GetLastname());
 
 		// Affichage de la photo de l'utilisateur
-		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIcon(*this->user[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->GetPhoto());
+		this->interfaceButton[numUser]->setIcon(*this->user[numUser]->GetPhoto());
 		QSize interfaceiconsize(256, 256);
-		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIconSize(interfaceiconsize);
+		this->interfaceButton[numUser]->setIconSize(interfaceiconsize);
 
 		// Affichage de l'icône d'édition
 		QIcon editIcon("./data/edit.png");
 		QSize editiconsize(32, 32);
-		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIcon(editIcon);
-		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->setIconSize(editiconsize);
+		this->editButton[numUser]->setIcon(editIcon);
+		this->editButton[numUser]->setIconSize(editiconsize);
 
 		// Affiche les boutons
-		this->interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->show();
-		this->editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser]->show();
+		this->interfaceButton[numUser]->show();
+		this->editButton[numUser]->show();
 
 		// Attribue aux boutons des slots paramétrés de la classse
-		connect(interfaceButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], &QPushButton::released, [=] {
-			on_interfaceButton_clicked((2 * nbUser / NB_USER_DISPLAYABLE) + numUser);
+		connect(interfaceButton[numUser], &QPushButton::released, [=] {
+			on_interfaceButton_clicked(numUser);
 		});
 
-		connect(editButton[(2 * nbUser / NB_USER_DISPLAYABLE) + numUser], &QPushButton::released, [=] {
-			on_editButton_clicked((2 * nbUser / NB_USER_DISPLAYABLE) + numUser);
+		connect(editButton[numUser], &QPushButton::released, [=] {
+			on_editButton_clicked(numUser);
 		});
 	}
 
@@ -222,10 +229,10 @@ void UserList::ShowUserList()
 	this->addUserButton->setIconSize(addiconsize);
 	
 	// Placement du bouton d'ajout d'utilisateur
-	if (nbUser % (NB_MAX_USER / 2) == 0)
+	if (nbUser % (NB_USER_DISPLAYABLE / 2) == 0)
 	{
 		posX = this->width / WIDTH_PIECES;
-		posY = this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * this->height / HEIGHT_PIECES;
+		posY = (nbUser / (NB_USER_DISPLAYABLE / 2)) * (this->height / HEIGHT_PIECES + NB_USER_DISPLAYABLE / 2 * this->height / HEIGHT_PIECES);
 		sizeX = this->width * 3 / WIDTH_PIECES;
 		sizeY = this->height * 3 / HEIGHT_PIECES;
 	}
@@ -241,6 +248,15 @@ void UserList::ShowUserList()
 	this->addUserButton->setGeometry(posX, posY, sizeX, sizeY);
 
 	connect(this->addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked()));
+
+	this->addUserButton->show();
+}
+
+void UserList::UpdateUserlist() 
+{
+	LoadUsers();
+	SetDisplayGeometry();
+	ShowUserList();
 }
 
 void UserList::on_interfaceButton_clicked(int numUser)
@@ -252,13 +268,19 @@ void UserList::on_interfaceButton_clicked(int numUser)
 
 void UserList::on_editButton_clicked(int numUser)
 {
-	userEdits = new EditUser(this->user[numUser]);
+ 	userEdits = new EditUser(this->user[numUser]);
 	userEdits->InitInterface(this->query);
+	connect(this->userEdits, &EditUser::UpdateUsers, [=] {
+		UpdateUserlist();
+	});
 	userEdits->show();
 }
 
 void UserList::on_addButton_clicked()
 {
 	addUser = new AddUser(this->database, this->query);
+	connect(this->addUser, &AddUser::UpdateUsers, [=] {
+		UpdateUserlist();
+	});
 	addUser->show();
 }

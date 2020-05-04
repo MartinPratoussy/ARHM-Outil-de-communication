@@ -77,10 +77,7 @@ void Interface::AddWordToSentence(Pictogram* word)
 
 void Interface::ReadSentence()
 {
-	for each (Pictogram * word in this->sentence)
-	{
-		word->GetSound().PlaySound();
-	}
+	for each (Pictogram * word in this->sentence) word->GetSound().PlaySound();
 }
 
 void Interface::on_firstCategoryButton_clicked()
