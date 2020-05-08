@@ -11,6 +11,7 @@ AddEditUser::AddEditUser(QWidget *parent) :
     connect(ui->validationButton, SIGNAL(released()), this, SLOT(on_validationButton_clicked()));
     connect(ui->photoButton, SIGNAL(released()), this, SLOT(on_photoButton_clicked()));
     connect(ui->deleteButton, SIGNAL(released()), this, SLOT(on_deleteButton_clicked()));
+    connect(ui->cancelButton, SIGNAL(released()), this, SLOT(on_cancelButton_clicked()));
 }
 
 AddEditUser::~AddEditUser()
@@ -43,4 +44,9 @@ void AddEditUser::on_photoButton_clicked()
 void AddEditUser::on_deleteButton_clicked()
 {
     Delete();
+}
+
+void AddEditUser::on_cancelButton_clicked()
+{
+    this->close();
 }

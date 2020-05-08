@@ -38,6 +38,8 @@ private slots:
     void on_photoButton_clicked();
     // Slot du bouton de suppression
     void on_deleteButton_clicked();
+    // Slot du bouton de retour
+    void on_cancelButton_clicked();
 
 protected:
     Ui::AddEditUser *ui;

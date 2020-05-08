@@ -77,7 +77,7 @@ void AddUser::SetPhoto()
 	QFileDialog* fileDialog = new QFileDialog();
 	QString urlPhoto = fileDialog->getOpenFileUrl().url();
 	ui->photoEdit->setText(urlPhoto);
-	ui->icon->setPixmap(QPixmap(ui->photoEdit->text()));
+	ui->icon->setPixmap(/*QPixmap(ui->photoEdit->text())*/QPixmap(".data/images/vache.jpg"));
 	
 	this->isActive = false;
 }

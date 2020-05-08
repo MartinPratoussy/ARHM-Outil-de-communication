@@ -62,6 +62,12 @@ private:
 
     // Interfaces de sélection des pictogrammes
     SelectPicto* selection[4];
+
+    // Booléens empêchant les interfaces SelectPicto de s'afficher deux fois
+    bool isFirstActive = false;
+    bool isSecondActive = false;
+    bool isThirdActive = false;
+    bool isFourthActive = false;
 };
 
 #endif // INTERFACE_H

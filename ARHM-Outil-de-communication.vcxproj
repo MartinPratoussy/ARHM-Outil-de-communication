@@ -250,6 +250,7 @@
     <None Include="android\gradlew.bat" />
     <None Include="android\gradlew" />
     <None Include="android\res\values\libs.xml" />
+    <None Include="Diagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

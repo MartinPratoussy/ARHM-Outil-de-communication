@@ -154,6 +154,7 @@
     <None Include="android\res\values\libs.xml">
       <Filter>Distribution Files</Filter>
     </None>
+    <None Include="Diagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="category.h">

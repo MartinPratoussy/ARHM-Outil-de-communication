@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AddEditUser">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAECAECBIAAAAABAAAAEAAAAAAAAoAAAAAAA=</HashCode>
+      <FileName>addedituser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddUser">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAACAAAAAAAAAAAAAQAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>adduser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Category">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASASIAAIAIAAAAAAAAAAAAAIAAgCgAIACgA=</HashCode>
+      <FileName>category.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pictos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EditUser">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACACAACAAAAAAAAAAAAEAAAAAEAAAAAAAAwA=</HashCode>
+      <FileName>edituser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Interface">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAISAAAEAAAAAAEAABQAABQAAAAEABgAAIAARI=</HashCode>
+      <FileName>interface.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="user" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Pictogram">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACIAIAABAAAAAAAAAAAACAEAAAAAAAAAAAAAoA=</HashCode>
+      <FileName>pictogram.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sound" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SelectPicto">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKACBAABAAECEAQBQAAAAAAAAAAAAgAAAAAIAACAAAA=</HashCode>
+      <FileName>selectpicto.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="category" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Sound">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAEiAAAAGAEAABAAAAAAAAAA=</HashCode>
+      <FileName>sound.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="User">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAABAAAAIAhIAiBBBAAEAAAAAAAAgCAAAAQoAAIAAgA=</HashCode>
+      <FileName>user.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="category" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UserList">
+    <Position X="2.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAIAAAEEEMRAQAAEAAAQAAAAABAAACIIIASAAQA=</HashCode>
+      <FileName>userlist.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="addUser" />
+      <Field Name="userEdits" />
+      <Field Name="user" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="QList&lt;T&gt;" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="QList&lt;T&gt;::value_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="QList&lt;T&gt;::const_pointer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="QList&lt;T&gt;::Iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="QList&lt;T&gt;::size_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="QList&lt;T&gt;::const_reference" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Struct Name="QList&lt;T&gt;::MemoryLayout" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="QList&lt;T&gt;::iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Typedef Name="QList&lt;T&gt;::ConstIterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Struct Name="QList&lt;T&gt;::Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Typedef Name="QList&lt;T&gt;::difference_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="QList&lt;T&gt;::const_reverse_iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="QList&lt;T&gt;::pointer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="QList&lt;T&gt;::reference" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Class Name="QList&lt;T&gt;::const_iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Typedef Name="QList&lt;T&gt;::reverse_iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>GNAgIqEKAjBxgAjBLOGIAQw2AAEACWJAgRngFgBEwlE=</HashCode>
+      <FileName>C:\Qt\5.13.2\msvc2017_64\include\QtCore\qlist.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

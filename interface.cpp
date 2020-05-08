@@ -73,6 +73,11 @@ void Interface::AddWordToSentence(Pictogram* word)
 		default: break;
 		}
 	}
+
+	this->isFirstActive = false;
+	this->isSecondActive = false;
+	this->isThirdActive = false;
+	this->isFourthActive = false;
 }
 
 void Interface::ReadSentence()
@@ -82,44 +87,64 @@ void Interface::ReadSentence()
 
 void Interface::on_firstCategoryButton_clicked()
 {
-	this->selection[0] = new SelectPicto();
-	this->selection[0]->InitiateSelectPicto(this->user->GetCategory()[0]);
-	connect(this->selection[0], SIGNAL(this->selection[0].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+	if (this->isFirstActive == false)
+	{
+		this->selection[0] = new SelectPicto();
+		this->selection[0]->InitiateSelectPicto(this->user->GetCategory()[0]);
+		connect(this->selection[0], SIGNAL(this->selection[0].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
-	Sound m_speech(ui->firstCategoryButton->text());
-	m_speech.PlaySound();
-	this->selection[0]->show();
+		Sound m_speech(ui->firstCategoryButton->text());
+		m_speech.PlaySound();
+		this->selection[0]->show();
+
+		this->isFirstActive = true;
+	}
 }
 
 void Interface::on_secondCategoryButton_clicked()
 {
-	this->selection[1] = new SelectPicto();
-	this->selection[1]->InitiateSelectPicto(this->user->GetCategory()[1]);
-	connect(this->selection[1], SIGNAL(this->selection[1].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+	if (this->isSecondActive == false)
+	{
+		this->selection[1] = new SelectPicto();
+		this->selection[1]->InitiateSelectPicto(this->user->GetCategory()[1]);
+		connect(this->selection[1], SIGNAL(this->selection[1].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
-	Sound m_speech(ui->secondCategoryButton->text());
-	m_speech.PlaySound();
-	this->selection[1]->show();
+		Sound m_speech(ui->secondCategoryButton->text());
+		m_speech.PlaySound();
+		this->selection[1]->show();
+
+		this->isSecondActive == true;
+	}
 }
 
 void Interface::on_thirdCategoryButton_clicked()
 {
-	this->selection[2] = new SelectPicto();
-	this->selection[2]->InitiateSelectPicto(this->user->GetCategory()[2]);
-	connect(this->selection[2], SIGNAL(this->selection[2].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+	if (this->isThirdActive == false)
+	{
+		this->selection[2] = new SelectPicto();
+		this->selection[2]->InitiateSelectPicto(this->user->GetCategory()[2]);
+		connect(this->selection[2], SIGNAL(this->selection[2].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
-	Sound m_speech(ui->thirdCategoryButton->text());
-	m_speech.PlaySound();
-	this->selection[2]->show();
+		Sound m_speech(ui->thirdCategoryButton->text());
+		m_speech.PlaySound();
+		this->selection[2]->show();
+
+		this->isThirdActive = true;
+	}
 }
 
 void Interface::on_fourthCategoryButton_clicked()
 {
-	this->selection[3] = new SelectPicto();
-	this->selection[3]->InitiateSelectPicto(this->user->GetCategory()[3]);
-	connect(this->selection[3], SIGNAL(this->selection[3].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+	if (this->isFourthActive == false)
+	{
+		this->selection[3] = new SelectPicto();
+		this->selection[3]->InitiateSelectPicto(this->user->GetCategory()[3]);
+		connect(this->selection[3], SIGNAL(this->selection[3].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
-	Sound m_speech(ui->fourthCategoryButton->text());
-	m_speech.PlaySound();
-	this->selection[3]->show();
+		Sound m_speech(ui->fourthCategoryButton->text());
+		m_speech.PlaySound();
+		this->selection[3]->show();
+
+		isFourthActive = true;
+	}
 }
