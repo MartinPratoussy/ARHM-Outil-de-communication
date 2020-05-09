@@ -196,7 +196,7 @@ void UserList::ShowUserList()
 
 		// Affichage de la photo de l'utilisateur
 		this->interfaceButton[numUser]->setIcon(*this->user[numUser]->GetPhoto());
-		QSize interfaceiconsize(256, 256);
+		QSize interfaceiconsize(128, 128);
 		this->interfaceButton[numUser]->setIconSize(interfaceiconsize);
 
 		// Affichage de l'icône d'édition

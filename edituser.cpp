@@ -25,12 +25,15 @@ void EditUser::InitInterface(QSqlQuery* query)
 
 void EditUser::SetPhoto()
 {
+	// L'héritage fait que cette méthode est appelée 2 fois, isActive détourne le problème
+	// En contre-partie, le bouton de photo n'est cliquable qu'une seule fois
 	if (!this->isActive) return;
 
 	// Récupère le chemin d'accès dans l'eexplorateur de fichiers
 	QFileDialog* fileDialog = new QFileDialog();
-	QString urlPhoto = fileDialog->getOpenFileUrl().url();
+	QString urlPhoto = fileDialog->getOpenFileName(this, tr("Open Image"), "./data/Images", tr("Imagess Files (*.png *.jpg *)"));
 	ui->photoEdit->setText(urlPhoto);
+	ui->icon->setPixmap(QPixmap(ui->photoEdit->text()));
 
 	this->isActive = false;
 }
@@ -67,6 +70,9 @@ void EditUser::Validate()
 	};
 	this->user->SetCategory(category, this->query);
 
+	// Actualise la liste des utilisateurs
+	emit UpdateUsers();
+
 	// Met à jour la fenêtre principale
 	this->close();
 }
@@ -87,6 +93,7 @@ void EditUser::Delete()
 	for (int i = 0; i < 4; i++)	
 		if (!this->query->exec("DELETE FROM Category WHERE idCategory = " + QString::number(this->user->GetCategory()[i].GetId()) + ";")) qWarning() << "ERROR: category has not been deleted";
 	
+	// Actualise la liste des utilisateurs
 	emit UpdateUsers();
 
 	this->close();

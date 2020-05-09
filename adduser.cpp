@@ -75,9 +75,9 @@ void AddUser::SetPhoto()
 
 	// Récupère le chemin d'accès dans l'explorateur de fichiers
 	QFileDialog* fileDialog = new QFileDialog();
-	QString urlPhoto = fileDialog->getOpenFileUrl().url();
+	QString urlPhoto = fileDialog->getOpenFileName(this, tr("Open Image"), "./data/Images", tr("Imagess Files (*.png *.jpg *)"));
 	ui->photoEdit->setText(urlPhoto);
-	ui->icon->setPixmap(/*QPixmap(ui->photoEdit->text())*/QPixmap(".data/images/vache.jpg"));
+	ui->icon->setPixmap(QPixmap(ui->photoEdit->text()));
 	
 	this->isActive = false;
 }
