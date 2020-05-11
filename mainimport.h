@@ -42,10 +42,12 @@ private slots:
 
 private:
 	Ui::MainImport* ui;
+	
 	//concte a la Db 
 	void connectToDatabase();
-	//récuper les catégorie de l'user
-	void returnCategories();
+	
+	//intialise les catégory
+	void initCategories(QString cat[4],int catId[4]);
 
 	//pointe sur la basse de données
 	QSqlDatabase* database;
@@ -59,10 +61,7 @@ private:
 	QString image = NULL;
 	QString category = NULL;
 
-
-	int idCategory1 = NULL;
-	int idCategory2 = NULL;
-	int idCategory3 = NULL;
-	int idCategory4 = NULL;
+    // contien les réference des catégorys de l'utlisateur
+	int idCategory[4];
 };
 #endif // MAINIMPORT_H

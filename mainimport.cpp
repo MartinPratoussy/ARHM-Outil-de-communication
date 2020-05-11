@@ -7,6 +7,17 @@ MainImport::MainImport(QWidget *parent)
 {
     ui->setupUi(this);
 	connectToDatabase();
+
+	/*************************************[Teste a Supruimer]*************************************/
+	QString cate[4];
+	int cateId[4];
+	cate[0] = "object", cate[1] = "Perssone", cate[2] = "je veux", cate[3] = "je suis";
+	for (int i = 0; i < 4; i++)
+	{
+		cateId[i] = i + 1;
+	}
+	initCategories(cate, cateId);
+	/*********************************************************************************************/
 	
 }
 
@@ -34,20 +45,20 @@ void MainImport::connectToDatabase()
 	
 }
 
-void MainImport::returnCategories()
+void MainImport::initCategories(QString cat[4], int catId[4])
 {
-
-	ui->rBCat1->setText("Object");
-	ui->rBCat2->setText("Persone");
-	ui->rBCat3->setText("Action");
-	ui->rBCat4->setText("Interaction");
+	for (int i = 0; i < 4; i++) {
+		idCategory[i] = catId[i];
+	}
+	ui->rBCat1->setText(cat[0]);
+	ui->rBCat2->setText(cat[1]);
+	ui->rBCat3->setText(cat[2]);
+	ui->rBCat4->setText(cat[3]);
 }
 
 void MainImport::on_bPValide_clicked()
 {
-	int idPicto(NULL);
-	int *idCategory(NULL);
-	
+	int idPicto = NULL;
 	nom = ui->nomSql->toPlainText();
 	enLecture = ui->lectureSql->toPlainText();
 	image = ui->imageSql->toPlainText();
@@ -62,21 +73,22 @@ void MainImport::on_bPValide_clicked()
 	while (this->query->next()) idPicto = this->query->value(0).toInt();
 	
 	if (ui->rBCat1->isChecked()) {
-		/*if (!query->exec("INSERT INTO Pictogram_Category (pictogram,category)" 
-			"VALUES ('"+idPicto+"','6')")) qWarning() << "ERROR: " << database->lastError().text();*/
+		if (!query->exec("INSERT INTO Pictogram_Category (pictogram,category)" 
+			"VALUES ('"+QString::number(idPicto)+"','"+QString::number(idCategory[0])+"')")) qWarning() << "ERROR: " << database->lastError().text();
 	} 
 	else if (ui->rBCat2->isChecked()) {
-
+		if (!query->exec("INSERT INTO Pictogram_Category (pictogram,category)"
+			"VALUES ('" + QString::number(idPicto) + "','" + QString::number(idCategory[1]) + "')")) qWarning() << "ERROR: " << database->lastError().text();
 	}
 	else if (ui->rBCat3->isChecked()) {
-
+		if (!query->exec("INSERT INTO Pictogram_Category (pictogram,category)"
+			"VALUES ('" + QString::number(idPicto) + "','" + QString::number(idCategory[2]) + "')")) qWarning() << "ERROR: " << database->lastError().text();
 	}
 	else if (ui->rBCat4->isChecked()) {
-
+		if (!query->exec("INSERT INTO Pictogram_Category (pictogram,category)"
+			"VALUES ('" + QString::number(idPicto) + "','" + QString::number(idCategory[3]) + "')")) qWarning() << "ERROR: " << database->lastError().text();
 	}
 
-	
-	
 }
 
 

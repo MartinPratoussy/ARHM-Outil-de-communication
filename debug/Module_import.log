@@ -1,3 +1,5 @@
-﻿  mainimport.cpp
-F:\ProjetEnDev\ARHM\import\Module_import\mainimport.cpp(48,6): warning C4189: 'idCategory' : variable locale initialisée mais non référencée
+﻿  Moc'ing mainimport.h...
+  main.cpp
+  mainimport.cpp
+  moc_mainimport.cpp
   Module_import.vcxproj -> F:\ProjetEnDev\ARHM\import\Module_import\debug\Module_import.exe
