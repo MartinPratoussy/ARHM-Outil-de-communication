@@ -38,7 +38,6 @@ void UserList::LoadUsers()
 	// Récupère les utilisateurs dans la base de données
 	if (!query->exec("SELECT idUser FROM \"User\" ORDER BY firstname")) qWarning() << "ERROR: idUser not found";
 
-	this->nbUser = 0;
 	this->usersId.clear();
 	// Tant qu'il y a des utilisateurs, le nombre d'utilisateur s'incrémente
 	while (query->next()) {
@@ -139,7 +138,7 @@ void UserList::ShowUserList()
 
 			// Affichage de la photo de l'utilisateur
 			this->interfaceButton[numUser]->setIcon(*this->user[numUser]->GetPhoto());
-			QSize interfaceiconsize(128, 128);
+			QSize interfaceiconsize(256, 256);
 			this->interfaceButton[numUser]->setIconSize(interfaceiconsize);
 
 			// Affichage de l'icône d'édition
@@ -170,7 +169,12 @@ void UserList::ShowUserList()
 		numUser = i + (nbUser / (NB_USER_DISPLAYABLE / 2)) * (NB_USER_DISPLAYABLE / 2);
 
 		// Crée les boutons d'accès aux interfaces utilisateurs
-		interfaceButton[numUser] = new QPushButton(content);
+		interfaceButton[numUser] = CreateQPushButtonWithWordWrap(
+			content,
+			this->user[numUser]->GetFirstname()
+			+ " "
+			+ this->user[numUser]->GetLastname());
+
 		// Crée les boutons d'accès aux interfaces d'édition
 		editButton[numUser] = new QPushButton(content);
 
@@ -185,14 +189,6 @@ void UserList::ShowUserList()
 			posY + this->height * 3 / HEIGHT_PIECES,
 			this->width / (WIDTH_PIECES + 1),
 			this->height / (WIDTH_PIECES + 1));
-
-		// Affiche le texte du bouton
-		QFont font("MS Shell Dlg 2", 24);
-		this->interfaceButton[numUser]->setFont(font);
-		this->interfaceButton[numUser]->setText(
-			this->user[numUser]->GetFirstname()
-			+ " "
-			+ this->user[numUser]->GetLastname());
 
 		// Affichage de la photo de l'utilisateur
 		this->interfaceButton[numUser]->setIcon(*this->user[numUser]->GetPhoto());
@@ -250,6 +246,25 @@ void UserList::ShowUserList()
 	connect(this->addUserButton, SIGNAL(released()), this, SLOT(on_addButton_clicked()));
 
 	this->addUserButton->show();
+}
+
+QPushButton* UserList::CreateQPushButtonWithWordWrap(QWidget* parent, const QString& text)
+{
+	// Crée un nouveau bouton
+	auto button = new QPushButton(parent);
+
+	// Crée un label qui ne dépassera pas la taille du bouton
+	auto label = new QLabel(text, button);
+	QFont font("MS Shell Dlg 2", 24);
+	label->setFont(font);
+	label->setWordWrap(true);
+
+	// Défini l'ancrage du label dans le bouton
+	auto layout = new QHBoxLayout(button);
+	layout->addWidget(label, 0, Qt::AlignBottom);
+
+	// Retourne le bouton
+	return button;
 }
 
 void UserList::UpdateUserlist() 

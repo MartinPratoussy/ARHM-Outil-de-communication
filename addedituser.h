@@ -8,6 +8,7 @@
 #include <QFileDialog>
 
 #include "interface.h"
+#include "import.h"
 
 namespace Ui {
 class AddEditUser;
@@ -36,6 +37,8 @@ private slots:
     void on_validationButton_clicked();
     // Slot du bouton de photo
     void on_photoButton_clicked();
+    // Slot du bouton d'importation de contenu
+    void on_importButton_clicked();
     // Slot du bouton de suppression
     void on_deleteButton_clicked();
     // Slot du bouton de retour
@@ -49,6 +52,12 @@ protected:
 
     // Pointeur de la requête SQL
     QSqlQuery* query;
+
+    // Fenêtre d'importation de contenu
+    Import* importContent;
+
+    // Utilisateur concerné par l'édition
+    User* user;
 
     // Variable permettant de contourner le problème des méthodes qui s'exécutent 2 fois
     bool isActive = true;

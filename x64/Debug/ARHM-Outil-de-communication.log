@@ -1,4 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ARHM-Outil-de-communication.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ARHM-Outil-de-communication.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
-  edituser.cpp
+  import.cpp
   ARHM-Outil-de-communication.vcxproj -> D:\Documents\Dossier Martin\BTS SNIR\2e année\Informatique et réseaux\Projet\Application Qt\ARHM-Outil-de-communication\debug\ARHM-Outil-de-communication.exe

@@ -80,6 +80,9 @@
     <ClCompile Include="category.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="import.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="addedituser.h">
@@ -109,6 +112,9 @@
     <QtMoc Include="userlist.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="import.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -129,6 +135,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="userlist.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="import.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

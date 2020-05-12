@@ -41,6 +41,13 @@ void AddEditUser::on_photoButton_clicked()
     SetPhoto();
 }
 
+void AddEditUser::on_importButton_clicked()
+{
+    importContent = new Import();
+    importContent->InitImport(this->user, this->query);
+    importContent->show();
+}
+
 void AddEditUser::on_deleteButton_clicked()
 {
     Delete();

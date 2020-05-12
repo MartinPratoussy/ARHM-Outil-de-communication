@@ -23,11 +23,6 @@ public:
     // Supprime l'utilisateur ainsi que tous ses composants
     void Delete();
 
-private:
-
-    // Utilisateur concerné par l'édition
-    User* user;
-
 };
 
 #endif EDITUSER_H

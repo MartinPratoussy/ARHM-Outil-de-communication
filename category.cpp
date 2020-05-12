@@ -41,9 +41,14 @@ void Category::InitiateCategory(QSqlQuery* query, int id, QString text)
 			) qWarning() << "ERROR: no urlSound found for pictogram " + value;
 		while (query->next()) urlSound = query->value("urlSound").toString();
 
-		//Conversion des QString en QPixmap et en Sound
-		QPixmap image(urlImage);
-		Sound sound(definition, urlSound);
+		// Si un son est présent dans la bdd, il est récupéré
+		Sound* sound;
+		if (urlSound.size() != 0) sound = new Sound(definition, urlSound);
+		// Sinon, il ne l'est pas
+		else sound = new Sound(definition);
+
+		// Crée une icône à partir de l'url  de l'image
+		QIcon* image = new QIcon(urlImage);
 
 		// Création de l'objet Pictogram
 		this->pictos.append(new Pictogram(definition, image, sound));

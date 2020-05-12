@@ -6,6 +6,8 @@
 
 #include <QMainWindow>
 
+#include <QBoxLayout>
+
 #include "edituser.h"
 #include "adduser.h"
 
@@ -83,6 +85,10 @@ private:
     void SetDisplayGeometry();
     // Affiche la liste des utilisateurs sous forme boutons vers leur interface
     void ShowUserList();
+
+    // Méthode pour activer le wrapping sur un bouton, trouvée sur StackOverflow : 
+    // https://stackoverflow.com/questions/8969086/is-there-a-way-to-enable-word-wrapping-of-text-on-some-simple-widgets-like-qpush
+    QPushButton* CreateQPushButtonWithWordWrap(QWidget* parent, const QString& text);
 };
 
 #endif // USERLIST_H

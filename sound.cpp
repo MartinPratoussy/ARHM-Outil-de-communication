@@ -12,6 +12,7 @@ Sound::Sound(QString definition)
 Sound::Sound(QString definition, QString urlSound)
 {
     this->definition = definition;
+    this->isSynthetic = false;
     sound = new QMediaPlayer;
     sound->setMedia(QUrl::fromLocalFile(urlSound));
 }

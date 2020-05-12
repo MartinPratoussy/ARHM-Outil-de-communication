@@ -7,8 +7,6 @@
 #include <QString>
 // Format de date de Qt
 #include <QDate>
-// Format d'image pour les boutons
-#include <QIcon>
 
 #include "category.h"
 

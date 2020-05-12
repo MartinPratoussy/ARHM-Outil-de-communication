@@ -42,6 +42,7 @@ public:
     QLineEdit *firstnameEdit;
     QPushButton *photoButton;
     QLineEdit *photoEdit;
+    QPushButton *importButton;
 
     void setupUi(QWidget *AddEditUser)
     {
@@ -74,7 +75,7 @@ public:
         birtDateLabel->setFont(font1);
         validationButton = new QPushButton(AddEditUser);
         validationButton->setObjectName(QString::fromUtf8("validationButton"));
-        validationButton->setGeometry(QRect(100, 850, 231, 71));
+        validationButton->setGeometry(QRect(90, 790, 231, 71));
         QFont font2;
         font2.setPointSize(30);
         validationButton->setFont(font2);
@@ -82,7 +83,7 @@ public:
 "color: rgb(255, 255, 255);"));
         cancelButton = new QPushButton(AddEditUser);
         cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
-        cancelButton->setGeometry(QRect(440, 850, 231, 71));
+        cancelButton->setGeometry(QRect(430, 790, 231, 71));
         cancelButton->setFont(font2);
         cancelButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 0, 4);\n"
 "color: rgb(255, 255, 255);"));
@@ -150,6 +151,12 @@ public:
         photoEdit->setObjectName(QString::fromUtf8("photoEdit"));
         photoEdit->setGeometry(QRect(150, 720, 461, 41));
         photoEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        importButton = new QPushButton(AddEditUser);
+        importButton->setObjectName(QString::fromUtf8("importButton"));
+        importButton->setGeometry(QRect(190, 900, 381, 41));
+        importButton->setFont(font3);
+        importButton->setStyleSheet(QString::fromUtf8("background-color: rgb(208, 208, 208);\n"
+""));
         birthDateEdit->raise();
         lastnameLabel->raise();
         firstnameLabe->raise();
@@ -168,6 +175,7 @@ public:
         icon->raise();
         photoButton->raise();
         photoEdit->raise();
+        importButton->raise();
 
         retranslateUi(AddEditUser);
 
@@ -196,6 +204,7 @@ public:
         lastnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrez le nom de l'utilisateur ici", nullptr));
         firstnameEdit->setPlaceholderText(QCoreApplication::translate("AddEditUser", "Entrez le pr\303\251nom de l'utilisateur ici", nullptr));
         photoButton->setText(QString());
+        importButton->setText(QCoreApplication::translate("AddEditUser", "Ajouter des pictogrammes", nullptr));
     } // retranslateUi
 
 };

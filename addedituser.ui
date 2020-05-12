@@ -97,8 +97,8 @@
   <widget class="QPushButton" name="validationButton">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>850</y>
+     <x>90</x>
+     <y>790</y>
      <width>231</width>
      <height>71</height>
     </rect>
@@ -119,8 +119,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>850</y>
+     <x>430</x>
+     <y>790</y>
      <width>231</width>
      <height>71</height>
     </rect>
@@ -388,6 +388,28 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="importButton">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>900</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(208, 208, 208);
+</string>
+   </property>
+   <property name="text">
+    <string>Ajouter des pictogrammes</string>
+   </property>
+  </widget>
   <zorder>birthDateEdit</zorder>
   <zorder>lastnameLabel</zorder>
   <zorder>firstnameLabe</zorder>
@@ -406,6 +428,7 @@ color: rgb(255, 255, 255);</string>
   <zorder>icon</zorder>
   <zorder>photoButton</zorder>
   <zorder>photoEdit</zorder>
+  <zorder>importButton</zorder>
  </widget>
  <resources/>
  <connections/>

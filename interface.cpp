@@ -44,7 +44,14 @@ void Interface::Cancel()
 	// Vérifie si la phrase est vide et si non, le dernier mot est supprimé
 	if (!this->sentence.isEmpty()) this->sentence.removeLast();
 	ui->progressBar->setValue(100 * sentence.count() / 3);
-	this->update();
+
+	switch (this->sentence.count())
+	{
+	case 1: ui->firstPictoLabel->setText(""); break;
+	case 2: ui->secondPictoLabel->setText(""); break;
+	case 3: ui->thirdPictoLabel->setText(""); break;
+	default: break;
+	}
 }
 
 User* Interface::GetUser()
@@ -82,7 +89,7 @@ void Interface::AddWordToSentence(Pictogram* word)
 
 void Interface::ReadSentence()
 {
-	for each (Pictogram * word in this->sentence) word->GetSound().PlaySound();
+	for each (Pictogram * word in this->sentence) word->GetSound()->PlaySound();
 }
 
 void Interface::on_firstCategoryButton_clicked()
@@ -91,7 +98,7 @@ void Interface::on_firstCategoryButton_clicked()
 	{
 		this->selection[0] = new SelectPicto();
 		this->selection[0]->InitiateSelectPicto(this->user->GetCategory()[0]);
-		connect(this->selection[0], SIGNAL(this->selection[0].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+		connect(this->selection[0], SIGNAL(this->selection[0]->PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
 		Sound m_speech(ui->firstCategoryButton->text());
 		m_speech.PlaySound();
@@ -107,7 +114,7 @@ void Interface::on_secondCategoryButton_clicked()
 	{
 		this->selection[1] = new SelectPicto();
 		this->selection[1]->InitiateSelectPicto(this->user->GetCategory()[1]);
-		connect(this->selection[1], SIGNAL(this->selection[1].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+		connect(this->selection[1], SIGNAL(this->selection[1]->PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
 		Sound m_speech(ui->secondCategoryButton->text());
 		m_speech.PlaySound();
@@ -123,7 +130,7 @@ void Interface::on_thirdCategoryButton_clicked()
 	{
 		this->selection[2] = new SelectPicto();
 		this->selection[2]->InitiateSelectPicto(this->user->GetCategory()[2]);
-		connect(this->selection[2], SIGNAL(this->selection[2].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+		connect(this->selection[2], SIGNAL(this->selection[2]->PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
 		Sound m_speech(ui->thirdCategoryButton->text());
 		m_speech.PlaySound();
@@ -139,7 +146,7 @@ void Interface::on_fourthCategoryButton_clicked()
 	{
 		this->selection[3] = new SelectPicto();
 		this->selection[3]->InitiateSelectPicto(this->user->GetCategory()[3]);
-		connect(this->selection[3], SIGNAL(this->selection[3].PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
+		connect(this->selection[3], SIGNAL(this->selection[3]->PictoSelected(Pictogram*)), this, SLOT(AddWordToSentence(Pictogram*)));
 
 		Sound m_speech(ui->fourthCategoryButton->text());
 		m_speech.PlaySound();

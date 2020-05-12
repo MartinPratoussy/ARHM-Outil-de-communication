@@ -1,8 +1,8 @@
 #ifndef PICTOGRAM_H
 #define PICTOGRAM_H
 
-// Permet de charger des images
-#include <QPixmap>
+// Format d'image pour les boutons
+#include <QIcon>
 
 #include "sound.h"
 
@@ -13,22 +13,22 @@ private:
     QString definition;
 
     // Image Makaton du pictogramme
-    QPixmap picture;
+    QIcon* picture;
 
     // Son à jouer lors de l'appui sur le bouton
-    Sound sound;
+    Sound* sound;
 
 public:
     Pictogram();
 
-    Pictogram(QString definition, QPixmap picture, Sound sound);
+    Pictogram(QString definition, QIcon* picture, Sound* sound);
 
     ~Pictogram();
 
     // Getters des attributs privés
     QString GetDefinition();
-    QPixmap GetPicture();
-    Sound GetSound();
+    QIcon* GetPicture();
+    Sound* GetSound();
 };
 
 #endif // PICTOGRAM_H

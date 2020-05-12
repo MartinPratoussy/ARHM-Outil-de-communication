@@ -190,6 +190,7 @@
     <ClCompile Include="adduser.cpp" />
     <ClCompile Include="category.cpp" />
     <ClCompile Include="edituser.cpp" />
+    <ClCompile Include="import.cpp" />
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pictogram.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="edituser.h" />
     <QtMoc Include="interface.h">
     </QtMoc>
+    <QtMoc Include="import.h" />
     <ClInclude Include="pictogram.h" />
     <QtMoc Include="selectpicto.h">
     </QtMoc>
@@ -235,6 +237,7 @@
   <ItemGroup>
     <QtUic Include="addedituser.ui">
     </QtUic>
+    <QtUic Include="import.ui" />
     <QtUic Include="interface.ui">
     </QtUic>
     <QtUic Include="selectpicto.ui">

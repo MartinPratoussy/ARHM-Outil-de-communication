@@ -4,7 +4,7 @@ Pictogram::Pictogram()
 {
 }
 
-Pictogram::Pictogram(QString definition, QPixmap picture, Sound sound)
+Pictogram::Pictogram(QString definition, QIcon* picture, Sound* sound)
 {
     this->definition = definition;
     this->picture = picture;
@@ -20,12 +20,12 @@ QString Pictogram::GetDefinition()
     return this->definition;
 }
 
-QPixmap Pictogram::GetPicture()
+QIcon* Pictogram::GetPicture()
 {
     return this->picture;
 }
 
-Sound Pictogram::GetSound()
+Sound* Pictogram::GetSound()
 {
     return this->sound;
 }

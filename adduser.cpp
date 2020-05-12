@@ -6,6 +6,7 @@ AddUser::AddUser(QSqlDatabase* database, QSqlQuery* query)
 	this->database = database;
 	this->query = query;
 	ui->deleteButton->hide();
+	ui->importButton->hide();
 }
 
 void AddUser::Validate()

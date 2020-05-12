@@ -64,7 +64,12 @@ void SelectPicto::DisplayPictograms()
 	int numPicto = 0;
 	for each (Pictogram* picto in this->category.GetPicto()) 
 	{
-		this->pictoChose[numPicto]->setIcon(picto->GetPicture());
+		QPushButton* button = new QPushButton(content);
+		button->setIcon(*picto->GetPicture());
+		QSize size(128, 128);
+		button->setIconSize(size);
+		this->pictoChose.append(button);
+
 		numPicto++;
 	}
 	this->nbPicto = numPicto;
@@ -79,10 +84,10 @@ void SelectPicto::DisplayPictograms()
 		{
 			numPicto = numPictoX + (NB_PICTO_DISPLAYABLE / 2) * numPictoY;
 
-			posX = this->width / (WIDTH_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * numPictoX * this->width / (WIDTH_PIECES * 4);
-			posY = this->height / (HEIGHT_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * numPictoY * this->height / (HEIGHT_PIECES * 4);
-			sizeX = this->width * 3 / (WIDTH_PIECES * 4);
-			sizeY = this->height * 3 / (HEIGHT_PIECES * 4);
+			posX = this->width / (WIDTH_PIECES * 2) + (NB_PICTO_DISPLAYABLE / 2) * numPictoX * this->width / (WIDTH_PIECES * 2);
+			posY = this->height / (HEIGHT_PIECES * 2) + (NB_PICTO_DISPLAYABLE / 2) * numPictoY * this->height / (HEIGHT_PIECES * 2);
+			sizeX = this->width * 3 / (WIDTH_PIECES * 2);
+			sizeY = this->height * 3 / (HEIGHT_PIECES * 2);
 
 			this->pictoChose[numPicto]->setGeometry(posX, posY, sizeX, sizeY);
 		}
@@ -92,10 +97,10 @@ void SelectPicto::DisplayPictograms()
 	{
 		numPicto = i + (nbPicto / (NB_PICTO_DISPLAYABLE / 2)) * (NB_PICTO_DISPLAYABLE / 2);
 
-		posX = this->width / (WIDTH_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * i * this->width / (WIDTH_PIECES * 4);
-		posY = this->height / (HEIGHT_PIECES * 4) + (NB_PICTO_DISPLAYABLE / 2) * (2 * nbPicto / NB_PICTO_DISPLAYABLE) * (this->height / (HEIGHT_PIECES * 4));
-		sizeX = this->width * 3 / (WIDTH_PIECES * 4);
-		sizeY = this->height * 3 / (HEIGHT_PIECES * 4);
+		posX = this->width / (WIDTH_PIECES * 2) + (NB_PICTO_DISPLAYABLE / 2) * i * this->width / (WIDTH_PIECES * 2);
+		posY = this->height / (HEIGHT_PIECES * 2) + (NB_PICTO_DISPLAYABLE / 2) * (2 * nbPicto / NB_PICTO_DISPLAYABLE) * (this->height / (HEIGHT_PIECES * 2));
+		sizeX = this->width * 3 / (WIDTH_PIECES * 2);
+		sizeY = this->height * 3 / (HEIGHT_PIECES * 2);
 
 		this->pictoChose[numPicto]->setGeometry(posX, posY, sizeX, sizeY);
 	}
@@ -112,7 +117,7 @@ void SelectPicto::DisplayPictograms()
 
 void SelectPicto::on_pictoButton_clicked(int numPicto)
 {
-	this->category.GetPicto()[numPicto]->GetSound().PlaySound();
+	this->category.GetPicto()[numPicto]->GetSound()->PlaySound();
 	emit PictoSelected(this->category.GetPicto()[numPicto]);
 	this->close();
 }
