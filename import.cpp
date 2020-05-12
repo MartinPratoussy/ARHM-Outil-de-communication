@@ -106,6 +106,7 @@ void Import::SetDisplayGeometry()
 
     categoryGroupBox = new QGroupBox(this);
     categoryGroupBox->setObjectName(QString::fromUtf8("categoryGroupBox"));
+    categoryGroupBox->setTitle("Categorie");
     categoryGroupBox->setGeometry(QRect(860, 150, 621, 371));
     categoryGroupBox->setStyleSheet(QString::fromUtf8("background-color: rgb(206, 206, 206);"));
 
@@ -144,22 +145,26 @@ void Import::SetDisplayGeometry()
 
     pictoGroupBox = new QGroupBox(this);
     pictoGroupBox->setObjectName(QString::fromUtf8("pictoGroupBox"));
+    pictoGroupBox->setTitle("Pictogramme");
     pictoGroupBox->setGeometry(QRect(470, 640, 911, 371));
     pictoGroupBox->setStyleSheet(QString::fromUtf8("background-color: rgb(206, 206, 206);"));
     
     definitionEdit = new QLineEdit(pictoGroupBox);
     definitionEdit->setObjectName(QString::fromUtf8("definitionEdit"));
     definitionEdit->setGeometry(QRect(110, 70, 691, 31));
+    definitionEdit->setPlaceholderText("Définissez le texte du pictogramme");
     definitionEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
    
     urlSoundEdit = new QLineEdit(pictoGroupBox);
     urlSoundEdit->setObjectName(QString::fromUtf8("urlsoundEdit"));
     urlSoundEdit->setGeometry(QRect(110, 230, 631, 31));
+    urlSoundEdit->setPlaceholderText("Selectionnez un son (non obligatoire)");
     urlSoundEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
    
     urlImageEdit = new QLineEdit(pictoGroupBox);
     urlImageEdit->setObjectName(QString::fromUtf8("urlImageEdit"));
     urlImageEdit->setGeometry(QRect(110, 150, 631, 31));
+    urlImageEdit->setPlaceholderText("Selectionnez une image");
     urlImageEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
     
     urlImageButton = new QPushButton(pictoGroupBox);
@@ -194,13 +199,16 @@ void Import::SetDisplayGeometry()
     
     defLabel = new QLabel(pictoGroupBox);
     defLabel->setObjectName(QString::fromUtf8("defLabel"));
+    defLabel->setText("Definiton");
     defLabel->setGeometry(QRect(110, 50, 61, 16));
     
     pictoLabel = new QLabel(pictoGroupBox);
     pictoLabel->setObjectName(QString::fromUtf8("pictoLabel"));
+    pictoLabel->setText("Image");
     pictoLabel->setGeometry(QRect(110, 130, 81, 16));
     
     soundLabel = new QLabel(pictoGroupBox);
     soundLabel->setObjectName(QString::fromUtf8("soundLabel"));
+    soundLabel->setText("Son");
     soundLabel->setGeometry(QRect(110, 210, 47, 13));
 }
