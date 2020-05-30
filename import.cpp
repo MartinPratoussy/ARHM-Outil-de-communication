@@ -35,7 +35,7 @@ void Import::InitImport(User* user, QSqlQuery* query)
 
 void Import::on_imageButton_clicked()
 {
-    // Récupère le chemin d'accès dans l'explorateur de fichiers
+    // RÃ©cupÃ¨re le chemin d'accÃ¨s dans l'explorateur de fichiers
     QFileDialog* fileDialog = new QFileDialog();
     QString urlImage = fileDialog->getOpenFileName(this, tr("Open Image"), "./data/Images", tr("Imagess Files (*.png *.jpg *)"));
     urlImageEdit->setText(urlImage);
@@ -44,7 +44,7 @@ void Import::on_imageButton_clicked()
 
 void Import::on_soundButton_clicked()
 {
-    // Récupère le chemin d'accès dans l'explorateur de fichiers
+    // RÃ©cupÃ¨re le chemin d'accÃ¨s dans l'explorateur de fichiers
     QFileDialog* fileDialog = new QFileDialog();
     QString urlSound = fileDialog->getOpenFileName(this, tr("Open Sound"), "./data/Sounds", tr("Imagess Files (*.mp3 *.wav *)"));
     urlSoundEdit->setText(urlSound);
@@ -65,11 +65,11 @@ void Import::on_validationButton_clicked()
     if(definitionEdit->text().isEmpty()
         || urlImageEdit->text().isEmpty()) return;
 
-    //enregistre dans la Basse de Donnée le pictograme 
+    //enregistre dans la Basse de DonnÃ©e le pictograme 
     if (!query->exec("INSERT INTO Pictogram (definition, urlImage, urlSound)"
-        "VALUES ('" + definition + "','" + urlImage + "','" + urlSound + "');")) qWarning() << "ERROR: Le pictogramme n'a pas été ajouté";
+        "VALUES ('" + definition + "','" + urlImage + "','" + urlSound + "');")) qWarning() << "ERROR: Le pictogramme n'a pas Ã©tÃ© ajoutÃ©";
 
-    //Récuper le dernier pictograme enregister dans la Base de Donnée
+    //RÃ©cuper le dernier pictograme enregister dans la Base de DonnÃ©e
     if (!query->exec("SELECT idPictogram FROM Pictogram ORDER BY idPictogram DESC LIMIT 1;")) qWarning() << "ERROR: ";
     while (this->query->next()) idPicto = this->query->value(0).toInt();
 
@@ -101,19 +101,20 @@ void Import::on_cancelButton_clicked()
 void Import::SetDisplayGeometry()
 {
     ////////////////////////////////////////////////////////////////////////////////////
-    // Bug avec le designer donc les composants fixes doivent être déclarés à la main //
+    // Bug avec le designer donc les composants fixes doivent Ãªtre dÃ©clarÃ©s Ã  la main //
     ////////////////////////////////////////////////////////////////////////////////////
 
     categoryGroupBox = new QGroupBox(this);
     categoryGroupBox->setObjectName(QString::fromUtf8("categoryGroupBox"));
-    categoryGroupBox->setTitle("Categorie");
+    QFont font("MS Shell Dlg 2", 28, 1, 0);
+    categoryGroupBox->setFont(font);
+    categoryGroupBox->setTitle(QString::fromUtf8("Categories"));
     categoryGroupBox->setGeometry(QRect(860, 150, 621, 371));
     categoryGroupBox->setStyleSheet(QString::fromUtf8("background-color: rgb(206, 206, 206);"));
 
     firstCategoryRadioButton = new QRadioButton(categoryGroupBox);
     firstCategoryRadioButton->setObjectName(QString::fromUtf8("firstCategoryRadioButton"));
     firstCategoryRadioButton->setGeometry(QRect(60, 80, 201, 51));
-    QFont font;
     font.setPointSize(24);
     firstCategoryRadioButton->setFont(font);
 
@@ -145,6 +146,7 @@ void Import::SetDisplayGeometry()
 
     pictoGroupBox = new QGroupBox(this);
     pictoGroupBox->setObjectName(QString::fromUtf8("pictoGroupBox"));
+    pictoGroupBox->setFont(font);
     pictoGroupBox->setTitle("Pictogramme");
     pictoGroupBox->setGeometry(QRect(470, 640, 911, 371));
     pictoGroupBox->setStyleSheet(QString::fromUtf8("background-color: rgb(206, 206, 206);"));
@@ -152,18 +154,22 @@ void Import::SetDisplayGeometry()
     definitionEdit = new QLineEdit(pictoGroupBox);
     definitionEdit->setObjectName(QString::fromUtf8("definitionEdit"));
     definitionEdit->setGeometry(QRect(110, 70, 691, 31));
-    definitionEdit->setPlaceholderText("Définissez le texte du pictogramme");
+    font.setPointSize(16);
+    definitionEdit->setFont(font);
+    definitionEdit->setPlaceholderText("Definissez le texte du pictogramme");
     definitionEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
    
     urlSoundEdit = new QLineEdit(pictoGroupBox);
     urlSoundEdit->setObjectName(QString::fromUtf8("urlsoundEdit"));
     urlSoundEdit->setGeometry(QRect(110, 230, 631, 31));
+    urlSoundEdit->setFont(font);
     urlSoundEdit->setPlaceholderText("Selectionnez un son (non obligatoire)");
     urlSoundEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
    
     urlImageEdit = new QLineEdit(pictoGroupBox);
     urlImageEdit->setObjectName(QString::fromUtf8("urlImageEdit"));
     urlImageEdit->setGeometry(QRect(110, 150, 631, 31));
+    urlImageEdit->setFont(font);
     urlImageEdit->setPlaceholderText("Selectionnez une image");
     urlImageEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
     
@@ -184,31 +190,34 @@ void Import::SetDisplayGeometry()
     validateButton = new QPushButton(pictoGroupBox);
     validateButton->setObjectName(QString::fromUtf8("validateButton"));
     validateButton->setGeometry(QRect(490, 290, 141, 51));
-    QFont font1;
-    font1.setPointSize(12);
-    validateButton->setFont(font1);
+    font.setPointSize(24);
+    validateButton->setFont(font);
     validateButton->setText("Valider");
-    validateButton->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 255, 0);"));
+    validateButton->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 255, 0);\ncolor: rgb(255, 255, 255);"));
     
     cancelButton = new QPushButton(pictoGroupBox);
     cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
     cancelButton->setGeometry(QRect(280, 290, 141, 51));
-    cancelButton->setFont(font1);
+    cancelButton->setFont(font);
     cancelButton->setText("Annuler");
-    cancelButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 0, 0);"));
+    cancelButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 0, 0);\ncolor: rgb(255, 255, 255);"));
     
     defLabel = new QLabel(pictoGroupBox);
     defLabel->setObjectName(QString::fromUtf8("defLabel"));
+    font.setPointSize(18);
+    defLabel->setFont(font);
     defLabel->setText("Definiton");
-    defLabel->setGeometry(QRect(110, 50, 61, 16));
+    defLabel->setGeometry(QRect(110, 45, 100, 20));
     
     pictoLabel = new QLabel(pictoGroupBox);
     pictoLabel->setObjectName(QString::fromUtf8("pictoLabel"));
+    pictoLabel->setFont(font);
     pictoLabel->setText("Image");
-    pictoLabel->setGeometry(QRect(110, 130, 81, 16));
+    pictoLabel->setGeometry(QRect(110, 125, 100, 20));
     
     soundLabel = new QLabel(pictoGroupBox);
     soundLabel->setObjectName(QString::fromUtf8("soundLabel"));
+    soundLabel->setFont(font);
     soundLabel->setText("Son");
-    soundLabel->setGeometry(QRect(110, 210, 47, 13));
+    soundLabel->setGeometry(QRect(110, 205, 100, 20));
 }
