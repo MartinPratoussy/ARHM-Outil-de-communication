@@ -205,9 +205,10 @@
     <ClInclude Include="adduser.h" />
     <ClInclude Include="category.h" />
     <ClInclude Include="edituser.h" />
+    <QtMoc Include="import.h">
+    </QtMoc>
     <QtMoc Include="interface.h">
     </QtMoc>
-    <QtMoc Include="import.h" />
     <ClInclude Include="pictogram.h" />
     <QtMoc Include="selectpicto.h">
     </QtMoc>
@@ -237,7 +238,8 @@
   <ItemGroup>
     <QtUic Include="addedituser.ui">
     </QtUic>
-    <QtUic Include="import.ui" />
+    <QtUic Include="import.ui">
+    </QtUic>
     <QtUic Include="interface.ui">
     </QtUic>
     <QtUic Include="selectpicto.ui">

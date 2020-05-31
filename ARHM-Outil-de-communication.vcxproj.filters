@@ -53,7 +53,13 @@
     <ClCompile Include="adduser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="category.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="edituser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="import.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="interface.cpp">
@@ -77,12 +83,6 @@
     <ClCompile Include="userlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="category.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="import.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="addedituser.h">
@@ -91,9 +91,15 @@
     <ClInclude Include="adduser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="category.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="edituser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <QtMoc Include="import.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="interface.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -112,20 +118,35 @@
     <QtMoc Include="userlist.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="import.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    
+    
+    
+    
+    
+    
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="addedituser.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="import.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="interface.ui">
@@ -135,9 +156,6 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="userlist.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="import.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -163,10 +181,5 @@
     <None Include="android\res\values\libs.xml">
       <Filter>Distribution Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="category.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
