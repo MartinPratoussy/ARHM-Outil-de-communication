@@ -30,7 +30,9 @@ CONFIG += c++11
 SOURCES += \
         addedituser.cpp \
         adduser.cpp \
+        category.cpp \
         edituser.cpp \
+        import.cpp \
         interface.cpp \
         main.cpp \
         pictogram.cpp \
@@ -42,7 +44,9 @@ SOURCES += \
 HEADERS += \
         addedituser.h \
         adduser.h \
+        category.h \
         edituser.h \
+        import.h \
         interface.h \
         pictogram.h \
         selectpicto.h \
@@ -52,6 +56,7 @@ HEADERS += \
 
 FORMS += \
         addedituser.ui \
+        import.ui \
         interface.ui \
         selectpicto.ui \
         userlist.ui
